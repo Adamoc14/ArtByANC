@@ -21,3 +21,15 @@
 .change .bar3{
     transform: rotate(45deg) translate(-17px,5px);
 }
+
+@media ( max-width: 600px ) {
+
+    .hamburger_container.open {
+        width: 100%;
+    }
+
+    .change .bar1 ,.change .bar2,.change .bar3{
+        background:#000;
+    }
+    
+}
