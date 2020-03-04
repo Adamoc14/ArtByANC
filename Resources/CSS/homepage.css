@@ -1,3 +1,27 @@
 .overall_container {
     display: flex;
 }
+
+.smaller_container:first-child{
+    flex:20%;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav li{
+    font-size: 2em;
+    padding: 1em 1em;
+}
+
+.smaller_container:nth-child(2){
+    flex: 115%;
+}
+
+.smaller_container:nth-child(2) img {
+    width: 78vw;
+    height: 100vh;
+}
