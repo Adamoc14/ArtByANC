@@ -80,16 +80,16 @@
     }
 
 
-    .smaller_container:first-child.open .logo img{
-        margin: 0em 5em;
-    }
+    /* .smaller_container:first-child.open .logo img{
+        margin: 0em 0em;
+    } */
 
     .smaller_container:first-child{
         display:none;
     }
 
     .smaller_container:first-child.open{
-        flex: 1 0 80%;
+        flex: 1 0 20%;
         display: block;
     }
 
