@@ -65,6 +65,7 @@
 
     .hamburger_container{
         width: 100%;
+        height: 8vh;
         justify-content: unset;
     }
 
@@ -72,10 +73,14 @@
         width: 100%;
     }
 
+    .hamburger_container h1,.hamburger_container .burger_menu {
+        padding: 0em 1em;
+    }
+
     .hamburger_container .burger_menu {
         display: block;
         margin-left: auto;
-        padding: 0em 4em;
+        padding: 0em 2em;
         visibility: visible;
     }
 
