@@ -73,7 +73,7 @@
     } */
 
     .smaller_container:nth-child(2) img {
-        height: 60%;
+        height: 50%;
     }
 
 }
