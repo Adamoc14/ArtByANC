@@ -88,6 +88,11 @@
         display:none;
     }
 
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+
     .smaller_container:first-child.open{
         flex: 1 0 20%;
         display: block;
