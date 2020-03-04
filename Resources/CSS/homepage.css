@@ -58,9 +58,12 @@
 }
 
 @media ( max-width: 600px ) {
+    .overall_container {
+        height: 20%;
+    }
 
     .smaller_container:nth-child(2) img {
-        height: 40%;
+        height: 85%;
     }
 
     .hamburger_container{
@@ -84,11 +87,6 @@
         visibility: visible;
     }
 
-
-    /* .smaller_container:first-child.open .logo img{
-        margin: 0em 0em;
-    } */
-
     .smaller_container:first-child{
         display:none;
     }
@@ -97,6 +95,11 @@
         display: flex;
         justify-content: center;
     }
+
+    .logo img {
+        width: 55vw;
+    }
+
 
     .smaller_container:first-child.open{
         flex: 1 0 20%;
