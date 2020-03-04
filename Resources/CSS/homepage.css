@@ -68,9 +68,9 @@
 
 @media ( max-width: 600px ) {
 
-    .hamburger_container h1{
+    /* .hamburger_container h1{
         margin-left: 34vw;
-    }
+    } */
 
     .smaller_container:nth-child(2) img {
         height: 60%;
