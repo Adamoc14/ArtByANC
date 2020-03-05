@@ -225,6 +225,23 @@
 
     .Coffee_Pics_Container {
         flex-wrap: wrap;
+        margin: 2em 0em;
+    }
+
+    .coffee_sm_pics_container:first-child {
+        justify-content: center;
+    }
+
+    .coffee_sm_pics_container img{
+        width:80vw;
+        height: 40vh;
+        margin-left: unset;
+        margin-bottom: 1em;
+        
+    }
+
+    .coffee_sm_pics_container a {
+        width: 32vw;
     }
 
 
