@@ -57,6 +57,55 @@
     height: 100%;
 }
 
+.Colour_Of_Month_Container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colour_sm_container h1 {
+    font-family: Dancing Script;
+    font-size: 2em;
+}
+
+.colour_sm_container:first-child {
+    flex: 1 0 30%;
+    justify-content: center;
+    display: flex;
+}
+
+.colour_sm_container:nth-child(2) {
+    background: pink;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2 0 80%;
+    justify-content: center;
+}
+
+.colour_sms_container:first-child {
+    flex: 1 0 100%;
+    display: flex;
+    justify-content: center;
+}
+.circle {
+    height: 19vh;
+    width: 34vw;
+    margin: 2em;
+    border-radius: 50%;
+    background: blue;
+}
+
+.colour_sms_container:nth-child(2) {
+    flex: 1 0 100%;
+    display: flex;
+    justify-content: center;
+    background: blue;
+}
+
+.colour_of_month_collage {
+    height: 100%;
+    background: blue;
+}
+
 @media ( max-width: 600px ) {
     .overall_container {
         height: 20%;
