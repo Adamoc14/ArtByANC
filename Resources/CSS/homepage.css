@@ -100,8 +100,13 @@
     justify-content: center;
 }
 
+.colour_of_month_collage {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .colour_of_month_collage img {
-    width: 49vw;
+    width: 33vw;
 }
 
 @media ( max-width: 600px ) {
