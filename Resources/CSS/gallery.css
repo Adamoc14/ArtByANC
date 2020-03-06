@@ -1,0 +1,128 @@
+.wrapper{
+    height: 840vh;
+}
+
+.overall_container {
+    display: flex;
+    height: 110vh;
+}
+
+.smaller_container:first-child{
+    flex: 1 0 20%;
+    height:100%;
+    display: block;
+}
+
+.nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav li{
+    font-size: 2em;
+    padding: .5em 1em;
+}
+
+.smaller_container:nth-child(2){
+    flex: 2 0 80%;
+}
+
+.hamburger_container {
+    position: absolute;
+    height: 10vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    width: 80%;
+}
+
+
+
+.hamburger_container h1, .hamburger_container .burger_menu {
+    color: #fff;
+    font-family: Dancing Script;
+    padding: 0em 2em;
+}
+
+.hamburger_container .burger_menu {
+    display:none;
+}
+
+.smaller_container:nth-child(2) img {
+    width: 78vw;
+    height: 100vh;
+}
+
+
+
+
+
+
+@media ( max-width: 600px ) {
+
+    .overall_container {
+        height: 60vh;
+    }
+
+    .overall_container.open ~ .Coffee_Pics_Container , .overall_container.open ~ .Yellow_Pics_Container , .overall_container.open ~ .Blue_Pics_Container , .overall_container.open ~ .Abstract_Pics_Container , .overall_container.open ~ .Colour_Of_Month_Container {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+    }
+
+    .smaller_container:nth-child(2) img {
+        height: 50vh;
+        width : 100vw;
+    }
+
+    .hamburger_container{
+        width: 100%;
+        height: 8vh;
+        justify-content: unset;
+    }
+
+    .hamburger_container.open{
+        width: 100%;
+    }
+
+    .hamburger_container h1,.hamburger_container .burger_menu {
+        padding: 0em 1em;
+    }
+
+    .hamburger_container .burger_menu {
+        display: block;
+        margin-left: auto;
+        padding: 0em 2em;
+        visibility: visible;
+    }
+
+    .smaller_container:first-child{
+        display:none;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo img {
+        width: 55vw;
+        height: 50vw;
+    }
+
+
+    .smaller_container:first-child.open{
+        flex: 1 0 20%;
+        display: block;
+    }
+
+    .smaller_container:first-child.open ~ .smaller_container:nth-child(2){
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+    }
+}
