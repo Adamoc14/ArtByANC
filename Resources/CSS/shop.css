@@ -57,6 +57,16 @@
     height: 100vh;
 }
 
+.Shop_Main_Container{
+    display: flex;
+    justify-content: center;
+}
+
+.Shop_Main_Container h1{
+    font-family: fantasy;
+    font-size: 2.2em;
+}
+
 
 
 
