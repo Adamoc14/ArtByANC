@@ -172,7 +172,7 @@
         height: 60vh;
     }
 
-    .overall_container.open ~ .Coffee_Pics_Container , .overall_container.open ~ .Yellow_Pics_Container , .overall_container.open ~ .Blue_Pics_Container , .overall_container.open ~ .Abstract_Pics_Container , .overall_container.open ~ .Colour_Of_Month_Container {
+    .overall_container.open + .Shop_Main_Container {
         visibility: hidden;
         position: absolute;
         left: 0;
