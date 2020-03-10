@@ -1,5 +1,7 @@
-getColourPictures();
-function getColourPictures(){
+getPictures();
+displayPricePicker();
+displayFilterAndSort();
+function getPictures(){
     let art_items = []
     $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
         // console.log(response.values);
@@ -33,8 +35,111 @@ function getColourPictures(){
                 }
             });
         }
+        if (document.getElementsByClassName("Products_Container")[0]){
+            var products_container = document.getElementsByClassName("Products_Container")[0];
+            art_items.forEach(function(art_item){
+                if (art_item.Image_Link){
+                    products_container.insertAdjacentHTML('afterbegin',`
+                        <div class="Product_Details">
+                            <img src="${art_item.Image_Link}">
+                            <div class="Product_sm_bar">
+                                <div onclick="viewImage(this, this.parentNode.parentNode)">
+                                    <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
+                                </div>
+                                <a href="#">VIEW PRODUCT</a>
+                            </div>
+                            <div class="Product_Actual_Details">
+                                <h3>${art_item.Description}</h3>
+                                <h2>${art_item.Price}</h2>
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+        }
         // console.log(art_items);  
     });
     return art_items;
+}
+
+
+
+function displayPricePicker(){
+    var price_picker = document.getElementById('Price_Picker');
+    new JSR([price_picker],{
+        sliders:1,
+        values: [25],
+        min: 20, 
+        max: 150,
+        labels: {
+            formatter: function (value){
+                return '€' + value.toString()
+            }
+        },
+        limit: {
+            show: true
+        },
+        grid: false
+    });
+    var canvas = document.getElementsByClassName('jsr_canvas')[0];
+    canvas.style.width = "275px";
+}
+
+function displayFilterAndSort(){
+    if(document.getElementsByClassName('filter_mobile')[0]){
+        var filter = document.getElementsByClassName('filter_mobile')[0];
+        var filter_container = document.getElementsByClassName('Filter_Container')[0];
+        filter.onclick = function(){
+            filter_container.classList.toggle('open');
+        }
+    }
+    if(document.getElementsByClassName('pointer')[0]){
+        console.log(document.getElementsByClassName('pointer')[0]);
+        var sorter = document.getElementsByClassName('pointer')[0];
+        var sort_container = document.getElementsByClassName('sort_options_container')[0];
+        sorter.onclick = function(){
+            sort_container.classList.toggle('open');
+        }
+    }
+}
+
+function viewImage(image, product){
+    var image_src = image.parentNode.previousSibling.previousSibling.src;
+    if (document.getElementsByClassName("Products_Container")[0]){
+        var products_container = document.getElementsByClassName("Products_Container")[0];
+        products_container.insertAdjacentHTML('afterbegin',`
+            <div class="Quick_View_Container">
+                <img src="${image_src}">
+                <div class="Dismiss_btn" onclick="dismissImage()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+        `);
+    }
+    if(document.getElementsByClassName("Quick_View_Container")[0]){
+        // var product_top = document.getElementsByClassName("Product_Details");
+        product_top = product.offsetTop;
+        console.log(product_top);
+        var quick_view_container = document.getElementsByClassName("Quick_View_Container")[0];
+        quick_view_container.style.top = product_top + "px";
+        // var product = image.parentNode.previousSibling.previousSibling.parentNode;
+        // var product_rect =  product.getBoundingClientRect().top;
+        // console.log(product_rect);
+        // var products_container_rect = document.getElementsByClassName("Products_Container")[0].getBoundingClientRect().top;
+        // console.log(products_container_rect);
+        // offset   = product_rect - products_container_rect;
+        // console.log('Element is ' + offset + ' vertical pixels from <div class="Products_Container"></div>');
+        // var quick_view_container = document.getElementsByClassName("Quick_View_Container")[0];
+        // quick_view_container.style.top = offset / 5.8 + "vh";
+        // console.log(quick_view_container.style.top);
+        
+    }
+}
+
+function dismissImage(){
+    if(document.getElementsByClassName("Quick_View_Container") [0]){
+        var quick_view_container = document.getElementsByClassName("Quick_View_Container") [0];
+        quick_view_container.style.display = "none";
+    }
 }
 

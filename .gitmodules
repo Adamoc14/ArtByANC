@@ -1,0 +1,3 @@
+[submodule "Resources/Libraries/jsr"]
+	path = Resources/Libraries/jsr
+	url = https://github.com/soanvig/jsr.git
