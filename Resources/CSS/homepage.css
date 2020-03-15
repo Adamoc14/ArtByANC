@@ -1,5 +1,5 @@
 .wrapper{
-    height: 840vh;
+    height: 730vh;
 }
 
 .overall_container {
@@ -9,7 +9,6 @@
 
 .smaller_container:first-child {
     flex: 1 0 20%;
-    height: 91%;
     display: block;
     background: black;
 }
@@ -54,6 +53,7 @@
     width: 100%;
     background: rgba(0,0,0,0.3);
     width: 80%;
+    z-index: 9999;
 }
 
 
@@ -71,6 +71,8 @@
 .smaller_container:nth-child(2) img {
     width: 80vw;
     height: 100vh;
+    position: fixed;
+    z-index: -1;
 }
 
 .Colour_Of_Month_Container {
@@ -80,7 +82,8 @@
 }
 
 .colour_sm_container h1 {
-    font-family: Dancing Script;
+    font-family: sans-serif;
+    font-weight: 300;
     font-size: 2em;
 }
 
@@ -128,8 +131,8 @@
 .Coffee_Pics_Container , .Yellow_Pics_Container , .Blue_Pics_Container , .Abstract_Pics_Container {
     display: flex;
     flex-wrap: nowrap;
-    margin: 4em 0em;
-    padding: 2em 2em;
+    background: white;
+    padding: 4em 2em;
 }
 
 .coffee_sm_pics_container , .yellow_sm_pics_container , .blue_sm_pics_container , .abstract_sm_pics_container {
@@ -170,17 +173,22 @@
     margin-bottom: 1em;
 }
 
-.coffee_sm_pics_container a , .yellow_sm_pics_container a , .blue_sm_pics_container a , .abstract_sm_pics_container a {
+.coffee_sm_pics_container a, .yellow_sm_pics_container a, .blue_sm_pics_container a, .abstract_sm_pics_container a {
     padding: 1.2em 1em;
-    background: white;
+    background: black;
     width: 12vw;
-    color: darksalmon;
+    color: white;
     border: 2px solid #eee;
-    font-weight: 600;
+    font-weight: 400;
     margin: 0 auto;
+    font-family: sans-serif;
 }
 
+
 @media ( max-width: 600px ) {
+    .wrapper{
+        height: 533vh;
+    }
     .overall_container {
         height: 60vh;
     }
