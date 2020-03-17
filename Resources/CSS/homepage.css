@@ -1,5 +1,6 @@
 .wrapper{
-    height: 730vh;
+    height: 485vh;
+    background: white;
 }
 
 .overall_container {
@@ -72,67 +73,15 @@
     width: 80vw;
     height: 100vh;
     position: fixed;
-    z-index: -1;
 }
 
-.Colour_Of_Month_Container {
-    display: flex;
-    margin-top: 2em;
-    flex-wrap: wrap;
-}
-
-.colour_sm_container h1 {
-    font-family: sans-serif;
-    font-weight: 300;
-    font-size: 2em;
-}
-
-.colour_sm_container:first-child {
-    flex: 1 0 30%;
-    justify-content: center;
-    display: flex;
-}
-
-.colour_sm_container:nth-child(2) {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 2 0 80%;
-    justify-content: center;
-}
-
-.colour_sms_container:first-child {
-    flex: 1 0 100%;
-    display: flex;
-    justify-content: center;
-}
-.circle {
-    height: 40vh;
-    width: 25vw;
-    margin: 2em;
-    border-radius: 50%;
-    background: blue;
-}
-
-.colour_sms_container:nth-child(2) {
-    flex: 1 0 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.colour_of_month_collage {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.colour_of_month_collage img {
-    width: 33vw;
-}
-
-.Coffee_Pics_Container , .Yellow_Pics_Container , .Blue_Pics_Container , .Abstract_Pics_Container {
+.Coffee_Pics_Container , .Yellow_Pics_Container , .Blue_Pics_Container , .Abstract_Pics_Container , .Colour_Of_Month_Container {
     display: flex;
     flex-wrap: nowrap;
-    background: white;
     padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
 }
 
 .coffee_sm_pics_container , .yellow_sm_pics_container , .blue_sm_pics_container , .abstract_sm_pics_container {
@@ -184,17 +133,81 @@
     font-family: sans-serif;
 }
 
+.Colour_Of_Month_Container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6vh 0vw;
+    background: black;
+    color: white;
+}
+
+.colour_sm_container h1 {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: .5em;
+}
+
+.colour_sm_container:first-child {
+    flex: 1 0 30%;
+    justify-content: center;
+    align-items: end;
+    margin-bottom: 2vh;
+    display: flex;
+}
+
+.colour_sm_container:nth-child(2) {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2 0 80%;
+    justify-content: center;
+}
+
+.circle {
+    height: 8vh;
+    width: 5vw;
+    margin-left: 2em;
+    border-radius: 50%;
+    background: blue;
+}
+
+.colour_of_month_collage {
+    display: flex;
+}
+
+.colour_of_month_collage img {
+    width: 20vw;
+    margin-right: 1vw;
+}
+
+
+
+
+
 
 @media ( max-width: 600px ) {
-    .wrapper{
-        height: 533vh;
+    .wrapper {
+        height: 437vh;
     }
+
+    .wrapper.open{
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+    .wrapper.open > .overall_container > .smaller_container:first-child.open > .nav {
+        height: 70%;
+    }
+
+    
     .overall_container {
         height: 60vh;
     }
 
     .overall_container.open ~ .Coffee_Pics_Container , .overall_container.open ~ .Yellow_Pics_Container , .overall_container.open ~ .Blue_Pics_Container , .overall_container.open ~ .Abstract_Pics_Container , .overall_container.open ~ .Colour_Of_Month_Container {
-        visibility: hidden;
+        display: none;
         position: absolute;
         left: 0;
     }
@@ -253,22 +266,9 @@
         position: absolute;
         left: 0;
     }
-
-    
-
-    .circle {
-        height: 20vh;
-        width: 35vw;
-    }
-
-    .colour_of_month_collage img {
-        width: 49vw;
-        height: 40vh;
-    }
-
     .Coffee_Pics_Container , .Yellow_Pics_Container , .Blue_Pics_Container , .Abstract_Pics_Container {
         flex-wrap: wrap;
-        margin: 2em 0em;
+        padding: 2em 0em;
     }
 
     .coffee_sm_pics_container:first-child , .blue_sm_pics_container:first-child {
@@ -294,6 +294,35 @@
     .yellow_sm_pics_container:nth-child(2) , .abstract_sm_pics_container:nth-child(2){
         justify-content: center;
         order: -1;
+    }
+
+    .Colour_Of_Month_Container{
+        padding: 5vh 0vw;
+    }
+
+    .colour_sm_container:first-child {
+        flex-wrap: wrap;
+    }
+
+    .colour_sm_container h1 {
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    .circle {
+        height: 10vh;
+        width: 18vw;
+        margin-left: unset;
+    }
+
+    .colour_of_month_collage img {
+        width: 47vw;
+        height: 40vh;
+        margin: .3em;
+    }
+
+    .colour_of_month_collage {
+        flex-wrap: wrap;
     }
 
 

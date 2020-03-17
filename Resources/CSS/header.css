@@ -11,7 +11,7 @@
 }
 
 .change .bar1 {
-    transform: rotate(-45deg) translate(11.5px,26.5px);
+    transform: rotate(-45deg) translate(171.5px,205.5px);
 }
 
 .change .bar2{
@@ -19,7 +19,7 @@
 }
 
 .change .bar3{
-    transform: rotate(45deg) translate(13px,-27px);
+    transform: rotate(45deg) translate(191px,-187px);
 }
 
 @media ( max-width: 600px ) {

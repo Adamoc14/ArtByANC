@@ -1,8 +1,22 @@
 .footer {
     display: flex;
     justify-content: center;
-    background: black;
-    color: white;
-    padding: 3em 0;
+    background: white;
+    color: black;
+    padding: 8vh 0vw;
+    z-index: 99999999;
+    position: relative;
+}
+
+.footer h4{
+    font-size: 1.2em;
+    font-family: sans-serif;
+    font-weight: 300s;
+}
+
+@media ( max-width: 600px ) {
+    .wrapper.open ~ .footer{
+        padding: 5vh 0vw;
+    }
 }
 

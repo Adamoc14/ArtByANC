@@ -27,7 +27,7 @@ function getPictures(){
         }
         if (document.getElementsByClassName("colour_of_month_collage")[0]){
             var color_of_month_collage = document.getElementsByClassName("colour_of_month_collage")[0];
-            art_items.slice(0,10).forEach(function(art_item){
+            art_items.slice(0,5).forEach(function(art_item){
                 if (art_item.Image_Link){
                     color_of_month_collage.insertAdjacentHTML('afterbegin',`
                         <img src="${art_item.Image_Link}">
