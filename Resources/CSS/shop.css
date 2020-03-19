@@ -1,5 +1,10 @@
 .wrapper{
-    height: 840vh;
+    height: 635vh;
+    background: white;
+}
+
+.footer{
+    border-top: 1px solid #eee;
 }
 
 .Shop_Main_Container{
@@ -7,6 +12,8 @@
     flex-wrap: wrap;
     height: 110vh;
     padding: 2em;
+    background: white;
+    position: relative;
 }
 
 .Shop_Main_sm_container h1{
@@ -32,13 +39,13 @@
     display: flex;
 }
 
-.shop_sm_container:first-child{
+.shop_sm_container:first-child {
     flex: 1 0 20%;
-    height:100%;
-    margin-right: 2em;
+    height: 100%;
+    padding-right: 2em;
+    background: white;
     display: flex;
     flex-direction: column;
-
 }
 /* .shop_sm_container:first-child == .Filter_Container */
 
@@ -55,6 +62,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    background: white;
 }
 
 /* .shop_sm_container:nth-child(2) == .Products_Container */
