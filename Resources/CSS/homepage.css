@@ -152,8 +152,8 @@
         width: 32vw;
     }
 
-    .coffee_sm_pics_container h1 , .yellow_sm_pics_container h1 , .blue_sm_pics_container h1 , .abstract_sm_pics_container h1{
-        font-size: 1.2em;
+    .coffee_sm_pics_container h1, .yellow_sm_pics_container h1, .blue_sm_pics_container h1, .abstract_sm_pics_container h1 {
+        font-size: .6em;
     }
 
     .yellow_sm_pics_container:nth-child(2) , .abstract_sm_pics_container:nth-child(2){
