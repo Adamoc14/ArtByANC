@@ -75,7 +75,7 @@
 }
 
 .change .bar1 {
-    transform: rotate(-45deg) translate(171.5px,205.5px);
+    transform: rotate(-45deg) translate(71.5px,115.5px);
 }
 
 .change .bar2{
@@ -83,7 +83,7 @@
 }
 
 .change .bar3{
-    transform: rotate(45deg) translate(191px,-187px);
+    transform: rotate(45deg) translate(101px,-87px);
 }
 
 .smaller_container:nth-child(2) img {
