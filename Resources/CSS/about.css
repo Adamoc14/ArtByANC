@@ -1,5 +1,61 @@
-.wrapper{
+/* .wrapper{
     height: 840vh;
+} */
+
+body{
+    font-size: 1em;
+    font-weight: 200;
+    font-family: sans-serif;
+    letter-spacing: .01em;
+    line-height: 2em;
+}
+
+.About_Container , .Colour_Of_Month_Container{
+    display: flex;
+    padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
+}
+
+.About_Container {
+    padding: 4em 4em; 
+}
+
+.About_Container_sm:first-child {
+    flex: 1 0 45%;
+}
+
+.About_Container_sm:nth-child(2) {
+    flex: 2 0 26%;
+}
+
+.About_Container_sm img {
+    width: 48vw;
+}
+
+.About_Description h4 {
+    font-family: Dancing Script;
+    font-size: 1.5em;
+    color: pink;
+    font-weight: 600;
+    text-align: center;
+}
+
+.About_Description p {
+    margin: 1em .6em;
+}
+
+
+
+.About_Contact_Social_Icons_Container {
+    display: flex;
+    justify-content: center;
+    padding: 3em 0em;
+}
+
+.About_Contact_Social_Icons_Container a {
+    margin: 0em .4em;
 }
 
 
@@ -9,5 +65,21 @@
         height: 60vh;
     }
 
+    .About_Container {
+        flex-wrap: wrap;
+    }
+
+    .About_Container_sm:first-child {
+        display: flex;
+        justify-content: center;
+    }
+    .About_Container_sm img {
+        width: 38vw;
+        height: 28vh;
+        margin-bottom: 2em;
+    }
+    .About_Container_sm:nth-child(2) {
+        flex: 2 0 106%;
+    }
     
 }

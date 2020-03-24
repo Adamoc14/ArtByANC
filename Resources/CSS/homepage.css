@@ -63,54 +63,7 @@
     font-family: sans-serif;
 }
 
-.Colour_Of_Month_Container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 6vh 0vw;
-    background: black;
-    color: white;
-}
 
-.colour_sm_container h1 {
-    font-family: sans-serif;
-    font-weight: 500;
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 1em;
-    margin-top: .5em;
-}
-
-.colour_sm_container:first-child {
-    flex: 1 0 30%;
-    justify-content: center;
-    align-items: end;
-    margin-bottom: 2vh;
-    display: flex;
-}
-
-.colour_sm_container:nth-child(2) {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 2 0 80%;
-    justify-content: center;
-}
-
-.circle {
-    height: 8vh;
-    width: 5vw;
-    margin-left: 2em;
-    border-radius: 50%;
-    background: blue;
-}
-
-.colour_of_month_collage {
-    display: flex;
-}
-
-.colour_of_month_collage img {
-    width: 20vw;
-    margin-right: 1vw;
-}
 
 
 
@@ -161,37 +114,6 @@
         justify-content: center;
         order: -1;
     }
-
-    .Colour_Of_Month_Container{
-        padding: 5vh 0vw;
-    }
-
-    .colour_sm_container:first-child {
-        flex-wrap: wrap;
-    }
-
-    .colour_sm_container h1 {
-        text-align: center;
-        margin-bottom: 1em;
-    }
-
-    .circle {
-        height: 10vh;
-        width: 18vw;
-        margin-left: unset;
-    }
-
-    .colour_of_month_collage img {
-        width: 47vw;
-        height: 40vh;
-        margin: .3em;
-    }
-
-    .colour_of_month_collage {
-        flex-wrap: wrap;
-    }
-
-
     
 
 }
