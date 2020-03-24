@@ -65,21 +65,33 @@ body{
         height: 60vh;
     }
 
+    .wrapper.open{
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+    .wrapper.open > .overall_container > .smaller_container:first-child.open > .nav {
+        height: 70%;
+    }
+
     .About_Container {
         flex-wrap: wrap;
+        padding: 4em 1em;
     }
 
     .About_Container_sm:first-child {
         display: flex;
         justify-content: center;
+        flex: 1 0 60%;
     }
     .About_Container_sm img {
         width: 38vw;
         height: 28vh;
-        margin-bottom: 2em;
+        margin: 2em 0em;
     }
     .About_Container_sm:nth-child(2) {
-        flex: 2 0 106%;
+        flex: 2 0 50%;
+        text-align: center;
     }
     
 }
