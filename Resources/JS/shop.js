@@ -1,6 +1,9 @@
 getPictures();
-// displayPricePicker();
-displayFilterAndSort();
+displayPricePicker();
+if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
+    displayFilterAndSort();
+}
+
 function getPictures(){
     let art_items = []
     $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
@@ -86,36 +89,32 @@ function displayPricePicker(){
 }
 
 function displayFilterAndSort(){
-    if(document.getElementsByClassName('filter_mobile')[0]){
-        var filter = document.getElementsByClassName('filter_mobile')[0];
-        var filter_container = document.getElementsByClassName('Filter_Container')[0];
-        filter.onclick = function(){
+    var filter = document.getElementsByClassName('filter_mobile')[0];
+    var filter_container = document.getElementsByClassName('Filter_Container')[0];
+    var sorter = document.getElementsByClassName('pointer')[0];
+    var sort_container = document.getElementsByClassName('sort_options_container')[0];
+    filter.onclick = function(){
+        //This just checks if the other is open before allowing them open
+        if (sort_container.classList.contains('open') == false){
             filter_container.classList.toggle('open');
-            if (filter_container.classList.contains('open') == false){
-                document.getElementsByClassName('pointer')[0].onclick = function(){
-                    document.getElementsByClassName('sort_options_container')[0].classList.toggle('open');
-                };
-            } else {
-                document.getElementsByClassName('pointer')[0].onclick = false;
-            }
+            console.log("filter_open");
+        } else {
+            console.log("sorter is open , filter can't open");
+            filter_container.classList.toggle('close'); 
         }
     }
-    if(document.getElementsByClassName('pointer')[0]){
-        console.log(document.getElementsByClassName('pointer')[0]);
-        var sorter = document.getElementsByClassName('pointer')[0];
-        var sort_container = document.getElementsByClassName('sort_options_container')[0];
-        sorter.onclick = function(){
+    
+    sorter.onclick = function(){
+        //This just checks if the other is open before allowing them open
+        if (filter_container.classList.contains('open') == false){
             sort_container.classList.toggle('open');
-            if (sort_container.classList.contains('open') == false){
-                document.getElementsByClassName('filter_mobile')[0].onclick = function(){
-                    document.getElementsByClassName('Filter_Container')[0].classList.toggle('open');
-                };
-            } else {
-                document.getElementsByClassName('filter_mobile')[0].onclick = false;
-            }
+        } else {
+            console.log("filter is open , sort can't open");
+            sort_container.classList.toggle('close'); 
         }
     }
 }
+
 
 function viewImage(image, product){
     var image_src = image.parentNode.previousSibling.previousSibling.src;

@@ -130,7 +130,7 @@
         margin-top: 2em;
     }
     
-    .shop_sm_container:first-child{
+    .shop_sm_container:first-child , .Filter_Container.close , .sort_options_container.close{
         display: none;
     }
 
@@ -181,6 +181,7 @@
         height: unset;
         padding-left: 2em;
     }
+    
     .Products_Container img {
         width: 49vw;
     }
