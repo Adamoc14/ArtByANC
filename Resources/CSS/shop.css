@@ -1,6 +1,6 @@
 .wrapper{
     min-height: 1305vh;
-    height: 1375vh;
+    height: 1380vh;
     background: white;
 }
 
@@ -163,7 +163,7 @@
         display: unset;
         position: absolute;
         width: 41vw;
-        top: 34.8vh;
+        top: 35vh;
         left: 50vw;
         background: white;
         padding: 1em 0.7em;
