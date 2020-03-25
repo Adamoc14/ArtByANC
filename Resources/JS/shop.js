@@ -1,5 +1,5 @@
 getPictures();
-displayPricePicker();
+// displayPricePicker();
 displayFilterAndSort();
 function getPictures(){
     let art_items = []

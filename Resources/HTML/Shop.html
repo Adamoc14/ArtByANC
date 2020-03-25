@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Quicksand&display=swap" rel="stylesheet">
-    <script async src="../../Resources/Libraries/jsr/dist/main.js"></script>
+    <script src="../../Resources/Libraries/jsr/dist/main.js"></script>
     <script src="../../Resources/JS/navbar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script src="../../Resources/JS/homepage.js"></script> -->
     <title>ArtByANC | Shop</title>
 </head>
 <body>
@@ -91,6 +90,26 @@
     <div class="footer">
         <h4>ArtByANC &copy; Copyright 2020</h4>
     </div>
+    <script>
+        var price_picker = document.getElementById('Price_Picker');
+        new JSR([price_picker],{
+            sliders:1,
+            values: [25],
+            min: 20, 
+            max: 150,
+            labels: {
+                formatter: function (value){
+                    return '€' + value.toString()
+                }
+            },
+            limit: {
+                show: true
+            },
+            grid: false
+        });
+        var canvas = document.getElementsByClassName('jsr_canvas')[0];
+        canvas.style.width = "275px";
+    </script>
     <script src="../../Resources/JS/shop.js"></script>
 </body>
 </html>
