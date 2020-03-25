@@ -91,6 +91,13 @@ function displayFilterAndSort(){
         var filter_container = document.getElementsByClassName('Filter_Container')[0];
         filter.onclick = function(){
             filter_container.classList.toggle('open');
+            if (filter_container.classList.contains('open') == false){
+                document.getElementsByClassName('pointer')[0].onclick = function(){
+                    document.getElementsByClassName('sort_options_container')[0].classList.toggle('open');
+                };
+            } else {
+                document.getElementsByClassName('pointer')[0].onclick = false;
+            }
         }
     }
     if(document.getElementsByClassName('pointer')[0]){
@@ -99,6 +106,13 @@ function displayFilterAndSort(){
         var sort_container = document.getElementsByClassName('sort_options_container')[0];
         sorter.onclick = function(){
             sort_container.classList.toggle('open');
+            if (sort_container.classList.contains('open') == false){
+                document.getElementsByClassName('filter_mobile')[0].onclick = function(){
+                    document.getElementsByClassName('Filter_Container')[0].classList.toggle('open');
+                };
+            } else {
+                document.getElementsByClassName('filter_mobile')[0].onclick = false;
+            }
         }
     }
 }
