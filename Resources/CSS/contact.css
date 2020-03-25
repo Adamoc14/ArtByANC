@@ -1,7 +1,88 @@
-.wrapper{
-    height: 840vh;
+body{
+    font-size: 1em;
+    font-weight: 200;
+    font-family: sans-serif;
+    letter-spacing: .01em;
+    line-height: 2em;
+}
+
+.Contact_Details_Container , .Colour_Of_Month_Container{
+    display: flex;
+    padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
+}
+
+.Contact_Details_Container {
+    flex-direction: column;
+}
+
+
+.Contact_Details_Container_sm:first-child {
+    text-align: center;
+}
+
+.Contact_Details_Container_sm:first-child p {
+    margin: 1em .6em;
+}
+
+.Contact_Details_Container_sm:nth-child(5) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Name_Inputs{
+    display:flex;
+}
+
+.F_Name {
+    margin-right: 1em;
+}
+
+.F_Name p, .L_Name p {
+    font-size: 0.8em;
+    font-weight: 100;
+}
+
+.Email_Inputs input   {
+    padding-right: 18.5em;
+    padding-right: 18.5em;
+}
+
+.Message_Inputs textarea   {
+    padding-right: 18.2em;
+}
+
+.Contact_Form_Btn_Container{
+    display: flex;
+    justify-content: center;
+}
+
+
+.Contact_Form_Btn_Container input[type="submit"] {
+    border: 2px solid black;
+    padding: 1em 2em;
+    margin-top: 1em;
 }
 
 @media ( max-width: 600px ) {
+
+    .Name_Inputs {
+        flex-direction: column;
+    }
+
+    .Contact_Details_Container_sm:nth-child(5){
+        align-items: unset;
+    }
+    .Contact_Details_Container_sm:nth-child(5) h5 {
+        text-align: center;
+    }
+    .Email_Inputs input   {
+        padding-right: 4em;
+    }
+    .Message_Inputs textarea   {
+        padding-right: 3.9em;
+    }
 
 }

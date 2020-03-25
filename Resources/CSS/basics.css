@@ -21,3 +21,26 @@ a{
 a:hover{
     text-decoration: none;
 }
+
+input[type="text"], input[type="email"] , textarea{
+    padding: .5em 3em .5em .4em;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    font-weight: 300;
+}
+
+input[type="submit"] {
+    all: unset;
+    cursor: pointer;
+}
+
+b{
+    color: pink
+}
+
+
+@media ( max-width: 600px ) {
+    input[type="text"], input[type="email"] , textarea{
+        padding: .5em 4em .5em .4em;
+    }
+}
