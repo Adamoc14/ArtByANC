@@ -184,5 +184,10 @@
     .Products_Container img {
         width: 49vw;
     }
+    .Shop_Main_sm_container h1{
+        font-size: 1.3em;
+        margin-bottom: 2em;
+        font-family: Quicksand;
+    }
     
 }

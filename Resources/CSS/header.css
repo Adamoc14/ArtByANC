@@ -113,6 +113,7 @@
     .overall_container.open ~ .Blue_Pics_Container , 
     .overall_container.open ~ .Abstract_Pics_Container , 
     .overall_container.open ~ .Colour_Of_Month_Container , 
+    .overall_container.open ~ .Shop_Main_Container , 
     .overall_container.open ~ .About_Container , 
     .overall_container.open ~ .Contact_Details_Container{
         display: none;
