@@ -161,9 +161,9 @@
     .sort_options_container.open {
         display: unset;
         position: absolute;
-        width: 31vw;
-        top: 75vh;
-        left: 56vw;
+        width: 41vw;
+        top: 34.2vh;
+        left: 50vw;
         background: white;
         padding: 1em 0.7em;
         border: 1px solid #eee;
@@ -185,8 +185,8 @@
         width: 49vw;
     }
     .Shop_Main_sm_container h1{
-        font-size: 1.3em;
-        margin-bottom: 2em;
+        font-size: 2em;
+        margin: 2em;
         font-family: Quicksand;
     }
     
