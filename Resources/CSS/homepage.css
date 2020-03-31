@@ -1,5 +1,5 @@
 .wrapper{
-    height: 485vh;
+    height: 490vh;
     background: white;
 }
 
@@ -72,7 +72,7 @@
 
 @media ( max-width: 600px ) {
     .wrapper {
-        height: 462vh;
+        height: 422vh;
     }
 
     .wrapper.open{

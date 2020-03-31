@@ -28,16 +28,16 @@ function getPictures(){
                 delete art_items[i];
             }
         }
-        if (document.getElementsByClassName("colour_of_month_collage")[0]){
-            var color_of_month_collage = document.getElementsByClassName("colour_of_month_collage")[0];
-            art_items.slice(0,5).forEach(function(art_item){
-                if (art_item.Image_Link){
-                    color_of_month_collage.insertAdjacentHTML('afterbegin',`
-                        <img src="${art_item.Image_Link}">
-                    `);
-                }
-            });
-        }
+        // if (document.getElementsByClassName("colour_of_month_collage")[0]){
+        //     var color_of_month_collage = document.getElementsByClassName("colour_of_month_collage")[0];
+        //     art_items.slice(0,5).forEach(function(art_item){
+        //         if (art_item.Image_Link){
+        //             color_of_month_collage.insertAdjacentHTML('afterbegin',`
+        //                 <img src="${art_item.Image_Link}">
+        //             `);
+        //         }
+        //     });
+        // }
         if (document.getElementsByClassName("Products_Container")[0]){
             var products_container = document.getElementsByClassName("Products_Container")[0];
             art_items.forEach(function(art_item){
@@ -68,24 +68,27 @@ function getPictures(){
 
 
 function displayPricePicker(){
-    var price_picker = document.getElementById('Price_Picker');
-    new JSR([price_picker],{
-        sliders:1,
-        values: [25],
-        min: 20, 
-        max: 150,
-        labels: {
-            formatter: function (value){
-                return '€' + value.toString()
-            }
-        },
-        limit: {
-            show: true
-        },
-        grid: false
-    });
-    var canvas = document.getElementsByClassName('jsr_canvas')[0];
-    canvas.style.width = "275px";
+    var price_picker = "";
+    if (document.getElementById('Price_Picker')){
+        price_picker = document.getElementById('Price_Picker');
+        new JSR([price_picker],{
+            sliders:1,
+            values: [25],
+            min: 20, 
+            max: 150,
+            labels: {
+                formatter: function (value){
+                    return '€' + value.toString()
+                }
+            },
+            limit: {
+                show: true
+            },
+            grid: false
+        });
+        var canvas = document.getElementsByClassName('jsr_canvas')[0];
+        canvas.style.width = "275px";
+    } 
 }
 
 function displayFilterAndSort(){
