@@ -1,4 +1,5 @@
-getPictures();
+var art_items = getPictures();
+console.log(art_items[53]);
 displayPricePicker();
 if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
     displayFilterAndSort();
@@ -18,6 +19,7 @@ function getPictures(){
                 Stock: product[3],
                 Description: product[4],
                 Image_Link: product[5],
+                Url: encodeURIComponent(product[5])
             }
             art_items.push(art_item);   
         }
@@ -49,14 +51,15 @@ function getPictures(){
                                 <div onclick="viewImage(this, this.parentNode.parentNode)">
                                     <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
                                 </div>
-                                <a href="#">VIEW PRODUCT</a>
+                                <a href="../../Resources/HTML/ProductView.html?image=${art_item.Url}&name=${art_item.Name}&price=${art_item.Price}&description=${art_item.Description}">VIEW PRODUCT</a>
                             </div>
                             <div class="Product_Actual_Details">
-                                <h3>${art_item.Description}</h3>
-                                <h2>${art_item.Price}</h2>
+                                <h2>${art_item.Description}</h2>
+                                <h3>${art_item.Price}</h3>
                             </div>
                         </div>
                     `);
+                    console.log(art_item.Image_Link);
                 }
             });
         }

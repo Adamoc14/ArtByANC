@@ -1,6 +1,4 @@
 .wrapper{
-    min-height: 1305vh;
-    height: 1380vh;
     background: white;
 }
 
@@ -11,9 +9,13 @@
 .Shop_Main_Container{
     display: flex;
     flex-wrap: wrap;
-    height: 110vh;
     padding: 2em;
     background: white;
+    
+}
+
+.Shop_Main_Container,.Colour_Of_Month_Container{
+    z-index: 9999999999;
     position: relative;
 }
 
@@ -100,12 +102,16 @@
 
 .Product_sm_bar {
     display: flex;
+    margin-top: 1em;
     align-items: center;
     justify-content: center;
 }
 
 .Product_sm_bar a {
     margin-left: 1em;
+    padding: .5em .5em;
+    font-weight: 500;
+    border: 2px solid black;
 }
 
 .Product_Actual_Details {
@@ -113,6 +119,12 @@
     padding: 1em 1em;
     align-items: center;
     flex-direction: column;
+}
+
+.Product_Actual_Details h3 ,
+.Product_Actual_Details h2
+ {
+    font-weight: 200;
 }
 
 

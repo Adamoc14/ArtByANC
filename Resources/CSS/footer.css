@@ -35,17 +35,17 @@
     width: 5vw;
     margin-left: 2em;
     border-radius: 50%;
-    background: blue;
+    background: peachpuff;
 }
 
-.colour_of_month_collage {
+/* .colour_of_month_collage {
     display: flex;
 }
 
 .colour_of_month_collage img {
     width: 20vw;
     margin-right: 1vw;
-}
+} */
 
 
 
@@ -92,7 +92,7 @@
         margin-left: unset;
     }
 
-    .colour_of_month_collage img {
+    /* .colour_of_month_collage img {
         width: 47vw;
         height: 40vh;
         margin: .3em;
@@ -100,6 +100,6 @@
 
     .colour_of_month_collage {
         flex-wrap: wrap;
-    }
+    } */
 }
 

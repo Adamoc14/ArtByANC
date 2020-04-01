@@ -1,0 +1,68 @@
+.main_box {
+    display: flex;
+    background: white;
+}
+.main_box,
+.Colour_Of_Month_Container{
+    z-index: 9999999999;
+    position: relative;
+}
+
+
+#one {
+    display: flex;
+    width: 90vw;
+    height: 80vh;
+    margin: 10vh 10vw;
+    box-shadow: 3px 3px 20px 1px rgba(0,0,0,.3);
+    border-radius: 15px;
+}
+
+
+.Image_Container {
+    flex: 1 0 35vw;
+}
+
+.Image_Container img {
+    width: 40vw;
+    height: 80vh;
+}
+
+#detailsContainer {
+    flex: 2 0 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first_Details_Container {
+    display: flex;
+    padding: 2vh 2vw;
+    margin: 3em .6em;
+    margin-bottom: .5em;
+    width: 25vw;
+    justify-content: space-between;
+}
+
+.second_Details_Container {
+    width: 25vw;
+    margin: 1em .6em;
+    margin-bottom: 3em;
+}
+
+.buttons {
+    display: flex;
+    width: 25vw;
+    justify-content: space-around;
+}
+
+.btn-product-view {
+    padding: 1.2em 1em;
+    background: black;
+    color: white;
+    border: none;
+    font-weight: 400;
+    margin: 0 auto;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
