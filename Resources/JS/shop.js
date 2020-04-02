@@ -55,7 +55,7 @@ function getPictures(){
                             </div>
                             <div class="Product_Actual_Details">
                                 <h2>${art_item.Description}</h2>
-                                <h3>${art_item.Price}</h3>
+                                <h3>€${art_item.Price}</h3>
                             </div>
                         </div>
                     `);

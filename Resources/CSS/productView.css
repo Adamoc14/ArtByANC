@@ -9,7 +9,7 @@
 }
 
 
-#one {
+#Product_Container {
     display: flex;
     width: 90vw;
     height: 80vh;
@@ -56,7 +56,7 @@
     justify-content: space-around;
 }
 
-.btn-product-view {
+.btn-product-view, .btn-product-view.cart {
     padding: 1.2em 1em;
     background: black;
     color: white;

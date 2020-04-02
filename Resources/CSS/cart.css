@@ -1,0 +1,89 @@
+.checkoutContainer,
+.shopping_title,
+.Colour_Of_Month_Container{
+    z-index: 9999999999;
+    position: relative;
+}
+
+.shopping_title {
+    padding: 3em;
+    padding-left: 1em;
+    background: white;
+}
+
+.checkoutContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 6em;
+    background: white;
+}
+
+.Cart_Form {
+    width: 100%;
+}
+
+.checkoutPartContainer1 {
+    padding: 4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.checkoutPartContainer1 img {
+    width: 13em;
+}
+
+.plus, .minus {
+    padding: .5em 1em;
+    background: black;
+    color: white;
+}
+
+.priceCartContainer {
+    display: flex;
+}
+
+input#quantity {
+    text-align: center;
+    padding-right: 1em;
+    margin: 1em;
+}
+
+.remove-btn {
+    padding: 1em 1em;
+    background: red;
+    color: white;
+    border-radius: 9px;
+}
+.bottomPart {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2em;
+    width: 90%;
+}
+
+.bottomPart span h5 {
+    margin-right: 1em;
+}
+
+.bottomPart span {
+    display: flex;
+    align-items: center;
+}
+
+.proceed_to_checkout {
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.proceed_to_checkout a ,
+.continueShopping a {
+    background: black;
+    padding: 1em;
+    color: white;
+    text-transform: uppercase;
+}

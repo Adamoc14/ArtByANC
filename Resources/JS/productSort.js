@@ -1,6 +1,5 @@
 let params = new URLSearchParams(location.search);
 let art_product = makeObject();
-// addart_productId();
 function makeObject() {
     let art_product = {
         Image_Link: params.get('image'),
@@ -8,11 +7,14 @@ function makeObject() {
         Price: params.get('price'),
         Description: params.get('description'),
     };
-    console.log(art_product.Image_Link);
     return art_product;
 }
 
-var d1 = document.getElementById('one');
+
+var d1 = document.getElementById('Product_Container');
+d1.setAttribute("data-image" , art_product.Image_Link);
+d1.setAttribute("data-price" , art_product.Price);
+d1.setAttribute("data-name" , art_product.Name);
 d1.insertAdjacentHTML('afterbegin', `
     <div class="Image_Container">
         <img src="${art_product.Image_Link}">
@@ -23,7 +25,7 @@ var details = document.getElementById("detailsContainer");
 details.insertAdjacentHTML('afterbegin', `
     <div class="first_Details_Container">
         <h2>${art_product.Name}</h2>
-        <h2>${art_product.Price}</h2>
+        <h2>€s${art_product.Price}</h2>
     </div>
     <div class="second_Details_Container">
         <p>${art_product.Description}Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam alias, aperiam inventore sequi aut voluptates quisquam? Dignissimos ex ea excepturi quis animi tenetur aspernatur, rem unde consequatur earum maiores consequuntur!
@@ -33,22 +35,14 @@ details.insertAdjacentHTML('afterbegin', `
     </div>
     <span class="buttons">
         <a href="../../Resources/HTML/Shop.html" class="btn-product-view">Back To Browse</a>
-        <form action="../../Resources/HTML/Cart.html" method="post">
+        <form action="../../Resources/HTML/Cart.html" method="post" class="add-to-cart">
             <input type="hidden" name="qty-1" id="qty-1" class="qty" value="1">
             <input type="submit" class="btn-product-view cart" value="Add To Cart">
         </form>
-        <a href="../../Resources/HTML/Cart.html" class="btn-product-view cart" >Add To Cart</a>
+        <a href="../../Resources/HTML/Cart.html" class="btn-product-view">Add To Cart</a>
     </span>
 `);
 
-// function addProductId() {
-//     var page = product.id;
-//     var price = product.price;
-//     if (document.getElementsByClassName("cart")[1]){
-//         var atag = document.getElementsByClassName("cart")[1];
-//         atag.href = "CartServlet?action=add&product_id=" + page + "&price=" + price + "&quantity=" + "1";
-//     }
-// }   
 
 
 
