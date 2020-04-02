@@ -25,7 +25,7 @@ var details = document.getElementById("detailsContainer");
 details.insertAdjacentHTML('afterbegin', `
     <div class="first_Details_Container">
         <h2>${art_product.Name}</h2>
-        <h2>€s${art_product.Price}</h2>
+        <h2>€${art_product.Price}</h2>
     </div>
     <div class="second_Details_Container">
         <p>${art_product.Description}Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam alias, aperiam inventore sequi aut voluptates quisquam? Dignissimos ex ea excepturi quis animi tenetur aspernatur, rem unde consequatur earum maiores consequuntur!

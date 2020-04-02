@@ -34,8 +34,8 @@ $.extend(Shop.prototype,{
             var name =  $product.data( "name" );
             console.log(name);
 
-            $form.on('submit' , function(){
-                $form.preventDefault();
+            $form.on('submit' , function(e){
+                e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 console.log(qty);
                 var subtotal = qty * price;
