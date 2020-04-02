@@ -20,10 +20,10 @@ $.extend(Shop.prototype,{
             
 
             //Method Invocations
-            this.AddToCart();
+            this.AddToCartForm();
 
     },
-    AddToCart(){
+    AddToCartForm(){
         var self = this;
         self.$formAddToCart.each(function (item){
             var $form = $(this);
@@ -38,10 +38,21 @@ $.extend(Shop.prototype,{
                 e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 console.log(qty);
-                var subtotal = qty * price;
+                var subTotal = qty * price;
                 console.log(subtotal);
                 var total = self._convertString(self.storage.getItem(self.total));
                 console.log(total);
+                var sTotal = total + subTotal;
+                console.log(sTotal);
+                self.storage.setItem(self.total , sTotal);
+                self._addToCart({
+                    product: name,
+                    price: price, 
+                    quantity : qty
+                });
+                // TODO : Have to ask Aisling about the shipping rates 
+                
+
             });
 
         });
@@ -73,14 +84,43 @@ $.extend(Shop.prototype,{
             console.warn( numStr + " cannot be converted into a number" );
 			return false;
         }
-        
-
+    },
+    /*
+        This method adds the values to the cart in session storage
+        @param values to be added 
+        @returns void
+    */ 
+    _addToCart(values){
+        var cart = this.storage.getItem(this.cartName);
+        var cartObject = this._toJSONObject(cart);
+        var cartCopy = cartObject;
+        var items = cartCopy.items;
+        items.push(values);
+        this.storage.setItem(this.cartName , this._toJSONString(cartCopy));
+    },
+    /*
+        This method converts a JSON String to an Object
+        @param Inputted JSON String
+        @returns Outputted Javscript Object
+    */ 
+    _toJSONObject(str){
+        var obj = JSON.parse(str);
+        return obj;
+    },
+    /*
+        This method converts a Javascript Object to a JSON String 
+        @param Inputted Javascript Object
+        @returns Outputted JSON String
+    */ 
+    _toJSONString(obj){
+        var str = JSON.stringify(obj);
+        return str;
     }
 
 });
 window.onload = function (){
     var shop = new Shop("#Whole_Site");
-    console.log(shop.cartName);
+    
 }
 
 
