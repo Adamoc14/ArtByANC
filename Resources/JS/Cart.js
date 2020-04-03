@@ -91,14 +91,15 @@ $.extend(Shop.prototype,{
         @returns void
     */ 
     _addToCart(values){
-        var cart = this.storage.getItem(this.cartName);
+        var self = this;
+        var cart = self.storage.getItem(self.cartName);
         console.log(cart)
-        var cartObject = this._toJSONObject(cart);
+        var cartObject = self._toJSONObject(cart);
         console.log(cartObject);
         var cartCopy = cartObject;
         var items = cartCopy.items;
         items.push(values);
-        this.storage.setItem(this.cartName , this._toJSONString(cartCopy));
+        this.storage.setItem(self.cartName , self._toJSONString(cartCopy));
     },
     /*
         This method converts a JSON String to an Object
