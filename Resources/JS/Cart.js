@@ -94,6 +94,7 @@ $.extend(Shop.prototype,{
         var self = this;
         //Problem here with setting the cartName to equal a JSON Object 
         // self.storage.setItem(self.cartName);
+        console.log(values);
         console.log(values._toJSONString);
         console.log(values._toJSONObject);
         // var cart = self.storage.getItem(self.cartName);
