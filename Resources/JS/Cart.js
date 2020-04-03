@@ -39,7 +39,7 @@ $.extend(Shop.prototype,{
                 var qty = self._convertString($form.find(".qty").val());
                 console.log(qty);
                 var subTotal = qty * price;
-                console.log(subtotal);
+                console.log(subTotal);
                 var total = self._convertString(self.storage.getItem(self.total));
                 console.log(total);
                 var sTotal = total + subTotal;
@@ -51,7 +51,7 @@ $.extend(Shop.prototype,{
                     quantity : qty
                 });
                 // TODO : Have to ask Aisling about the shipping rates 
-                
+
 
             });
 
