@@ -93,9 +93,9 @@ $.extend(Shop.prototype,{
     _addToCart(values){
         var self = this;
         //Problem here with setting the cartName to equal a JSON Object 
-        self.storage.setItem(self.cartName);
+        // self.storage.setItem(self.cartName);
         var cart = self.storage.getItem(self.cartName);
-        console.log(cart)
+        console.log(cart);
         var cartObject = self._toJSONObject(cart);
         console.log(cartObject);
         var cartCopy = cartObject;
