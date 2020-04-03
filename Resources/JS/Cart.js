@@ -35,7 +35,7 @@ $.extend(Shop.prototype,{
             console.log(name);
 
             $form.on('submit' , function(e){
-                // e.preventDefault();
+                e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 console.log(qty);
                 var subTotal = qty * price;
@@ -94,14 +94,16 @@ $.extend(Shop.prototype,{
         var self = this;
         //Problem here with setting the cartName to equal a JSON Object 
         // self.storage.setItem(self.cartName);
-        var cart = self.storage.getItem(self.cartName);
-        console.log(cart);
-        var cartObject = self._toJSONObject(cart);
-        console.log(cartObject);
-        var cartCopy = cartObject;
-        var items = cartCopy.items;
-        items.push(values);
-        self.storage.setItem(self.cartName , self._toJSONString(cartCopy));
+        console.log(values._toJSONString);
+        console.log(values._toJSONObject);
+        // var cart = self.storage.getItem(self.cartName);
+        // console.log(cart);
+        // var cartObject = self._toJSONObject(cart);
+        // console.log(cartObject);
+        // var cartCopy = cartObject;
+        // var items = cartCopy.items;
+        // items.push(values);
+        // self.storage.setItem(self.cartName , self._toJSONString(cartCopy));
     },
     /*
         This method converts a JSON String to an Object
