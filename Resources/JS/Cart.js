@@ -92,7 +92,9 @@ $.extend(Shop.prototype,{
     */ 
     _addToCart(values){
         var cart = this.storage.getItem(this.cartName);
+        console.log(cart)
         var cartObject = this._toJSONObject(cart);
+        console.log(cartObject);
         var cartCopy = cartObject;
         var items = cartCopy.items;
         items.push(values);
