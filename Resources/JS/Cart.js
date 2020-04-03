@@ -35,7 +35,7 @@ $.extend(Shop.prototype,{
             console.log(name);
 
             $form.on('submit' , function(e){
-                e.preventDefault();
+                // e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 console.log(qty);
                 var subTotal = qty * price;
