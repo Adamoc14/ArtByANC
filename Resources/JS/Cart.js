@@ -228,8 +228,8 @@ $.extend(Shop.prototype,{
         var self = this;
         var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         var items = cart.items;
-        $(document).on('click' , 'btn-update' , function(t){
-            t.preventDefault();
+        $(document).on('click' , '.btn-update' , function(e){
+            e.preventDefault();
             var product_clicked = $(this).parent().parent().data("product");
             var newItems = [];
             for(var o = 0; o < item.length; o++){
