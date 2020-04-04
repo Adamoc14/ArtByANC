@@ -7,11 +7,12 @@ class Shop {
 
 $.extend(Shop.prototype,{
     init(){
-            this.cartPrefix = "winery-"; // Prefix string to be prepended to the cart's name in the session storage
+            this.cartPrefix = "artbyanc-"; // Prefix string to be prepended to the cart's name in the session storage
 			this.cartName = this.cartPrefix + "cart"; // Cart name in the session storage
-			this.shippingRates = this.cartPrefix + "shipping-rates"; // Shipping rates key in the session storage
+			// this.shippingRates = this.cartPrefix + "shipping-rates"; // Shipping rates key in the session storage
 			this.total = this.cartPrefix + "total"; // Total key in the session storage
             this.storage = sessionStorage; // shortcut to the sessionStorage object
+            this.currency = "&euro;";
 
             this.$formAddToCart = this.$element.find( "form.add-to-cart" ); // Forms for adding items to the cart
             // console.log(this.$formAddToCart);
@@ -79,6 +80,11 @@ $.extend(Shop.prototype,{
 			return false;
         }
     },
+    /*
+        This method sets up and creates the cart in session storage
+        @param no Inputted Values
+        @returns void
+    */ 
     _createCart(){
         var self = this;
         if(self.storage.getItem(self.cartName) == null){
@@ -95,7 +101,6 @@ $.extend(Shop.prototype,{
     */ 
     _addToCart(values){
         var self = this;
-        //Problem here with setting the cartName to equal a JSON Object 
         var cart = self.storage.getItem(self.cartName);
         var cartObject = self._toJSONObject(cart);
         console.log(cartObject);
@@ -103,6 +108,45 @@ $.extend(Shop.prototype,{
         var items = cartCopy.items;
         items.push(values);
         self.storage.setItem(self.cartName , self._toJSONString(cartCopy));
+    },
+    _displayCart(){
+        var self = this;
+        if(this.$formCart.length){
+            var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+            var items = cart.items;
+            var $cartDisplayContainer = document.getElementsByClassName('checkoutPartContainer1')[0];
+            if(items.length == 0){
+                $cartDisplayContainer.html("");
+            } else {
+                for (var i = 0; i < items.length ; i++){
+                    item = items[i];
+                    let art_product = {
+                        'Product' : item.product,
+                        'Quantity' : item.quantity,
+                        'Price' : self.currency + " " + item.price
+                    };
+                    $cartDisplayContainer.html(`
+                        <img src="../../Resources/Images/Abstract_Images/Abstract_Cow.jpg" alt="">
+                        <div class="detailsCart">
+                            <h3>Abstract Cow</h3>
+                        </div>
+                        <div class="amountCartContainer">
+                            <a class="plus" href="">+</a>
+                            <input type="text" id="quantity" name="quantity" id="" value="${art_product.Quantity}" readonly="true">
+                            <a class="minus" href="">-</a>
+                        </div>
+                        <div class="priceCartContainer">
+                            <h5>€</h5>
+                            <h2>${art_product.Price}</h2>
+                        </div>
+                        <div class="XContainer">
+                            <a href="" class="remove-btn">X</a>
+                        </div> 
+                    `);
+                }
+            }
+
+        }
     },
     /*
         This method converts a JSON String to an Object
@@ -136,21 +180,6 @@ window.onload = function (){
 
 
 
-{/* <img src="../../Resources/Images/Abstract_Images/Abstract_Cow.jpg" alt="">
-<div class="detailsCart">
-    <h3>Abstract Cow</h3>
-</div>
-<div class="amountCartContainer">
-    <a class="plus" href="">+</a>
-    <input type="text" id="quantity" name="quantity" id="" value="1" readonly="true">
-    <a class="minus" href="">-</a>
-</div>
-<div class="priceCartContainer">
-    <h5>€</h5>
-    <h2>25.00</h2>
-</div>
-<div class="XContainer">
-    <a href="" class="remove-btn">X</a>
-</div> */}
+{/* 
 
 
