@@ -14,9 +14,9 @@ $.extend(Shop.prototype,{
             this.storage = sessionStorage; // shortcut to the sessionStorage object
 
             this.$formAddToCart = this.$element.find( "form.add-to-cart" ); // Forms for adding items to the cart
-            console.log(this.$formAddToCart);
+            // console.log(this.$formAddToCart);
             this.$formCart = this.$element.find(".Cart_Form");
-            console.log(this.$formCart);
+            // console.log(this.$formCart);
             
 
             //Method Invocations
@@ -28,29 +28,27 @@ $.extend(Shop.prototype,{
         self.$formAddToCart.each(function (item){
             var $form = $(this);
             var $product = $form.parent().parent().parent();
-            console.log($product);
             var price = self._convertString($product.data("price"));
-            console.log(price);
             var name =  $product.data( "name" );
-            console.log(name);
 
             $form.on('submit' , function(e){
                 e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
-                // console.log(qty);
                 var subTotal = qty * price;
-                // console.log(subTotal);
                 var total = self._convertString(self.storage.getItem(self.total));
-                // console.log(total);
                 var sTotal = total + subTotal;
-                // console.log(sTotal);
                 self.storage.setItem(self.total , sTotal);
                 self.storage.setItem(self.cartName , self._toJSONString({}));
-                self._addToCart({
+                console.log(self._addToCart({
                     product: name,
                     price: price, 
                     quantity : qty
-                });
+                }));
+                // self._addToCart({
+                //     product: name,
+                //     price: price, 
+                //     quantity : qty
+                // });
                 // TODO : Have to ask Aisling about the shipping rates 
 
 
@@ -114,7 +112,9 @@ $.extend(Shop.prototype,{
         @returns Outputted Javscript Object
     */ 
     _toJSONObject(str){
+        console.log(str);
         var obj = JSON.parse(str);
+        console.log(obj);
         return obj;
     },
     /*
@@ -123,7 +123,9 @@ $.extend(Shop.prototype,{
         @returns Outputted JSON String
     */ 
     _toJSONString(obj){
+        console.log(obj);
         var str = JSON.stringify(obj);
+        console.log(str);
         return str;
     }
 
