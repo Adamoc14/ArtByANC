@@ -119,7 +119,7 @@ $.extend(Shop.prototype,{
             var items = cart.items;
             var $cartDisplayContainer = document.getElementsByClassName('checkoutDisplayContainers')[0];
             if(items.length == 0){
-                $cartDisplayContainer.html("");
+                $cartDisplayContainer.insertAdjacentHTML('beforeend',`Cart is Empty, Please Buy Something`);
             } else {
                 for (var i = 0; i < items.length ; i++){
                     item = items[i];
@@ -180,7 +180,7 @@ $.extend(Shop.prototype,{
                 var newCart = {};
                 newCart.items = newItems;
                 self.storage.setItem(self.cartName , self._toJSONString(newCart));
-                $(this).parent().parent("checkoutDisplayContainer").remove();
+                $(this).parent().parent().remove();
             });
         }
 
