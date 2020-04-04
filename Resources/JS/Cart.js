@@ -128,7 +128,7 @@ $.extend(Shop.prototype,{
                         'Quantity' : item.quantity,
                         'Price' :  item.price
                     };
-                    $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
+                    $cartDisplayContainer.insertAdjacentHTML('beforeend',`
                         <div class="checkoutDisplayContainer">
                                 <img src="${art_product.Image_Link}" alt="">
                                 <div class="detailsCart">
