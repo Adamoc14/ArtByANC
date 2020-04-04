@@ -95,12 +95,12 @@ $.extend(Shop.prototype,{
         // self.storage.setItem(self.cartName , self._toJSONString(values));
         // console.log(values);
         var cart = self.storage.getItem(self.cartName);
-        console.log(cart);
+        // console.log(cart);
         var cartObject = self._toJSONObject(cart);
         console.log(cartObject);
         // var cartCopy = cartObject;
-        // var items = cartCopy.items;
-        // items.push(values);
+        var items = cartObject.items;
+        items.push(values);
         // self.storage.setItem(self.cartName , self._toJSONString(cartCopy));
     },
     /*
@@ -109,9 +109,9 @@ $.extend(Shop.prototype,{
         @returns Outputted Javscript Object
     */ 
     _toJSONObject(str){
-        console.log(str);
+        // console.log(str);
         var obj = JSON.parse(str);
-        console.log(obj);
+        // console.log(obj);
         return obj;
     },
     /*
@@ -120,9 +120,9 @@ $.extend(Shop.prototype,{
         @returns Outputted JSON String
     */ 
     _toJSONString(obj){
-        console.log(obj);
+        // console.log(obj);
         var str = JSON.stringify(obj);
-        console.log(str);
+        // console.log(str);
         return str;
     }
 
