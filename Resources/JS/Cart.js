@@ -32,7 +32,7 @@ $.extend(Shop.prototype,{
             var name =  $product.data( "name" );
 
             $form.on('submit' , function(e){
-                e.preventDefault();
+                // e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 var subTotal = qty * price;
                 var total = self._convertString(self.storage.getItem(self.total));
