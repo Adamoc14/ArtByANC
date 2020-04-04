@@ -240,7 +240,7 @@ $.extend(Shop.prototype,{
                     console.log(this);
                     var button_clicked = $(this);
                     console.log(button_clicked);
-                    if(button_clicked.classList.contains(".minus")){
+                    if(button_clicked[0].classList.contains(".minus")){
                         if (quantity == 1){
                             quantity = 1;
                         } else {
