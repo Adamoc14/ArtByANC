@@ -39,7 +39,6 @@ details.insertAdjacentHTML('afterbegin', `
             <input type="hidden" name="qty-1" id="qty-1" class="qty" value="1">
             <input type="submit" class="btn-product-view cart" value="Add To Cart">
         </form>
-        <a href="../../Resources/HTML/Cart.html" class="btn-product-view">Add To Cart</a>
     </span>
 `);
 

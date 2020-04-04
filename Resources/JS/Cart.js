@@ -33,9 +33,9 @@ $.extend(Shop.prototype,{
             var $product = $form.parent().parent().parent();
             var price = self._convertString($product.data("price"));
             var name =  $product.data( "name" );
+            var image = $product.data("image");
 
             $form.on('submit' , function(e){
-                // e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
                 var subTotal = qty * price;
                 var total = self._convertString(self.storage.getItem(self.total));
@@ -122,9 +122,9 @@ $.extend(Shop.prototype,{
                 for (var i = 0; i < items.length ; i++){
                     item = items[i];
                     let art_product = {
-                        'Product' : item.product,
+                        'Product_Name' : item.product,
                         'Quantity' : item.quantity,
-                        'Price' : self.currency + " " + item.price
+                        'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
                         <img src="../../Resources/Images/Abstract_Images/Abstract_Cow.jpg" alt="">
