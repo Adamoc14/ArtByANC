@@ -166,7 +166,7 @@ $.extend(Shop.prototype,{
             var items = cart.items;
             $(document).on('click', '.remove-btn', function(e){
                 e.preventDefault();
-                var product_clicked = $(this).parent().parent().data("product");
+                var product_clicked = $(this).parent();
                 console.log(product_clicked);
                 var newItems = [];
                 for(var i = 0; i < items.length ; i++){
