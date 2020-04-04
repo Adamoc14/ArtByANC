@@ -43,6 +43,7 @@ $.extend(Shop.prototype,{
                 self.storage.setItem(self.total , sTotal);
                 self._addToCart({
                     product: name,
+                    image: image,
                     price: price, 
                     quantity : qty
                 });
@@ -123,13 +124,14 @@ $.extend(Shop.prototype,{
                     item = items[i];
                     let art_product = {
                         'Product_Name' : item.product,
+                        'Image_Link': item.image,
                         'Quantity' : item.quantity,
                         'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
                         <img src="../../Resources/Images/Abstract_Images/Abstract_Cow.jpg" alt="">
                         <div class="detailsCart">
-                            <h3>Abstract Cow</h3>
+                            <h3>${art_product.Product_Name}</h3>
                         </div>
                         <div class="amountCartContainer">
                             <a class="plus" href="">+</a>
