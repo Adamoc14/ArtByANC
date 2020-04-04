@@ -37,14 +37,15 @@ $.extend(Shop.prototype,{
             $form.on('submit' , function(e){
                 e.preventDefault();
                 var qty = self._convertString($form.find(".qty").val());
-                console.log(qty);
+                // console.log(qty);
                 var subTotal = qty * price;
-                console.log(subTotal);
+                // console.log(subTotal);
                 var total = self._convertString(self.storage.getItem(self.total));
-                console.log(total);
+                // console.log(total);
                 var sTotal = total + subTotal;
-                console.log(sTotal);
+                // console.log(sTotal);
                 self.storage.setItem(self.total , sTotal);
+                self.storage.setItem(self.cartName , self._toJSONString({}));
                 self._addToCart({
                     product: name,
                     price: price, 
@@ -94,7 +95,7 @@ $.extend(Shop.prototype,{
         var self = this;
         //Problem here with setting the cartName to equal a JSON Object 
         self.storage.setItem(self.cartName , self._toJSONString(values));
-        console.log("Well mothafuckers, it's you day bitches");
+        // console.log("Well mothafuckers, it's you day bitches");
         console.log(values);
         console.log(self._toJSONString(values));
         console.log(self._toJSONObject(values));
