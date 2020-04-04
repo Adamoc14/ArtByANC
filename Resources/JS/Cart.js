@@ -13,7 +13,7 @@ $.extend(Shop.prototype,{
 			this.total = this.cartPrefix + "total"; // Total key in the session storage
             this.storage = sessionStorage; // shortcut to the sessionStorage object
             this.currency = "&euro;";
-            this.$subTotal = this.$element.find(".s_total"); // Element that displays the subtotal charges
+            this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
 
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
             // console.log(this.$formAddToCart);
