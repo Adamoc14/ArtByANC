@@ -129,7 +129,7 @@ $.extend(Shop.prototype,{
                         'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
-                        <img src="../../Resources/Images/Abstract_Images/Abstract_Cow.jpg" alt="">
+                        <img src="${art_product.Image_Link}" alt="">
                         <div class="detailsCart">
                             <h3>${art_product.Product_Name}</h3>
                         </div>
