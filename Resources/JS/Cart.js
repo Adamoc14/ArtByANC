@@ -164,7 +164,23 @@ $.extend(Shop.prototype,{
         if(self.$formCart.length){
             var cart = self._toJSONObject(self.storage.getItem(self.cartName));
             var items = cart.items;
-            console.log(items);
+            $(document).on('click', '.remove-btn', function(e){
+                e.preventDefault();
+                var product_clicked = $(this).data("product");
+                var newItems = [];
+                for(var i = 0; i < items.length ; i++){
+                    var item = items[i];
+                    var name = item.product;
+                    if (name == product_clicked){
+                        items.splice(i , 1);
+                    }
+                }
+                newItems = items;
+                var newCart = {};
+                newCart.items = newItems;
+                self.storage.setItem(self.cartName , self._toJSONString(newCart));
+                $(this).parent().parent("checkoutDisplayContainer").remove();
+            });
         }
 
     },
