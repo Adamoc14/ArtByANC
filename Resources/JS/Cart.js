@@ -23,6 +23,7 @@ $.extend(Shop.prototype,{
             //Method Invocations
             this._createCart();
             this.AddToCartForm();
+            this._displayCart();
 
     },
     AddToCartForm(){
