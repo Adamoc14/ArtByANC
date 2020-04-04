@@ -118,6 +118,7 @@ $.extend(Shop.prototype,{
             var cart = self._toJSONObject(self.storage.getItem(self.cartName));
             var items = cart.items;
             var $cartDisplayContainer = document.getElementsByClassName('checkoutDisplayContainers')[0];
+            var $subtotalDisplayContainer = document.getElementsByClassName('bottom_part')[0];
             if(items.length == 0){
                 $cartDisplayContainer.insertAdjacentHTML('beforeend',`Cart is Empty, Please Buy Something`);
             } else {
@@ -150,6 +151,18 @@ $.extend(Shop.prototype,{
                         </div>
                     `);
                 }
+            }
+            if(items.length == 0){
+                $subtotalDisplayContainer.insertAdjacentHTML('afterbegin' , `${self.currency + self.storage.getItem(self.total)}`);
+            } else {
+                $subtotalDisplayContainer.insertAdjacentHTML('afterbegin' , `
+                    <div class="subtotal_label">
+                        <span>
+                            <h5>Subtotal:</h5>
+                            <h3 class="s_total">${self.currency + self.storage.getItem(self.total)}</h3>
+                        </span>
+                    </div>
+                `);
             }
 
         }
@@ -209,6 +222,8 @@ window.onload = function (){
     var shop = new Shop("#Whole_Site");
     
 }
+
+
 
 
 
