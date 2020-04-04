@@ -130,7 +130,7 @@ $.extend(Shop.prototype,{
                         'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('beforeend',`
-                        <div class="checkoutDisplayContainer" data-product="${art_product.Name}" data-quantity="${art_product.Quantity}" data-price="${art_product.Price}" data-image="${art_product.Image_Link}">
+                        <div class="checkoutDisplayContainer" data-product="${art_product.Product_Name}" data-quantity="${art_product.Quantity}" data-price="${art_product.Price}" data-image="${art_product.Image_Link}">
                                 <img src="${art_product.Image_Link}" alt="">
                                 <div class="detailsCart">
                                     <h3>${art_product.Product_Name}</h3>
@@ -166,7 +166,7 @@ $.extend(Shop.prototype,{
             var items = cart.items;
             $(document).on('click', '.remove-btn', function(e){
                 e.preventDefault();
-                var product_clicked = $(this).parent();
+                var product_clicked = $(this).parent().parent().data("product");
                 console.log(product_clicked);
                 var newItems = [];
                 for(var i = 0; i < items.length ; i++){
