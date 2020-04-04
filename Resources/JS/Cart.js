@@ -215,6 +215,7 @@ $.extend(Shop.prototype,{
                 self.storage.setItem(self.total, self._convertNumber(updatedTotal));
                 self.storage.setItem(self.cartName , self._toJSONString(newCart));
                 $(this).parent().parent().remove();
+                console.log(self.$subTotal);
                 self.$subTotal[0].innerHTML = self.currency + self.storage.getItem(self.total) + ".00";
                 console.log("The html should be " + self.currency + self.storage.getItem(self.total) + ".00," + "but is instead" + self.$subTotal[0].innerHTML);
             });
