@@ -38,7 +38,6 @@ $.extend(Shop.prototype,{
                 var total = self._convertString(self.storage.getItem(self.total));
                 var sTotal = total + subTotal;
                 self.storage.setItem(self.total , sTotal);
-                self.storage.setItem(self.cartName , self._toJSONString({}));
                 self._addToCart({
                     product: name,
                     price: price, 
