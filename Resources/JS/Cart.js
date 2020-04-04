@@ -238,9 +238,9 @@ $.extend(Shop.prototype,{
                 var quantity = item.quantity;
                 if(name == product_clicked){
                     console.log(this);
-                    var button_clicked = $(this).classList;
+                    var button_clicked = $(this);
                     console.log(button_clicked);
-                    if(button_clicked.contains(".minus")){
+                    if(button_clicked.classList.contains(".minus")){
                         if (quantity == 1){
                             quantity = 1;
                         } else {
