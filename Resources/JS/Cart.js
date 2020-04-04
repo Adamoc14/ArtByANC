@@ -232,7 +232,7 @@ $.extend(Shop.prototype,{
             e.preventDefault();
             var product_clicked = $(this).parent().parent().data("product");
             var newItems = [];
-            for(var o = 0; o < item.length; o++){
+            for(var o = 0; o < items.length; o++){
                 var item = items[0];
                 var name = item.product;
                 var quantity = item.quantity;
