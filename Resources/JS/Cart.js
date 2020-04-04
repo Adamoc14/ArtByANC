@@ -24,6 +24,7 @@ $.extend(Shop.prototype,{
             this._createCart();
             this.AddToCartForm();
             this._displayCart();
+            this._deleteItem();
 
     },
     AddToCartForm(){
@@ -152,6 +153,20 @@ $.extend(Shop.prototype,{
             }
 
         }
+    },
+    /*
+        This method removes the item to the cart in session storage
+        @param item to be deleted 
+        @returns void
+    */ 
+    _deleteItem(){
+        var self = this;
+        if(self.$formCart.length){
+            var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+            var items = cart.items;
+            console.log(items);
+        }
+
     },
     /*
         This method converts a JSON String to an Object
