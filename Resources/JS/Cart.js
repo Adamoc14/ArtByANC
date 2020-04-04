@@ -129,22 +129,24 @@ $.extend(Shop.prototype,{
                         'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
-                        <img src="${art_product.Image_Link}" alt="">
-                        <div class="detailsCart">
-                            <h3>${art_product.Product_Name}</h3>
+                        <div class="checkoutPartContainer1">
+                                <img src="${art_product.Image_Link}" alt="">
+                                <div class="detailsCart">
+                                    <h3>${art_product.Product_Name}</h3>
+                                </div>
+                                <div class="amountCartContainer">
+                                    <a class="plus" href="">+</a>
+                                    <input type="text" id="quantity" name="quantity" id="" value="${art_product.Quantity}" readonly="true">
+                                    <a class="minus" href="">-</a>
+                                </div>
+                                <div class="priceCartContainer">
+                                    <h5>€</h5>
+                                    <h2>${art_product.Price}</h2>
+                                </div>
+                                <div class="XContainer">
+                                    <a href="" class="remove-btn">X</a>
+                                </div> 
                         </div>
-                        <div class="amountCartContainer">
-                            <a class="plus" href="">+</a>
-                            <input type="text" id="quantity" name="quantity" id="" value="${art_product.Quantity}" readonly="true">
-                            <a class="minus" href="">-</a>
-                        </div>
-                        <div class="priceCartContainer">
-                            <h5>€</h5>
-                            <h2>${art_product.Price}</h2>
-                        </div>
-                        <div class="XContainer">
-                            <a href="" class="remove-btn">X</a>
-                        </div> 
                     `);
                 }
             }
