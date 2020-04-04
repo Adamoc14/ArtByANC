@@ -269,8 +269,8 @@ $.extend(Shop.prototype,{
             // console.log(self.$quantity);
             // console.log(self.$quantity.value);
             // self.$quantity.value = quantity;
-            var quantity = document.getElementById('quantity');
-            quantity.value = quantity;
+            var Quantity_Element = document.getElementById('quantity');
+            Quantity_Element.value = quantity;
 
         });
 
