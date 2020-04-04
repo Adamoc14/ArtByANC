@@ -95,8 +95,8 @@ $.extend(Shop.prototype,{
         self.storage.setItem(self.cartName , self._toJSONString(values));
         // console.log("Well mothafuckers, it's you day bitches");
         console.log(values);
-        console.log(self._toJSONString(values));
-        console.log(self._toJSONObject(values));
+        // console.log(self._toJSONString(values));
+        // console.log(self._toJSONObject(values));
         // var cart = self.storage.getItem(self.cartName);
         // console.log(cart);
         // var cartObject = self._toJSONObject(cart);
