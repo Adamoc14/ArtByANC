@@ -118,7 +118,7 @@ $.extend(Shop.prototype,{
             var cart = self._toJSONObject(self.storage.getItem(self.cartName));
             var items = cart.items;
             var $cartDisplayContainer = document.getElementsByClassName('checkoutDisplayContainers')[0];
-            var $subtotalDisplayContainer = document.getElementsByClassName('bottom_part')[0];
+            var $subtotalDisplayContainer = document.getElementsByClassName('bottomPart')[0];
             if(items.length == 0){
                 $cartDisplayContainer.insertAdjacentHTML('beforeend',`Cart is Empty, Please Buy Something`);
             } else {
