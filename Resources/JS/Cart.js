@@ -14,11 +14,10 @@ $.extend(Shop.prototype,{
             this.storage = sessionStorage; // shortcut to the sessionStorage object
             this.currency = "&euro;";
             this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
+            this.$quantity = document.getElementById('quantity');
 
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
-            // console.log(this.$formAddToCart);
             this.$formCart = this.$element.find(".Cart_Form");
-            // console.log(this.$formCart);
             
 
             //Method Invocations
@@ -26,6 +25,7 @@ $.extend(Shop.prototype,{
             this.AddToCartForm();
             this._displayCart();
             this._deleteItem();
+            this._updateItem();
 
     },
     AddToCartForm(){
@@ -147,9 +147,9 @@ $.extend(Shop.prototype,{
                                     <h3>${art_product.Product_Name}</h3>
                                 </div>
                                 <div class="amountCartContainer">
-                                    <a class="plus" href="">+</a>
-                                    <input type="text" id="quantity" name="quantity" id="" value="${art_product.Quantity}" readonly="true">
-                                    <a class="minus" href="">-</a>
+                                    <a class="btn-update plus" href="">+</a>
+                                    <input type="text" id="quantity" name="quantity" value="${art_product.Quantity}" readonly="true">
+                                    <a class="btn-update minus" href="">-</a>
                                 </div>
                                 <div class="priceCartContainer">
                                     <h5>€</h5>
@@ -179,7 +179,7 @@ $.extend(Shop.prototype,{
     },
     /*
         This method removes the item to the cart in session storage
-        @param item to be deleted 
+        @param void
         @returns void
     */ 
     _deleteItem(){
@@ -190,7 +190,6 @@ $.extend(Shop.prototype,{
             $(document).on('click', '.remove-btn', function(e){
                 e.preventDefault();
                 var product_clicked = $(this).parent().parent().data("product");
-                console.log(product_clicked);
                 var newItems = [];
                 for(var i = 0; i < items.length ; i++){
                     var item = items[i];
@@ -215,11 +214,60 @@ $.extend(Shop.prototype,{
                 self.storage.setItem(self.total, self._convertNumber(updatedTotal));
                 self.storage.setItem(self.cartName , self._toJSONString(newCart));
                 $(this).parent().parent().remove();
-                console.log(self.$subTotal);
                 self.$subTotal[0].innerHTML = self.currency + self.storage.getItem(self.total) + ".00";
-                console.log("The html should be " + self.currency + self.storage.getItem(self.total) + ".00," + "but is instead" + self.$subTotal[0].innerHTML);
             });
         }
+
+    },
+    /*
+        This method updates the item to the cart in session storage
+        @param void
+        @returns void
+    */ 
+    _updateItem: function (){
+        var self = this;
+        var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+        var items = cart.items;
+        $(document).on('click' , 'btn-update' , function(t){
+            t.preventDefault();
+            var product_clicked = $(this).parent().parent().data("product");
+            var newItems = [];
+            for(var o = 0; o < item.length; o++){
+                var item = items[0];
+                var name = item.product;
+                var quantity = item.quantity;
+                if(name == product_clicked){
+                    var button_clicked = $(this).classList;
+                    if (quantity == 1){
+                        quantity = 1;
+                    } else if(button_clicked.contains(".minus")){
+                        console.log("yeah that's right , take it away ");
+                        quantity -= 1;
+                    } else if (button_clicked.contains(".plus")){
+                        console.log("yeah that's right , add it on");
+                        quantity += 1;
+                    }
+                    
+                }
+            }
+            newItems = items;
+            var newCart = {};
+            newCart.items = newItems;
+            var updatedTotal = 0;
+            if(newItems.length < 0){
+                updatedTotal = 0;
+            } else {
+                for(var i= 0; i < newItems.length ; i++){
+                    var item = newItems[i];
+                    let sub = item.price * item.quantity;
+                    updatedTotal += sub;
+                }
+            }
+            self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+            self.storage.setItem(self.cartName , self._toJSONString(newCart));
+            self.$quantity[0].value = quantity;
+
+        });
 
     },
     /*
