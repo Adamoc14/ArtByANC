@@ -96,8 +96,8 @@ $.extend(Shop.prototype,{
         // console.log(values);
         var cart = self.storage.getItem(self.cartName);
         console.log(cart);
-        // var cartObject = self._toJSONObject(cart);
-        // console.log(cartObject);
+        var cartObject = self._toJSONObject(cart);
+        console.log(cartObject);
         // var cartCopy = cartObject;
         // var items = cartCopy.items;
         // items.push(values);
