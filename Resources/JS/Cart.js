@@ -13,8 +13,9 @@ $.extend(Shop.prototype,{
 			this.total = this.cartPrefix + "total"; // Total key in the session storage
             this.storage = sessionStorage; // shortcut to the sessionStorage object
             this.currency = "&euro;";
+            this.$subTotal = this.$element.find(".s_total"); // Element that displays the subtotal charges
 
-            this.$formAddToCart = this.$element.find( "form.add-to-cart" ); // Forms for adding items to the cart
+            this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
             // console.log(this.$formAddToCart);
             this.$formCart = this.$element.find(".Cart_Form");
             // console.log(this.$formCart);
@@ -83,6 +84,15 @@ $.extend(Shop.prototype,{
 			return false;
         }
     },
+    /* Converts a number to a string
+		 * @param n Number the number to be converted
+		 * @returns str String the string returned
+		 */
+		
+		_convertNumber: function( n ) {
+			var str = n.toString();
+			return str;
+		},
     /*
         This method sets up and creates the cart in session storage
         @param no Inputted Values
@@ -153,13 +163,13 @@ $.extend(Shop.prototype,{
                 }
             }
             if(items.length == 0){
-                $subtotalDisplayContainer.insertAdjacentHTML('afterbegin' , `${self.currency + self.storage.getItem(self.total)}`);
+                $subtotalDisplayContainer.insertAdjacentHTML('afterbegin' , `${self.currency + self.storage.getItem(self.total)}.00`);
             } else {
                 $subtotalDisplayContainer.insertAdjacentHTML('afterbegin' , `
                     <div class="subtotal_label">
                         <span>
                             <h5>Subtotal:</h5>
-                            <h3 class="s_total">${self.currency + self.storage.getItem(self.total)}</h3>
+                            <h3 class="s_total">${self.currency + self.storage.getItem(self.total)}.00</h3>
                         </span>
                     </div>
                 `);
@@ -192,8 +202,20 @@ $.extend(Shop.prototype,{
                 newItems = items;
                 var newCart = {};
                 newCart.items = newItems;
+                var updatedTotal = 0;
+                if(newItems.length < 0){
+                    updatedTotal = 0;
+                } else {
+                    for(var i= 0; i < newItems.length ; i++){
+                        var item = newItems[i];
+                        let sub = item.price * item.quantity;
+                        updatedTotal += sub;
+                    }
+                }
+                self.storage.setItem(self.total, self._convertNumber(updatedTotal));
                 self.storage.setItem(self.cartName , self._toJSONString(newCart));
                 $(this).parent().parent().remove();
+                self.$subTotal[0].innerHTML = self.currency + self.storage.getItem(self.total);
             });
         }
 
