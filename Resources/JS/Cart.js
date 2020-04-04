@@ -238,12 +238,15 @@ $.extend(Shop.prototype,{
                 var quantity = item.quantity;
                 if(name == product_clicked){
                     var button_clicked = $(this).classList;
-                    if (quantity == 1){
-                        quantity = 1;
-                    } else if(button_clicked.contains(".minus")){
-                        console.log("yeah that's right , take it away ");
-                        quantity -= 1;
-                    } else if (button_clicked.contains(".plus")){
+                    if(button_clicked.contains(".minus")){
+                        if (quantity == 1){
+                            quantity = 1;
+                        } else {
+                            console.log("yeah that's right , take it away ");
+                            quantity -= 1;
+                        }
+                    }
+                    if (button_clicked.contains(".plus")){
                         console.log("yeah that's right , add it on");
                         quantity += 1;
                     }
