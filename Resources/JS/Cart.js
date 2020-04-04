@@ -39,11 +39,11 @@ $.extend(Shop.prototype,{
                 var sTotal = total + subTotal;
                 self.storage.setItem(self.total , sTotal);
                 self.storage.setItem(self.cartName , self._toJSONString({}));
-                console.log(self._addToCart({
+                self._addToCart({
                     product: name,
                     price: price, 
                     quantity : qty
-                }));
+                });
                 // self._addToCart({
                 //     product: name,
                 //     price: price, 
