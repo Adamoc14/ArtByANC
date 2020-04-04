@@ -23,15 +23,20 @@
     width: 100%;
 }
 
-.checkoutPartContainer1 {
+.checkoutDisplayContainers{
     padding: 4em;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkoutDisplayContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #eee;
 }
 
-.checkoutPartContainer1 img {
+.checkoutDisplayContainer img {
     width: 13em;
 }
 

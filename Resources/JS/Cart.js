@@ -116,7 +116,7 @@ $.extend(Shop.prototype,{
         if(this.$formCart.length){
             var cart = self._toJSONObject(self.storage.getItem(self.cartName));
             var items = cart.items;
-            var $cartDisplayContainer = document.getElementsByClassName('checkoutPartContainer1')[0];
+            var $cartDisplayContainer = document.getElementsByClassName('checkoutDisplayContainers')[0];
             if(items.length == 0){
                 $cartDisplayContainer.html("");
             } else {
@@ -129,7 +129,7 @@ $.extend(Shop.prototype,{
                         'Price' :  item.price
                     };
                     $cartDisplayContainer.insertAdjacentHTML('afterbegin',`
-                        <div class="checkoutPartContainer1">
+                        <div class="checkoutDisplayContainer">
                                 <img src="${art_product.Image_Link}" alt="">
                                 <div class="detailsCart">
                                     <h3>${art_product.Product_Name}</h3>
