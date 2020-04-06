@@ -237,7 +237,7 @@ $.extend(Shop.prototype,{
                 quantity += 1;
                 console.log(quantity);
             }
-            quantity = self._convertNumber(quantity);
+            self._convertNumber(quantity) = quantity;
             // e.preventDefault();
             // var product_clicked = $(this).parent().parent().data("product");
             // var newItems = [];
