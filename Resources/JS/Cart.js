@@ -228,7 +228,7 @@ $.extend(Shop.prototype,{
         var self = this;
         var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         var items = cart.items;
-        $(document).on('click' , '.btn-update' , function(e){
+        while$(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
             var product_clicked = $(this).parent().parent().data("product");
             var newItems = [];
@@ -236,7 +236,7 @@ $.extend(Shop.prototype,{
                 var item = items[0];
                 var name = item.product;
                 var quantity = item.quantity;
-                if(name == product_clicked){
+                while(name == product_clicked){
                     console.log(this);
                     var button_clicked = $(this);
                     console.log(button_clicked);
