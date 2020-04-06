@@ -237,6 +237,14 @@ $.extend(Shop.prototype,{
                 quantity += 1;
                 console.log(quantity);
             }
+            if(button_clicked.classList.contains("minus")){
+                if (quantity == 1){
+                    quantity = 1;
+                } else {
+                    console.log("yeah that's right , take it away ");
+                    quantity -= 1;
+                }
+            }
             $("#quantity").val(self._convertNumber(quantity));
             // e.preventDefault();
             // var product_clicked = $(this).parent().parent().data("product");
@@ -249,14 +257,7 @@ $.extend(Shop.prototype,{
             //         // console.log(this);
             //         var button_clicked = $(this);
             //         // console.log(button_clicked);
-            //         // if(button_clicked[0].classList.contains("minus")){
-            //         //     if (quantity == 1){
-            //         //         quantity = 1;
-            //         //     } else {
-            //         //         console.log("yeah that's right , take it away ");
-            //         //         quantity -= 1;
-            //         //     }
-            //         // }
+                    
             //         if(button_clicked[0].classList.contains("plus")){
             //             console.log("yeah that's right , add it on");
             //             quantity += 1;
