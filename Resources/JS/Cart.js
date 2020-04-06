@@ -226,56 +226,62 @@ $.extend(Shop.prototype,{
     */ 
     _updateItem: function (){
         var self = this;
-        var cart = self._toJSONObject(self.storage.getItem(self.cartName));
-        var items = cart.items;
+        // var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+        // var items = cart.items;
         $(document).on('click' , '.btn-update' , function(e){
-            e.preventDefault();
-            var product_clicked = $(this).parent().parent().data("product");
-            var newItems = [];
-            for(var o = 0; o < items.length; o++){
-                var item = items[0];
-                var name = item.product;
-                var quantity = item.quantity;
-                if(name == product_clicked){
-                    // console.log(this);
-                    var button_clicked = $(this);
-                    // console.log(button_clicked);
-                    // if(button_clicked[0].classList.contains("minus")){
-                    //     if (quantity == 1){
-                    //         quantity = 1;
-                    //     } else {
-                    //         console.log("yeah that's right , take it away ");
-                    //         quantity -= 1;
-                    //     }
-                    // }
-                    if(button_clicked[0].classList.contains("plus")){
-                        console.log("yeah that's right , add it on");
-                        quantity += 1;
-                        console.log(quantity);  
-                    }
+            var button_clicked = $(this);
+            if(button_clicked[0].classList.contains("plus")){
+                console.log("yeah that's right , add it on");
+                quantity += 1;
+                console.log(quantity);  
+            }
+            // e.preventDefault();
+            // var product_clicked = $(this).parent().parent().data("product");
+            // var newItems = [];
+            // for(var o = 0; o < items.length; o++){
+            //     var item = items[0];
+            //     var name = item.product;
+            //     var quantity = item.quantity;
+            //     if(name == product_clicked){
+            //         // console.log(this);
+            //         var button_clicked = $(this);
+            //         // console.log(button_clicked);
+            //         // if(button_clicked[0].classList.contains("minus")){
+            //         //     if (quantity == 1){
+            //         //         quantity = 1;
+            //         //     } else {
+            //         //         console.log("yeah that's right , take it away ");
+            //         //         quantity -= 1;
+            //         //     }
+            //         // }
+            //         if(button_clicked[0].classList.contains("plus")){
+            //             console.log("yeah that's right , add it on");
+            //             quantity += 1;
+            //             console.log(quantity);  
+            //         }
                     
-                }
-            }
-            newItems = items;
-            console.log(newItems);
-            var newCart = {};
-            newCart.items = newItems;
-            var updatedTotal = 0;
-            if(newItems.length < 0){
-                updatedTotal = 0;
-            } else {
-                for(var i= 0; i < newItems.length ; i++){
-                    var item = newItems[i];
-                    let sub = item.price * item.quantity;
-                    updatedTotal += sub;
-                }
-            }
-            self.storage.setItem(self.total, self._convertNumber(updatedTotal));
-            self.storage.setItem(self.cartName , self._toJSONString(newCart));
-            console.log(quantity);
-            // console.log(self.$quantity);
-            // console.log(self.$quantity.value);
-            // self.$quantity.value = quantity;
+            //     }
+            // }
+            // newItems = items;
+            // console.log(newItems);
+            // var newCart = {};
+            // newCart.items = newItems;
+            // var updatedTotal = 0;
+            // if(newItems.length < 0){
+            //     updatedTotal = 0;
+            // } else {
+            //     for(var i= 0; i < newItems.length ; i++){
+            //         var item = newItems[i];
+            //         let sub = item.price * item.quantity;
+            //         updatedTotal += sub;
+            //     }
+            // }
+            // self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+            // self.storage.setItem(self.cartName , self._toJSONString(newCart));
+            // console.log(quantity);
+            // // console.log(self.$quantity);
+            // // console.log(self.$quantity.value);
+            // // self.$quantity.value = quantity;
             var Quantity_Element = document.getElementById('quantity');
             Quantity_Element.value = quantity;
 
