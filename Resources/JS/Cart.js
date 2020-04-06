@@ -229,6 +229,7 @@ $.extend(Shop.prototype,{
         // var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         // var items = cart.items;
         $(document).on('click' , '.btn-update' , function(e){
+            e.preventDefault();
             var button_clicked = $(this);
             if(button_clicked[0].classList.contains("plus")){
                 console.log("yeah that's right , add it on");
