@@ -236,7 +236,7 @@ $.extend(Shop.prototype,{
                 var item = items[0];
                 var name = item.product;
                 var quantity = item.quantity;
-                while(name == product_clicked){
+                if(name == product_clicked){
                     console.log(this);
                     var button_clicked = $(this);
                     console.log(button_clicked);
@@ -248,7 +248,7 @@ $.extend(Shop.prototype,{
                     //         quantity -= 1;
                     //     }
                     // }
-                    if (button_clicked[0].classList.contains("plus")){
+                    while (button_clicked[0].classList.contains("plus")){
                         console.log("yeah that's right , add it on");
                         quantity += 1;
                     }
