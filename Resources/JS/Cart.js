@@ -89,10 +89,10 @@ $.extend(Shop.prototype,{
 		 * @returns str String the string returned
 		 */
 		
-		_convertNumber: function( n ) {
-			var str = n.toString();
-			return str;
-		},
+    _convertNumber: function( n ) {
+        var str = n.toString();
+        return str;
+    },
     /*
         This method sets up and creates the cart in session storage
         @param no Inputted Values
@@ -228,13 +228,15 @@ $.extend(Shop.prototype,{
         var self = this;
         // var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         // var items = cart.items;
+        var quantity = self._convertString(document.getElementById('quantity').value);
+        console.log(quantity);
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
             var button_clicked = $(this);
             if(button_clicked[0].classList.contains("plus")){
                 console.log("yeah that's right , add it on");
                 quantity += 1;
-                console.log(quantity);  
+                console.log(quantity);
             }
             // e.preventDefault();
             // var product_clicked = $(this).parent().parent().data("product");
@@ -283,10 +285,10 @@ $.extend(Shop.prototype,{
             // // console.log(self.$quantity);
             // // console.log(self.$quantity.value);
             // // self.$quantity.value = quantity;
-            var Quantity_Element = document.getElementById('quantity');
-            Quantity_Element.value = quantity;
+            // var Quantity_Element = document.getElementById('quantity');
+            // Quantity_Element.value = quantity;
 
-            self._updateItem();
+            // self._updateItem();
 
         });
 
@@ -312,8 +314,7 @@ $.extend(Shop.prototype,{
 
 });
 window.onload = function (){
-    var shop = new Shop("#Whole_Site");
-    
+    new Shop("#Whole_Site");
 }
 
 
