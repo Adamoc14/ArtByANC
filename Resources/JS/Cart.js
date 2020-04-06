@@ -231,13 +231,13 @@ $.extend(Shop.prototype,{
         var quantity = self._convertString(document.getElementById('quantity').value);
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
-            var button_clicked = $(this);
-            if(button_clicked[0].classList.contains("plus")){
-                console.log("yeah that's right , add it on");
+            var button_clicked = this;
+            if(button_clicked.classList.contains("plus")){
+                console.log("yeah that's right , add it on" + quantity);
                 quantity += 1;
                 console.log(quantity);
             }
-            self._convertNumber(quantity) = quantity;
+            $("#quantity").val(self._convertNumber(quantity));
             // e.preventDefault();
             // var product_clicked = $(this).parent().parent().data("product");
             // var newItems = [];
