@@ -237,9 +237,9 @@ $.extend(Shop.prototype,{
                 var name = item.product;
                 var quantity = item.quantity;
                 if(name == product_clicked){
-                    console.log(this);
+                    // console.log(this);
                     var button_clicked = $(this);
-                    console.log(button_clicked);
+                    // console.log(button_clicked);
                     // if(button_clicked[0].classList.contains("minus")){
                     //     if (quantity == 1){
                     //         quantity = 1;
@@ -251,11 +251,13 @@ $.extend(Shop.prototype,{
                     if(button_clicked[0].classList.contains("plus")){
                         console.log("yeah that's right , add it on");
                         quantity += 1;
+                        console.log(quantity);  
                     }
                     
                 }
             }
             newItems = items;
+            console.log(newItems);
             var newCart = {};
             newCart.items = newItems;
             var updatedTotal = 0;
