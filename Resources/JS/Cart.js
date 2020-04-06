@@ -229,7 +229,6 @@ $.extend(Shop.prototype,{
         // var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         // var items = cart.items;
         var quantity = self._convertString(document.getElementById('quantity').value);
-        console.log(quantity);
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
             var button_clicked = $(this);
@@ -238,6 +237,7 @@ $.extend(Shop.prototype,{
                 quantity += 1;
                 console.log(quantity);
             }
+            quantity = self._convertNumber(quantity);
             // e.preventDefault();
             // var product_clicked = $(this).parent().parent().data("product");
             // var newItems = [];
