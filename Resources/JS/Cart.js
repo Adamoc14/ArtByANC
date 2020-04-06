@@ -248,7 +248,7 @@ $.extend(Shop.prototype,{
                     //         quantity -= 1;
                     //     }
                     // }
-                    while (button_clicked[0].classList.contains("plus")){
+                    if(button_clicked[0].classList.contains("plus")){
                         console.log("yeah that's right , add it on");
                         quantity += 1;
                     }
@@ -276,6 +276,8 @@ $.extend(Shop.prototype,{
             // self.$quantity.value = quantity;
             var Quantity_Element = document.getElementById('quantity');
             Quantity_Element.value = quantity;
+
+            self._updateItem();
 
         });
 
