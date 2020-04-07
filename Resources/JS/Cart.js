@@ -219,51 +219,60 @@ $.extend(Shop.prototype,{
         }
 
     },
+    _updateQuantityBox(element){
+        var new_quantity;
+        if(button_clicked.classList.contains("plus")){
+                quantity += 1;
+                new_quantity = quantity;
+        }
+        if(button_clicked.classList.contains("minus")){
+            if (quantity == 1){
+                quantity = 1;
+            } else {
+                quantity -= 1;
+            }
+            new_quantity = quantity;
+        } 
+        return new_quantity;
+
+    },
     /*
         This method updates the item to the cart in session storage
         @param void
         @returns void
     */ 
-    _updateItem: function (){
+    _updateItem(){
         var self = this;
-        // var cart = self._toJSONObject(self.storage.getItem(self.cartName));
-        // var items = cart.items;
+        var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+        var items = cart.items;
+        // var new_quantity;
         var quantity = self._convertString(document.getElementById('quantity').value);
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
+            var product_clicked = $(this).parent().parent().data("product");
             var button_clicked = this;
-            if(button_clicked.classList.contains("plus")){
-                console.log("yeah that's right , add it on" + quantity);
-                quantity += 1;
-                console.log(quantity);
-            }
-            if(button_clicked.classList.contains("minus")){
-                if (quantity == 1){
-                    quantity = 1;
-                } else {
-                    console.log("yeah that's right , take it away ");
-                    quantity -= 1;
-                }
-            }
+            var new_quantity = self._updateQuantityBox(button_clicked);
+            
+            // if(button_clicked.classList.contains("plus")){
+            //     quantity += 1;
+            //     new_quantity = quantity;
+            // }
+            // if(button_clicked.classList.contains("minus")){
+            //     if (quantity == 1){
+            //         quantity = 1;
+            //     } else {
+            //         quantity -= 1;
+            //     }
+            //     new_quantity = quantity;
+            // }
             $("#quantity").val(self._convertNumber(quantity));
-            // e.preventDefault();
-            // var product_clicked = $(this).parent().parent().data("product");
+
             // var newItems = [];
             // for(var o = 0; o < items.length; o++){
             //     var item = items[0];
             //     var name = item.product;
             //     var quantity = item.quantity;
             //     if(name == product_clicked){
-            //         // console.log(this);
-            //         var button_clicked = $(this);
-            //         // console.log(button_clicked);
-                    
-            //         if(button_clicked[0].classList.contains("plus")){
-            //             console.log("yeah that's right , add it on");
-            //             quantity += 1;
-            //             console.log(quantity);  
-            //         }
-                    
             //     }
             // }
             // newItems = items;
@@ -285,11 +294,6 @@ $.extend(Shop.prototype,{
             // console.log(quantity);
             // // console.log(self.$quantity);
             // // console.log(self.$quantity.value);
-            // // self.$quantity.value = quantity;
-            // var Quantity_Element = document.getElementById('quantity');
-            // Quantity_Element.value = quantity;
-
-            // self._updateItem();
 
         });
 
