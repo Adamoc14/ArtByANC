@@ -16,6 +16,8 @@ $.extend(Shop.prototype,{
             this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
             if (document.getElementById('quantity').value != null){
                 this.$quantity = self._convertString(document.getElementById('quantity').value); // This gets the quantity value in terms of an integer
+            } else {
+                this.$quantity = 0;
             }
 
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
