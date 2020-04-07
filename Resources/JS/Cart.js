@@ -14,10 +14,10 @@ $.extend(Shop.prototype,{
             this.storage = sessionStorage; // shortcut to the sessionStorage object
             this.currency = "&euro;";
             this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
-            if (document.getElementById('quantity').value != null){
-                this.$quantity = self._convertString(document.getElementById('quantity').value); // This gets the quantity value in terms of an integer
-            } else {
+            if (document.getElementById('quantity').value == null){
                 this.$quantity = 0;
+            } else {
+                this.$quantity = self._convertString(document.getElementById('quantity').value); // This gets the quantity value in terms of an integer
             }
 
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
