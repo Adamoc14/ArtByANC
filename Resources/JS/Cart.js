@@ -219,13 +219,13 @@ $.extend(Shop.prototype,{
         }
 
     },
-    _updateQuantityBox(element){
+    _updateQuantityBox(clicked_element){
         var new_quantity;
-        if(button_clicked.classList.contains("plus")){
+        if(clicked_element.classList.contains("plus")){
                 quantity += 1;
                 new_quantity = quantity;
         }
-        if(button_clicked.classList.contains("minus")){
+        if(clicked_element.classList.contains("minus")){
             if (quantity == 1){
                 quantity = 1;
             } else {
@@ -234,7 +234,6 @@ $.extend(Shop.prototype,{
             new_quantity = quantity;
         } 
         return new_quantity;
-
     },
     /*
         This method updates the item to the cart in session storage
