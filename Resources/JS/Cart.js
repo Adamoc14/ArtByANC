@@ -257,16 +257,17 @@ $.extend(Shop.prototype,{
             for(var o = 0; o < items.length; o++){
                 var item = items[0];
                 var name = item.product;
-                var quantity = item.quantity;
+                // var quantity = item.quantity;
                 if(name == product_clicked){
-                    quantity = new_quantity;
-                    console.log(quantity);
+                    item.quantity = new_quantity;
+                    console.log(item.quantity);
                 }
             }
             newItems = items;
             console.log(newItems);
-            // var newCart = {};
-            // newCart.items = newItems;
+            var newCart = {};
+            newCart.items = newItems;
+            console.log(newCart.items);
             // var updatedTotal = 0;
             // if(newItems.length < 0){
             //     updatedTotal = 0;
