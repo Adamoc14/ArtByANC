@@ -256,6 +256,7 @@ $.extend(Shop.prototype,{
             var product_clicked = $(this).parent().parent().data("product");
             var button_clicked = this;
             var new_quantity = self._updateQuantityBox(button_clicked);
+            console.log("This is the" + new_quantity);
             
             // if(button_clicked.classList.contains("plus")){
             //     quantity += 1;
