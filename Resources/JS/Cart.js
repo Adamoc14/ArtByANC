@@ -239,6 +239,7 @@ $.extend(Shop.prototype,{
         var quantity_box = $(product_clicked).find('#quantity');
         console.log(product_clicked + " " + quantity_box);
         // $("#quantity").val(this._convertNumber(quantity));
+         $(quantity_box).val(this._convertNumber(quantity));
         return new_quantity;
     },
     /*
