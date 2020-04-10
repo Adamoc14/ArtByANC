@@ -222,7 +222,7 @@ $.extend(Shop.prototype,{
     _updateQuantityBox(clicked_element){
         var new_quantity;
         console.log(this.$quantity);
-        self.$quantity = this._convertString(document.getElementById('quantity')).value;
+        self.$quantity = this._convertString(document.getElementById('quantity').value);
         if(clicked_element.classList.contains("plus")){
                 self.$quantity += 1;
                 new_quantity = self.$quantity;
