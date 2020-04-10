@@ -265,14 +265,16 @@ $.extend(Shop.prototype,{
                 if(name == product_clicked_name){
                     console.log(product_clicked_name);
                     console.log(name);
-                    console.log(item.quantity);
                     var new_quantity = self._updateQuantityBox(button_clicked, product_clicked);
                     item.quantity = new_quantity;
+                    console.log(item.quantity);
                 }
             }
             newItems = items;
+            console.log(newItems);
             var newCart = {};
             newCart.items = newItems;
+            console.log(newCart.items);
             var updatedTotal = 0;
             if(newItems.length < 0){
                 updatedTotal = 0;
