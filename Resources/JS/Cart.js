@@ -222,20 +222,19 @@ $.extend(Shop.prototype,{
     _updateQuantityBox(clicked_element){
         var new_quantity;
         // console.log(this.$quantity);
-        console.log(clicked_element);
-        this.$quantity = this._convertString(document.getElementById('quantity').value);
-        console.log(this.$quantity);
+        var quantity = this._convertString(document.getElementById('quantity').value);
+        console.log(quantity);
         if(clicked_element.classList.contains("plus")){
-                this.$quantity += 1;
-                new_quantity = this.$quantity;
+                quantity += 1;
+                new_quantity = quantity;
         }
         if(clicked_element.classList.contains("minus")){
-            if (this.$quantity == 1){
-                this.$quantity = 1;
+            if (quantity == 1){
+                quantity = 1;
             } else {
-                this.$quantity -= 1;
+                quantity -= 1;
             }
-            new_quantity = this.$quantity;
+            new_quantity = quantity;
         } 
         return new_quantity;
     },
