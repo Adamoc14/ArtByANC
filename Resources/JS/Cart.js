@@ -226,16 +226,16 @@ $.extend(Shop.prototype,{
         var quantity = this._convertString(document.getElementById('quantity').value);
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
-                new_quantity = quantity;
-        }
-        if(clicked_element.classList.contains("minus")){
+                // new_quantity = quantity;
+        } else if(clicked_element.classList.contains("minus")){
             if (quantity == 1){
                 quantity = 1;
             } else {
                 quantity -= 1;
             }
-            new_quantity = quantity;
+            // new_quantity = quantity;
         } 
+        new_quantity = quantity;
         var quantity_box = $(product_clicked).find('#quantity');
         console.log(product_clicked + " " + quantity_box);
         // $("#quantity").val(this._convertNumber(quantity));
