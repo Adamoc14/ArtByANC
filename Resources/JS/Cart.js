@@ -224,10 +224,8 @@ $.extend(Shop.prototype,{
     _updateQuantityBox(clicked_element){
         var new_quantity;
         var quantity = this._convertString(document.getElementById('quantity').value);
-        console.log(typeof quantity);
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
-                console.log(quantity);
                 new_quantity = quantity;
         }
         if(clicked_element.classList.contains("minus")){
@@ -250,39 +248,22 @@ $.extend(Shop.prototype,{
         var self = this;
         var cart = self._toJSONObject(self.storage.getItem(self.cartName));
         var items = cart.items;
-        // var new_quantity;
-        var quantity = self._convertString(document.getElementById('quantity').value);
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
             var product_clicked = $(this).parent().parent().data("product");
             var button_clicked = this;
             var new_quantity = self._updateQuantityBox(button_clicked);
-            console.log("This is the" + new_quantity);
-            
-            // if(button_clicked.classList.contains("plus")){
-            //     quantity += 1;
-            //     new_quantity = quantity;
-            // }
-            // if(button_clicked.classList.contains("minus")){
-            //     if (quantity == 1){
-            //         quantity = 1;
-            //     } else {
-            //         quantity -= 1;
-            //     }
-            //     new_quantity = quantity;
-            // }
-            
-
-            // var newItems = [];
-            // for(var o = 0; o < items.length; o++){
-            //     var item = items[0];
-            //     var name = item.product;
-            //     var quantity = item.quantity;
-            //     if(name == product_clicked){
-            //     }
-            // }
-            // newItems = items;
-            // console.log(newItems);
+            var newItems = [];
+            for(var o = 0; o < items.length; o++){
+                var item = items[0];
+                var name = item.product;
+                var quantity = item.quantity;
+                if(name == product_clicked){
+                    quantity = new_quantity;
+                }
+            }
+            newItems = items;
+            console.log(newItems);
             // var newCart = {};
             // newCart.items = newItems;
             // var updatedTotal = 0;
@@ -297,10 +278,6 @@ $.extend(Shop.prototype,{
             // }
             // self.storage.setItem(self.total, self._convertNumber(updatedTotal));
             // self.storage.setItem(self.cartName , self._toJSONString(newCart));
-            // console.log(quantity);
-            // // console.log(self.$quantity);
-            // // console.log(self.$quantity.value);
-
         });
 
     },
