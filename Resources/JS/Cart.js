@@ -238,7 +238,7 @@ $.extend(Shop.prototype,{
             }
             new_quantity = quantity;
         } 
-        $("#quantity").val(self._convertNumber(quantity));
+        $("#quantity").val(this._convertNumber(quantity));
         return new_quantity;
     },
     /*
