@@ -240,7 +240,7 @@ $.extend(Shop.prototype,{
         console.log(product_clicked + " " + quantity_box);
         // $("#quantity").val(this._convertNumber(quantity));
         console.log(quantity_box.value);
-         $(quantity_box).val(this._convertNumber(quantity));
+         $(quantity_box).val(this._convertNumber(new_quantity));
          console.log(quantity_box.value);
         return new_quantity;
     },
