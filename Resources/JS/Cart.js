@@ -223,6 +223,7 @@ $.extend(Shop.prototype,{
         var new_quantity;
         console.log(this.$quantity);
         self.$quantity = this._convertString(document.getElementById('quantity').value);
+        console.log(this.$quantity);
         if(clicked_element.classList.contains("plus")){
                 self.$quantity += 1;
                 new_quantity = self.$quantity;
