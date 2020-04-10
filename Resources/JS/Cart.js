@@ -225,7 +225,7 @@ $.extend(Shop.prototype,{
     },
     _updateQuantityBox(clicked_element){
         var new_quantity;
-        self.$quantity = self._convertString(self.$quantity).value;
+        self.$quantity = this._convertString(self.$quantity).value;
         if(clicked_element.classList.contains("plus")){
                 self.$quantity += 1;
                 new_quantity = self.$quantity;
