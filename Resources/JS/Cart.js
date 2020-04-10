@@ -227,6 +227,7 @@ $.extend(Shop.prototype,{
         console.log(typeof quantity);
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
+                console.log(quantity);
                 new_quantity = quantity;
         }
         if(clicked_element.classList.contains("minus")){
