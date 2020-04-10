@@ -268,18 +268,18 @@ $.extend(Shop.prototype,{
             var newCart = {};
             newCart.items = newItems;
             console.log(newCart.items);
-            // var updatedTotal = 0;
-            // if(newItems.length < 0){
-            //     updatedTotal = 0;
-            // } else {
-            //     for(var i= 0; i < newItems.length ; i++){
-            //         var item = newItems[i];
-            //         let sub = item.price * item.quantity;
-            //         updatedTotal += sub;
-            //     }
-            // }
-            // self.storage.setItem(self.total, self._convertNumber(updatedTotal));
-            // self.storage.setItem(self.cartName , self._toJSONString(newCart));
+            var updatedTotal = 0;
+            if(newItems.length < 0){
+                updatedTotal = 0;
+            } else {
+                for(var i= 0; i < newItems.length ; i++){
+                    var item = newItems[i];
+                    let sub = item.price * item.quantity;
+                    updatedTotal += sub;
+                }
+            }
+            self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+            self.storage.setItem(self.cartName , self._toJSONString(newCart));
         });
 
     },
