@@ -254,7 +254,7 @@ $.extend(Shop.prototype,{
             var button_clicked = this;
             var newItems = [];
             for(var o = 0; o < items.length; o++){
-                var item = items[0];
+                var item = items[o];
                 var name = item.product;
                 if(name == product_clicked){
                     console.log(product_clicked);
