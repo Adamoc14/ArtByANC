@@ -14,7 +14,7 @@ $.extend(Shop.prototype,{
             this.storage = sessionStorage; // shortcut to the sessionStorage object
             this.currency = "&euro;";
             this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
-            this.$quantity = document.getElementById('quantity');
+            this.$quantity = 0;
             console.log(this.$quantity);
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
             this.$formCart = this.$element.find(".Cart_Form");
@@ -222,7 +222,7 @@ $.extend(Shop.prototype,{
     _updateQuantityBox(clicked_element){
         var new_quantity;
         console.log(this.$quantity);
-        self.$quantity = this._convertString(self.$quantity).value;
+        self.$quantity = this._convertString(document.getElementById('quantity')).value;
         if(clicked_element.classList.contains("plus")){
                 self.$quantity += 1;
                 new_quantity = self.$quantity;
