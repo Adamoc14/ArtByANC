@@ -221,7 +221,7 @@ $.extend(Shop.prototype,{
         }
 
     },
-    _updateQuantityBox(clicked_element){
+    _updateQuantityBox(clicked_element , product_clicked){
         var new_quantity;
         var quantity = this._convertString(document.getElementById('quantity').value);
         if(clicked_element.classList.contains("plus")){
@@ -236,7 +236,9 @@ $.extend(Shop.prototype,{
             }
             new_quantity = quantity;
         } 
-        $("#quantity").val(this._convertNumber(quantity));
+        var quantity_box = $(product_clicked).find('#quantity');
+        console.log(product_clicked + " " + quantity_box);
+        // $("#quantity").val(this._convertNumber(quantity));
         return new_quantity;
     },
     /*
@@ -260,7 +262,7 @@ $.extend(Shop.prototype,{
                     console.log(product_clicked);
                     console.log(name);
                     console.log(item.quantity);
-                    var new_quantity = self._updateQuantityBox(button_clicked);
+                    var new_quantity = self._updateQuantityBox(button_clicked, product_clicked);
                     item.quantity = new_quantity;
                 }
             }
