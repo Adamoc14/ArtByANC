@@ -260,6 +260,7 @@ $.extend(Shop.prototype,{
                 var quantity = item.quantity;
                 if(name == product_clicked){
                     quantity = new_quantity;
+                    console.log(quantity);
                 }
             }
             newItems = items;
