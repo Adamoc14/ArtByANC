@@ -252,22 +252,18 @@ $.extend(Shop.prototype,{
             e.preventDefault();
             var product_clicked = $(this).parent().parent().data("product");
             var button_clicked = this;
-            var new_quantity = self._updateQuantityBox(button_clicked);
             var newItems = [];
             for(var o = 0; o < items.length; o++){
                 var item = items[0];
                 var name = item.product;
-                // var quantity = item.quantity;
                 if(name == product_clicked){
+                    var new_quantity = self._updateQuantityBox(button_clicked);
                     item.quantity = new_quantity;
-                    console.log(item.quantity);
                 }
             }
             newItems = items;
-            console.log(newItems);
             var newCart = {};
             newCart.items = newItems;
-            console.log(newCart.items);
             var updatedTotal = 0;
             if(newItems.length < 0){
                 updatedTotal = 0;
@@ -279,7 +275,6 @@ $.extend(Shop.prototype,{
                 }
             }
             self.storage.setItem(self.total, self._convertNumber(updatedTotal));
-            console.log(self.storage.getItem(self.total));
             self.storage.setItem(self.cartName , self._toJSONString(newCart));
             self.$subTotal[0].innerHTML = self.currency + self.storage.getItem(self.total) + ".00";
         });
