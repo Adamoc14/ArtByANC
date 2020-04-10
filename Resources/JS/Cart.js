@@ -257,6 +257,9 @@ $.extend(Shop.prototype,{
                 var item = items[0];
                 var name = item.product;
                 if(name == product_clicked){
+                    console.log(product_clicked);
+                    console.log(name);
+                    console.log(item.quantity);
                     var new_quantity = self._updateQuantityBox(button_clicked);
                     item.quantity = new_quantity;
                 }
