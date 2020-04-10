@@ -281,6 +281,7 @@ $.extend(Shop.prototype,{
             self.storage.setItem(self.total, self._convertNumber(updatedTotal));
             console.log(self.storage.getItem(self.total));
             self.storage.setItem(self.cartName , self._toJSONString(newCart));
+            self.$subTotal[0].innerHTML = self.currency + self.storage.getItem(self.total) + ".00";
         });
 
     },
