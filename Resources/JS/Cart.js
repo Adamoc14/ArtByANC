@@ -255,14 +255,15 @@ $.extend(Shop.prototype,{
         var items = cart.items;
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
-            var product_clicked = $(this).parent().parent().data("product");
+            var product_clicked = $(this).parent().parent();
+            var product_clicked_name = $(this).parent().parent().data("product");
             var button_clicked = this;
             var newItems = [];
             for(var o = 0; o < items.length; o++){
                 var item = items[o];
                 var name = item.product;
-                if(name == product_clicked){
-                    console.log(product_clicked);
+                if(name == product_clicked_name){
+                    console.log(product_clicked_name);
                     console.log(name);
                     console.log(item.quantity);
                     var new_quantity = self._updateQuantityBox(button_clicked, product_clicked);
