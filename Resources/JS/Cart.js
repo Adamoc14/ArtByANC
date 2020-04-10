@@ -238,6 +238,7 @@ $.extend(Shop.prototype,{
             }
             new_quantity = quantity;
         } 
+        $("#quantity").val(self._convertNumber(quantity));
         return new_quantity;
     },
     /*
@@ -270,7 +271,7 @@ $.extend(Shop.prototype,{
             //     }
             //     new_quantity = quantity;
             // }
-            $("#quantity").val(self._convertNumber(quantity));
+            
 
             // var newItems = [];
             // for(var o = 0; o < items.length; o++){
