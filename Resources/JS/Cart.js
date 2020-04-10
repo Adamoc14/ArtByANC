@@ -70,9 +70,11 @@ $.extend(Shop.prototype,{
                 break;
             case (/^\d+$/.test( numStr )):
                 num = parseInt(numStr , 10);
+                console.log("It should be an integer");
                 break;
             default:
                 num = Number(numStr);
+                console.log("It should be a normal number");
                 break;
         }
 
@@ -221,9 +223,8 @@ $.extend(Shop.prototype,{
     },
     _updateQuantityBox(clicked_element){
         var new_quantity;
-        // console.log(this.$quantity);
         var quantity = this._convertString(document.getElementById('quantity').value);
-        console.log(quantity);
+        console.log(typeof quantity);
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
                 new_quantity = quantity;
