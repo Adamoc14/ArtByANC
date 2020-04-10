@@ -279,6 +279,7 @@ $.extend(Shop.prototype,{
                 }
             }
             self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+            console.log(self.storage.getItem(self.total));
             self.storage.setItem(self.cartName , self._toJSONString(newCart));
         });
 
