@@ -254,16 +254,15 @@ $.extend(Shop.prototype,{
         var items = cart.items;
         $(document).on('click' , '.btn-update' , function(e){
             e.preventDefault();
-            var product_clicked = $(this).parent().parent();
-            var product_clicked_name = $(this).parent().parent().data("product");
             var button_clicked = this;
+            var product_clicked = $(button_clicked).parent().parent();
+            var product_clicked_name = $(button_clicked).parent().parent().data("product");
             var newItems = [];
             for(var o = 0; o < items.length; o++){
                 var item = items[o];
                 var name = item.product;
                 if(name == product_clicked_name){
-                    console.log(product_clicked_name);
-                    console.log(name);
+                    console.log("The session name for this product is " + name + "and the name of product who's button is pressed is " + product_clicked_name);
                     var new_quantity = self._updateQuantityBox(button_clicked, product_clicked);
                     item.quantity = new_quantity;
                     console.log(item.quantity);
