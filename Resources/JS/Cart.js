@@ -66,15 +66,15 @@ $.extend(Shop.prototype,{
         switch(numStr){
             case (/^[-+]?[0-9]+\.[0-9]+$/.test( numStr )): 
                 num = parseFloat(numStr);
-                console.log("It should be a float");
+                //console.log("It should be a float");
                 break;
             case (/^\d+$/.test( numStr )):
                 num = parseInt(numStr , 10);
-                console.log("It should be an integer");
+                //console.log("It should be an integer");
                 break;
             default:
                 num = Number(numStr);
-                console.log("It should be a normal number");
+                //console.log("It should be a normal number");
                 break;
         }
 
@@ -221,9 +221,10 @@ $.extend(Shop.prototype,{
         }
 
     },
-    _updateQuantityBox(clicked_element , product_clicked){
+    _updateQuantityBox(clicked_element , product_clicked , item_quantity){
         var new_quantity;
-        var quantity = this._convertString(document.getElementById('quantity').value);
+        // var quantity = this._convertString(document.getElementById('quantity').value);
+        var quantity = item_quantity;
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
                 // new_quantity = quantity;
@@ -238,9 +239,9 @@ $.extend(Shop.prototype,{
         new_quantity = quantity;
         console.log(new_quantity);
         var quantity_box = $(product_clicked).find('#quantity');
-        console.log(quantity_box.value);
+        // console.log(quantity_box.value);
         $(quantity_box).val(this._convertNumber(new_quantity));
-        console.log(quantity_box.value);
+        // console.log(quantity_box.value);
         return new_quantity;
     },
     /*
@@ -263,7 +264,7 @@ $.extend(Shop.prototype,{
                 var name = item.product;
                 if(name == product_clicked_name){
                     console.log("The session name for this product is " + name + "and the name of product who's button is pressed is " + product_clicked_name);
-                    var new_quantity = self._updateQuantityBox(button_clicked, product_clicked);
+                    var new_quantity = self._updateQuantityBox(button_clicked, product_clicked , item.quantity);
                     item.quantity = new_quantity;
                     console.log(item.quantity);
                 }
