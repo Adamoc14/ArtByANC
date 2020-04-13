@@ -191,7 +191,7 @@ $.extend(Shop.prototype,{
             var lastName = $($form).find('Last_Name_Input');
             var Email = $($form).find('Email_Input');
             var Address1 = $($form).find('Address_Line1_Input');
-            var Address2 = $$($form).find('Address_Line2_Input');
+            var Address2 = $($form).find('Address_Line2_Input');
             var TownOrCity = $($form).find('TownOrCity_Input');
             var County = $($form).find('County_Selector');
             var PostCode = $($form).find('PostCode_Input');
@@ -207,7 +207,7 @@ $.extend(Shop.prototype,{
                 'PostCode': PostCode.val(),
                 'Mobile': Mobile.val(),
             }
-            $form.on('submit', function(e){
+            $($form).on('submit', function(e){
                 e.preventDefault();
                 console.log(user);
                 var formSubmitted = self._validateForm($form);
