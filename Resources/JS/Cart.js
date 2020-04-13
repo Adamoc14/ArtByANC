@@ -235,15 +235,16 @@ $.extend(Shop.prototype,{
             }
             $form.on('submit', function(e){
                 e.preventDefault();
+                self._validateForm($form);
                 console.log(user);
-                var formSubmitted = self._validateForm($form);
-                var addUserConfirmed = self._addUser(user);
-                if(formSubmitted && addUserConfirmed){
-                    console.log("Form is submitted and user is Confirmed");
-                } else {
-                    e.preventDefault();
-                    console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
-                }
+                // var formSubmitted = self._validateForm($form);
+                // var addUserConfirmed = self._addUser(user);
+                // if(formSubmitted && addUserConfirmed){
+                //     console.log("Form is submitted and user is Confirmed");
+                // } else {
+                //     e.preventDefault();
+                //     console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+                // }
                 //self._addUser(user);
                 console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
             });
