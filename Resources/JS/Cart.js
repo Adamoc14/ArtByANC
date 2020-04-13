@@ -222,29 +222,27 @@ $.extend(Shop.prototype,{
                         break;
                }
            }
-            
             console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
-
-            // var user = {
-            //     'Name': firstName.val() + " " + lastName.val(),
-            //     'Email': Email.val(),
-            //     'Address': Address1.val() + " " + Address2.val(),
-            //     'Town/City': TownOrCity.val(),
-            //     'County': County.val(),
-            //     'PostCode': PostCode.val(),
-            //     'Mobile': Mobile.val(),
-            // }
+            var user = {
+                'Name': firstName + " " + lastName,
+                'Email': Email,
+                'Address': Address1 + " " + Address2,
+                'Town/City': TownOrCity,
+                'County': County,
+                'PostCode': PostCode,
+                'Mobile': Mobile,
+            }
             $form.on('submit', function(e){
                 e.preventDefault();
                 console.log(user);
                 var formSubmitted = self._validateForm($form);
                 var addUserConfirmed = self._addUser(user);
-                // if(formSubmitted && addUserConfirmed){
-                //     console.log("Form is submitted and user is Confirmed");
-                // } else {
-                //     e.preventDefault();
-                //     console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
-                // }
+                if(formSubmitted && addUserConfirmed){
+                    console.log("Form is submitted and user is Confirmed");
+                } else {
+                    e.preventDefault();
+                    console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+                }
                 //self._addUser(user);
                 console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
             });
@@ -267,6 +265,7 @@ $.extend(Shop.prototype,{
         var items = userCopy.items;
         items.push(user);
         self.storage.setItem(self.Users , self._toJSONString(userCopy));
+        return false;
    },
     /*
         This method checks the inputted String and converts it to a number if it's able to be converted
