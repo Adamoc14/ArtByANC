@@ -193,7 +193,8 @@ $.extend(Shop.prototype,{
                console.log(form[i]);
                var $form = $(form[i]);
                console.log($form.val());
-               switch($form[name]){
+               console.log($form.attr('name'));
+               switch($form.attr('name')){
                     case "First_Name_Input":
                        firstName = $form.val();
                        break;
