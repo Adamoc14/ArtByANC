@@ -476,7 +476,7 @@ $.extend(Shop.prototype,{
         if(self.storage.getItem(self.total) != null){
             $runningTotalContainer.insertAdjacentHTML('afterbegin', `
                 <img src="../../Resources/Images/General_Images/ANCBlueLogo.jpg" alt="">
-                <h2>Total: ${this.currency + this.storage.getItem(self.total)}</h2>
+                <h2>Total: ${this.currency + this.storage.getItem(self.total)} .00</h2>
             `);
         }
         var user = {
