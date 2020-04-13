@@ -185,28 +185,63 @@ $.extend(Shop.prototype,{
    _AddUserForm(){
        var self = this;
        self.$userForm.each(function(element){
-            var $form = $(this);
-            console.log($form);
-            var firstName = $form.get(0).find('First_Name_Input');
-            var lastName = $form.find('Last_Name_Input');
-            var Email = $form.find('Email_Input');
-            var Address1 = $form.find('Address_Line1_Input');
-            var Address2 = $form.find('Address_Line2_Input');
-            var TownOrCity = $form.find('TownOrCity_Input');
-            var County = $form.find('County_Selector');
-            var PostCode = $form.find('PostCode_Input');
-            var Mobile = $form.find('Telephone_Input');
+           var form = $(this).find('input');
+           var $select = document.getElementsByTagName('select')[0];
+           var firstName, lastName, Email, Address1, Address2, TownOrCity, County, PostCode, Mobile;
+           County = $select.options.selectedIndex;
+           for(var i = 0; i < form.length; i++){
+               console.log(form[i]);
+               var $form = $(form[i]);
+               console.log($form.val());
+               switch($form[name]){
+                    case "First_Name_Input":
+                       firstName = $form.val();
+                       break;
+                    case "Last_Name_Input":
+                        lastName = $form.val();
+                        break;
+                    case "Email_Input":
+                        Email = $form.val();
+                        break;
+                    case "Address_Line1_Input":
+                        Address1 = $form.val();
+                        break;
+                    case "Address_Line2_Input":
+                        Address2 = $form.val();
+                        break;
+                    case "TownOrCity_Input":
+                        TownOrCity = $form.val();
+                        break;
+                    case "PostCode_Input":
+                        PostCode = $form.val();
+                        break;
+                    case "Telephone_Input":
+                        Mobile = $form.val();
+                        break;
+                    default:
+                        firstName = $form.val(),
+                        lastName = $form.val(),
+                        Email = $form.val(), 
+                        Address1 = $form.val(), 
+                        Address2 = $form.val(), 
+                        TownOrCity = $form.val(), 
+                        County = $form.val(), 
+                        PostCode = $form.val(), 
+                        Mobile = $form.val()
+               }
+           }
+            
             console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
 
-            var user = {
-                'Name': firstName.val() + " " + lastName.val(),
-                'Email': Email.val(),
-                'Address': Address1.val() + " " + Address2.val(),
-                'Town/City': TownOrCity.val(),
-                'County': County.val(),
-                'PostCode': PostCode.val(),
-                'Mobile': Mobile.val(),
-            }
+            // var user = {
+            //     'Name': firstName.val() + " " + lastName.val(),
+            //     'Email': Email.val(),
+            //     'Address': Address1.val() + " " + Address2.val(),
+            //     'Town/City': TownOrCity.val(),
+            //     'County': County.val(),
+            //     'PostCode': PostCode.val(),
+            //     'Mobile': Mobile.val(),
+            // }
             $form.on('submit', function(e){
                 e.preventDefault();
                 console.log(user);
