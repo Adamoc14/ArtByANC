@@ -235,7 +235,7 @@ $.extend(Shop.prototype,{
             }
             $form.on('submit', function(e){
                 e.preventDefault();
-                self._validateForm($form);
+                // self._validateForm($form);
                 console.log(user);
                 // var formSubmitted = self._validateForm($form);
                 // var addUserConfirmed = self._addUser(user);
