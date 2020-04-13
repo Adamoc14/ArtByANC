@@ -185,39 +185,40 @@ $.extend(Shop.prototype,{
    _AddUserForm(){
        var self = this;
        self.$userForm.each(function(element){
+           var $form = $(this);
            var form = $(this).find('input');
            var $select = document.getElementsByTagName('select')[0];
            var firstName, lastName, Email, Address1, Address2, TownOrCity, County, PostCode, Mobile;
            County = $select.options.selectedIndex;
            for(var i = 0; i < form.length - 1; i++){
                console.log(form[i]);
-               var $form = $(form[i]);
-               console.log($form.val());
-               console.log($form.attr('name'));
-               switch($form.attr('name')){
+               var $input = $(form[i]);
+               console.log($input.val());
+               console.log($input.attr('name'));
+               switch($input.attr('name')){
                     case "First_Name_Input":
-                       firstName = $form.val();
+                       firstName = $input.val();
                        break;
                     case "Last_Name_Input":
-                        lastName = $form.val();
+                        lastName = $input.val();
                         break;
                     case "Email_Input":
-                        Email = $form.val();
+                        Email = $input.val();
                         break;
                     case "Address_Line1_Input":
-                        Address1 = $form.val();
+                        Address1 = $input.val();
                         break;
                     case "Address_Line2_Input":
-                        Address2 = $form.val();
+                        Address2 = $input.val();
                         break;
                     case "TownOrCity_Input":
-                        TownOrCity = $form.val();
+                        TownOrCity = $input.val();
                         break;
                     case "PostCode_Input":
-                        PostCode = $form.val();
+                        PostCode = $input.val();
                         break;
                     case "Telephone_Input":
-                        Mobile = $form.val();
+                        Mobile = $input.val();
                         break;
                     default:
                         break;
@@ -246,7 +247,7 @@ $.extend(Shop.prototype,{
                 //     console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
                 // }
                 //self._addUser(user);
-                console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+                // console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
             });
             //console.log(user);
             //console.log(self._toJSONObject(self.storage.getItem(self.Users)));
