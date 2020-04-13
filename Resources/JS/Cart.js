@@ -185,17 +185,17 @@ $.extend(Shop.prototype,{
    _AddUserForm(){
        var self = this;
        self.$userForm.each(function(element){
-            var $form = $(this).get(0);
+            var $form = $(this);
             console.log($form);
-            var firstName = $($form).find('First_Name_Input');
-            var lastName = $($form).find('Last_Name_Input');
-            var Email = $($form).find('Email_Input');
-            var Address1 = $($form).find('Address_Line1_Input');
-            var Address2 = $($form).find('Address_Line2_Input');
-            var TownOrCity = $($form).find('TownOrCity_Input');
-            var County = $($form).find('County_Selector');
-            var PostCode = $($form).find('PostCode_Input');
-            var Mobile = $($form).find('Telephone_Input');
+            var firstName = $form.get(0).find('First_Name_Input');
+            var lastName = $form.find('Last_Name_Input');
+            var Email = $form.find('Email_Input');
+            var Address1 = $form.find('Address_Line1_Input');
+            var Address2 = $form.find('Address_Line2_Input');
+            var TownOrCity = $form.find('TownOrCity_Input');
+            var County = $form.find('County_Selector');
+            var PostCode = $form.find('PostCode_Input');
+            var Mobile = $form.find('Telephone_Input');
             console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
 
             var user = {
@@ -207,7 +207,7 @@ $.extend(Shop.prototype,{
                 'PostCode': PostCode.val(),
                 'Mobile': Mobile.val(),
             }
-            $($form).on('submit', function(e){
+            $form.on('submit', function(e){
                 e.preventDefault();
                 console.log(user);
                 var formSubmitted = self._validateForm($form);
