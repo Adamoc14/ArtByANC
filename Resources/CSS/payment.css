@@ -1,0 +1,43 @@
+.Payment_Page_Main_Container , 
+.Colour_Of_Month_Container ,
+.Running_Total_Container ,
+.cards_Container{
+    display: flex;
+    padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
+}
+
+.Payment_Page_Main_Container{
+    padding: 2em 2em 4em 2em;
+}
+
+.Payment_Page_Main_sm_Container {
+    flex: 1 0 35%;
+}
+
+.Payment_Page_Main_sm_Container:first-child img {
+    width: 55vw;
+    height: 100vh;
+}
+
+.Running_Total_Container, .cards_Container{
+    padding: 1em 2em;
+}
+ 
+.Running_Total_Container,.cards_Container{
+    flex-direction: column;
+    align-items: center;
+}
+
+.cards_Container input[type="submit"] {
+    border: 2px solid #eee;
+    padding: 1em 4em;
+    background: gold;
+    margin-top: 1em;
+}
+form.Paypal_Form{
+    display: flex;
+    flex-direction: column;
+}

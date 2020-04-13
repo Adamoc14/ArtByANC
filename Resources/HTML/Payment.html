@@ -2,10 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../Resources/CSS/basics.css">
+    <link rel="stylesheet" href="../../Resources/CSS/header.css">
+    <link rel="stylesheet" href="../../Resources/CSS/payment.css">
+    <link rel="stylesheet" href="../../Resources/CSS/footer.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Quicksand&display=swap" rel="stylesheet">
+    <script src="../../Resources/JS/navbar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="../../Resources/JS/Cart.js"></script>
+    <title>ArtByANC | Homepage</title>
 </head>
 <body>
-    
+    <div class="wrapper" id="Whole_Site">
+        <div class="overall_container">
+            <div class="smaller_container">
+                <div class="logo">
+                    <a href="../../Resources/HTML/homepage.html"><img
+                            src="../../Resources/Images/General_Images/Logo_Black.jpg" alt=""></a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="../../Resources/HTML/Shop.html">Shop</a></li>
+                        <li><a href="../../Resources/HTML/About.html">About</a></li>
+                        <li><a href="../../Resources/HTML/Contact.html">Contact</a></li>
+                        <li><a href="../../Resources/HTML/Gallery.html">Collection</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="smaller_container">
+                <div class="hamburger_container">
+                    <a href="../../Resources/HTML/homepage.html">
+                        <h1>ANC</h1>
+                    </a>
+                    <div class="burger_menu" onclick="myFunction(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                </div>
+                <img src="../../Resources/Images/General_Images/BG_WebTemp.jpg" alt="">
+            </div>
+        </div>
+        <div class="Payment_Page_Main_Container">
+            <div class="Payment_Page_Main_sm_Container">
+                <img src="../../Resources/Images/Abstract_Images/Abstract_Elephant.jpg" alt="">
+            </div>
+            <div class="Payment_Page_Main_sm_Container">
+                <div class="Running_Total_Container">
+                    
+                </div>
+                <div class="cards_Container">
+                    <form action="" class="Paypal_Form" method="post">
+                        <input type="hidden" name="">
+                        <input type="hidden" name="">
+                        <input type="hidden" name="">
+                        <input type="hidden" name="">
+                        <input type="hidden" name="">
+                        <input type="submit" value="Pay With Paypal">
+                        <input type="submit" value="Pay With Credit Card">
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Colour_Of_Month_Container">
+            <div class="colour_sm_container">
+                <h1>COLOUR OF THE MONTH ORIGINALS</h1>
+                <div class="circle"></div>
+            </div>
+            <div class="colour_sm_container">
+                <div class="elfsight-app-564f59ce-44ef-4c97-9570-da490157d24b"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h4>ArtByANC &copy; Copyright 2020</h4>
+    </div>
+    <script>
+        // $(window).on('load', function() { 
+        //     var a_tags = document.getElementsByTagName("a");
+        //     a_tags[11].style.display = "none";
+        //     console.log("Well Bitches");
+        // });
+        function loadScript(url) {
+            document.body.appendChild(document.createElement("script")).src = url;
+            console.log("That's appended there nw x");
+            return true;
+        }
+        loadScript('https://apps.elfsight.com/p/platform.js')
+        var script_tags = document.getElementsByTagName('script');
+        var counter = 0;
+        for (var i = 0; i < script_tags.length - 1; i++) {
+            console.log(script_tags[i].src);
+            switch (script_tags[i].src) {
+                case "https://apps.elfsight.com/p/platform.js":
+                    counter += 1;
+                case "https://static.elfsight.com/apps/instashow/release/27aff712-1ef7-4d37-adad-d06157590053/app/instagram-feed.js":
+                    counter += 1;
+                default:
+                    counter = 0;
+            }
+        }
+        console.log(counter);
+        console.log(script_tags[i].src);
+        for (var i = 0; i < script_tags.length - 1; i++) {
+            console.log(script_tags[i].src);
+            switch (script_tags[i].src) {
+                case "https://apps.elfsight.com/p/platform.js":
+                    counter += 1;
+                case "https://static.elfsight.com/apps/instashow/release/27aff712-1ef7-4d37-adad-d06157590053/app/instagram-feed.js":
+                    counter += 1;
+                default:
+                    counter = 0;
+            }
+        }
+        loadScript("../../Resources/JS/homepage.js");
+
+        // if (!loadScript('https://apps.elfsight.com/p/platform.js')){
+        //     console.log("it's not loaded yet champ");
+        // } else if(loadScript('https://apps.elfsight.com/p/platform.js'))  {
+        //     loadScript('../../Resources/JS/homepage.js');
+        // }
+    </script>
 </body>
 </html>

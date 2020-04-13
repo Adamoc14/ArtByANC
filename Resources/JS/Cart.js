@@ -206,14 +206,17 @@ $.extend(Shop.prototype,{
                 'Mobile': Mobile.val(),
             }
             $form.on('submit', function(e){
+                e.preventDefault();
                 var formSubmitted = self._validateForm($form);
-                if(formSubmitted){
-                    console.log("Form is submitted");
-                } else {
-                    e.preventDefault();
-                }
-                console.log(self._validateForm($form));
+                var addUserConfirmed = self._addUser(user);
+                // if(formSubmitted && addUserConfirmed){
+                //     console.log("Form is submitted and user is Confirmed");
+                // } else {
+                //     e.preventDefault();
+                //     console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+                // }
                 //self._addUser(user);
+                console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
             });
             //console.log(user);
             //console.log(self._toJSONObject(self.storage.getItem(self.Users)));
