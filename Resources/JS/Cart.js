@@ -187,7 +187,7 @@ $.extend(Shop.prototype,{
        self.$userForm.each(function(element){
             var $form = $(this);
             console.log($form);
-            var firstName = $form.find('First_Name_Input');
+            var firstName = $form[0].find('First_Name_Input');
             var lastName = $form.find('Last_Name_Input');
             var Email = $form.find('Email_Input');
             var Address1 = $form.find('Address_Line1_Input');
