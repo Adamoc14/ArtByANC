@@ -188,14 +188,14 @@ $.extend(Shop.prototype,{
             var $form = $(this).get(0);
             console.log($form);
             var firstName = $($form).find('First_Name_Input');
-            var lastName = $form.find('Last_Name_Input');
-            var Email = $form.find('Email_Input');
-            var Address1 = $form.find('Address_Line1_Input');
-            var Address2 = $form.find('Address_Line2_Input');
-            var TownOrCity = $form.find('TownOrCity_Input');
-            var County = $form.find('County_Selector');
-            var PostCode = $form.find('PostCode_Input');
-            var Mobile = $form.find('Telephone_Input');
+            var lastName = $($form).find('Last_Name_Input');
+            var Email = $($form).find('Email_Input');
+            var Address1 = $($form).find('Address_Line1_Input');
+            var Address2 = $$($form).find('Address_Line2_Input');
+            var TownOrCity = $($form).find('TownOrCity_Input');
+            var County = $($form).find('County_Selector');
+            var PostCode = $($form).find('PostCode_Input');
+            var Mobile = $($form).find('Telephone_Input');
             console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
 
             var user = {
