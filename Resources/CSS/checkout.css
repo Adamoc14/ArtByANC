@@ -1,0 +1,107 @@
+.Contact_Details_Container , 
+.Colour_Of_Month_Container ,
+.Running_Total_Container{
+    display: flex;
+    padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
+}
+
+.Contact_Details_Container{
+    padding: 2em 2em 4em 2em;
+}
+
+.Running_Total_Container{
+    padding: 1em 2em;
+}
+
+.Contact_Details_Container, 
+.Running_Total_Container{
+    flex-direction: column;
+    align-items: center;
+}
+
+.asterisk{
+    display: inline;
+}
+
+.Name_InputFields , .SameAsBilling_Inputs {
+    display:flex;
+}
+
+.F_Name {
+    margin-right: 1em;
+}
+
+.F_Name p, .L_Name p {
+    font-size: 0.8em;
+    font-weight: 100;
+}
+
+.Email_Inputs input , 
+.Address_Inputs input , 
+.TownOrCity_Inputs input , 
+.County_Inputs select ,
+.PostCode_Inputs input ,
+.Telephone_Inputs input ,
+.SameAsBilling_Inputs input{
+    padding-right: 18.5em;
+}
+
+.County_Inputs select  {
+    padding-right: 14.5em;
+}
+
+.SameAsBilling_Inputs input{
+    margin-right: 1em;
+}
+.SameAsBilling_Inputs p{
+    flex: 100%;
+}
+
+.SameAsBilling_Inputs {
+    padding: 1.2em 0em;
+}
+
+.errorContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2em; 
+}
+
+.red_dot{
+    color: red;
+}
+
+.red_dot.hidden{
+    display:none;
+}
+
+.dot{
+    margin-left: .4em;
+}
+
+
+.Payment_Form_Btn_Container{
+    display: flex;
+    justify-content: center;
+}
+
+
+.Payment_Form_Btn_Container input[type="submit"] {
+    border: 2px solid black;
+    padding: 1em 4em;
+    margin-top: 1em;
+}
+
+@media ( max-width: 600px ) {
+
+    .Name_Inputs {
+        flex-direction: column;
+    }
+    .Email_Inputs input   {
+        padding-right: 4em;
+    }
+
+}

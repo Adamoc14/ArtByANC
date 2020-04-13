@@ -15,20 +15,41 @@ $.extend(Shop.prototype,{
             this.currency = "&euro;";
             this.$subTotal = document.getElementsByClassName('s_total');// Element that displays the subtotal charges
             this.$quantity = 0;
-            console.log(this.$quantity);
             this.$formAddToCart = this.$element.find("form.add-to-cart" ); // Forms for adding items to the cart
             this.$formCart = this.$element.find(".Cart_Form");
+
+            this.users = this.cartPrefix + "users";
+            this.usersTotal = this.cartPrefix + "usersTotal";
+            this.$userForm = this.$element.find(".Checkout_Form");
+
+            // Object containing patterns for form validation
+			this.requiredFields = {
+				expression: {
+                    email_value: /^([\w-\.]+)@((?:[\w]+\.)+)([a-z]){2,4}$/,
+                    telephone_value: /^\d{10}$/
+				},
+				
+				str: {
+					value: ""
+				}
+				
+			};
             
 
             //Method Invocations
+            
             this._createCart();
-            this.AddToCartForm();
+            this._createUsers();
+            this._AddUserForm();
+            this._AddToCartForm();
             this._displayCart();
             this._deleteItem();
             this._updateItem();
+            this._populateUserFormData();
 
     },
-    AddToCartForm(){
+
+    _AddToCartForm(){
         var self = this;
         self.$formAddToCart.each(function (item){
             var $form = $(this);
@@ -56,6 +77,160 @@ $.extend(Shop.prototype,{
 
         });
     },
+    /*
+        This method cretaes the List Of Users Session Variable 
+        @param 
+        @returns 
+    */ 
+   _createUsers(){
+       var self = this;
+       if(self.storage.getItem(self.users) == null){
+           var users = {};
+           users.items = [];
+           self.storage.setItem(self.users , self._toJSONString(users));
+           self.storage.setItem(self.usersTotal , '0');
+       }
+   },
+   /*
+        This method adds A new User to the List Of Users Session Variable 
+        @param 
+        @returns 
+    */ 
+   _validateForm(form){
+       var self = this;
+       var fields = self.requiredFields;
+       var $errorContainer = document.getElementsByClassName('errorContainer')[0];
+       var $inputs = form.find('.Inputs');
+       var valid = true;
+       $inputs.each(function(){
+           var $input = $(this).find('input');
+           var $select = document.getElementsByTagName('select')[0];
+
+            for(var i = 0; i < $input.length ; i++){
+                var input_jq = $($input[i]);
+                var message = input_jq.data("message");
+                var type = input_jq.data("type");
+                var textContainer = "";
+                if(type == "string"){
+                    if($input[i].value != fields.str.value){
+                        // console.log("I have a value babyyyy :) ");
+                        if(input_jq.parent()[0].classList.contains("F_Name") || input_jq.parent()[0].classList.contains("L_Name")){
+                            input_jq.parent().parent().prev().children(".red_dot").remove();
+                        } else {
+                            input_jq.prev().children(".red_dot").remove();
+                        }
+                        $($errorContainer).css('display','none');
+                    } else {
+                        // console.log("I don't have a value :(");
+                        if(input_jq.parent()[0].classList.contains("F_Name") || input_jq.parent()[0].classList.contains("L_Name")){
+                            input_jq.parent().parent().prev().children(".red_dot").remove();
+                            textContainer = input_jq.parent().parent().prev();
+                            textContainer[0].insertAdjacentHTML('beforeend',`
+                                <span class='red_dot dot'>*</span>
+                            `);
+                        } else {
+                            input_jq.prev().children(".red_dot").remove();
+                            textContainer = input_jq.prev();
+                            textContainer[0].insertAdjacentHTML('beforeend',`
+                                <span class='red_dot dot'>*</span>
+                            `);
+                        }
+                        $($errorContainer).text( "*" + message)
+                        valid = false;
+                    }
+                    if($select.options.selectedIndex != 0){
+                        // console.log("I have a picked a value :)");
+                        $($select).prev().children(".red_dot").remove(); 
+                    } else {
+                        // console.log("I have not a picked a value :(");
+                        $($select).prev().children(".red_dot").remove();
+                        textContainer = $($select).prev();
+                        textContainer[0].insertAdjacentHTML('beforeend',`
+                            <span class='red_dot dot'>*</span>
+                        `);
+                        $($errorContainer).css('display','flex');
+                        $($errorContainer).text("*" + message);
+                        valid = false;  
+                    }
+                } else if (type == "expression"){
+                    if(fields.expression.telephone_value.test($input[i].value) ){
+                        // console.log("I have a valid telephone Number :)");
+                        input_jq.prev().children(".red_dot").remove(); 
+                    } else if(fields.expression.email_value.test($input[i].value) ) {
+                        // console.log("I have a valid email :)");
+                        input_jq.prev().children(".red_dot").remove(); 
+                    } else{
+                        // console.log("I don't have a valid email or mobile number :(");
+                        input_jq.prev().children(".red_dot").remove();
+                        textContainer = input_jq.prev();
+                        textContainer[0].insertAdjacentHTML('beforeend',`
+                            <span class='red_dot dot'>*</span>
+                        `);
+                        $($errorContainer).css('display','flex');
+                        $($errorContainer).text("*" + message)
+                        valid = false;
+                    }
+                }
+            }
+            
+            
+       });
+       return valid;
+   },
+   /*
+        This method adds A new User to the List Of Users Session Variable 
+        @param 
+        @returns 
+    */ 
+   _AddUserForm(){
+       var self = this;
+       self.$userForm.each(function(element){
+            var $form = $(this);
+            var firstName = $form.find('First_Name_Input');
+            var LastName = $form.find('Last_Name_Input');
+            var Email = $form.find('Email_Input');
+            var Address1 = $form.find('Address_Line1_Input');
+            var Address2 = $form.find('Address_Line2_Input');
+            var TownOrCity = $form.find('TownOrCity_Input');
+            var County = $form.find('County_Selector');
+            var PostCode = $form.find('PostCode_Input');
+            var Mobile = $form.find('Telephone_Input');
+
+            var user = {
+                'Name': firstName.val() + " " + LastName.val(),
+                'Email': Email.val(),
+                'Address': Address1.val() + " " + Address2.val(),
+                'Town/City': TownOrCity.val(),
+                'County': County.val(),
+                'PostCode': PostCode.val(),
+                'Mobile': Mobile.val(),
+            }
+            $form.on('submit', function(e){
+                e.preventDefault();
+                console.log("Form is submitted");
+                console.log(self._validateForm($form));
+                //self._addUser(user);
+            });
+            //console.log(user);
+            //console.log(self._toJSONObject(self.storage.getItem(self.Users)));
+       });
+
+   },
+   /*
+        This method adds A new User to the List Of Users Session Variable 
+        @param 
+        @returns 
+    */ 
+   _addUser(user){
+        var self = this;
+        var users = self.storage.getItem(self.Users);
+        var usersObject = self._toJSONObject(users);
+        console.log(usersObject);
+        var userCopy = usersObject;
+        var items = userCopy.items;
+        items.push(user);
+        self.storage.setItem(self.Users , self._toJSONString(userCopy));
+   },
     /*
         This method checks the inputted String and converts it to a number if it's able to be converted
         @param The inputted String
@@ -106,7 +281,7 @@ $.extend(Shop.prototype,{
             var cart = {};
             cart.items = [];
             self.storage.setItem(self.cartName , self._toJSONString(cart));
-            self.storage.setItem(self.total , "0");
+            self.storage.setItem(self.total , "0.00");
         }
     },
     /*
@@ -223,25 +398,19 @@ $.extend(Shop.prototype,{
     },
     _updateQuantityBox(clicked_element , product_clicked , item_quantity){
         var new_quantity;
-        // var quantity = this._convertString(document.getElementById('quantity').value);
         var quantity = item_quantity;
         if(clicked_element.classList.contains("plus")){
                 quantity += 1;
-                // new_quantity = quantity;
         } else if(clicked_element.classList.contains("minus")){
             if (quantity == 1){
                 quantity = 1;
             } else {
                 quantity -= 1;
             }
-            // new_quantity = quantity;
         } 
         new_quantity = quantity;
-        console.log(new_quantity);
         var quantity_box = $(product_clicked).find('#quantity');
-        // console.log(quantity_box.value);
         $(quantity_box).val(this._convertNumber(new_quantity));
-        // console.log(quantity_box.value);
         return new_quantity;
     },
     /*
@@ -290,6 +459,38 @@ $.extend(Shop.prototype,{
         });
 
     },
+
+    /*
+        This method checks whether the billing name is in the session therefore has it used our site before
+        If so , fills the respective fields
+        @param 
+        @returns
+    */ 
+   _populateUserFormData(){
+        var self = this;
+        var $runningTotalContainer = document.getElementsByClassName('Running_Total_Container')[0];
+        if(self.storage.getItem(self.total) != null){
+            $runningTotalContainer.insertAdjacentHTML('afterbegin', `
+                <img src="../../Resources/Images/General_Images/ANCBlueLogo.jpg" alt="">
+                <h2>Total: ${this.currency + this.storage.getItem(self.total)}</h2>
+            `);
+        }
+        var user = {
+            'Name': $('First_Name_Input').val() + " " + $('Last_Name_Input').val(),
+            'Email': $('Email_Input').val(),
+            'Address': $('Address_Line1_Input').val() + " " + $('Address_Line2_Input').val(),
+            'Town/City': $('TownOrCity_Input').val(),
+            'County': $('County_Selector').val(),
+            'PostCode': $('PostCode_Input').val(),
+            'Mobile': $('Telephone_Input').val(),
+        }
+        //console.log(user);
+        // if(Cookies.get('Users') != undefined){
+        //    var users = self._toJSONObject(Cookies.get('Users'));
+        //    console.log(users); 
+        // }
+
+   },
     /*
         This method converts a JSON String to an Object
         @param Inputted JSON String
@@ -297,6 +498,7 @@ $.extend(Shop.prototype,{
     */ 
     _toJSONObject(str){
         var obj = JSON.parse(str);
+        //console.log(obj);
         return obj;
     },
     /*
@@ -306,6 +508,7 @@ $.extend(Shop.prototype,{
     */ 
     _toJSONString(obj){
         var str = JSON.stringify(obj);
+        //console.log(str);
         return str;
     }
 

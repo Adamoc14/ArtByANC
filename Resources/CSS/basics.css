@@ -35,7 +35,11 @@ a:hover{
     text-decoration: none;
 }
 
-input[type="text"], input[type="email"] , textarea{
+input[type="text"], 
+input[type="email"] , 
+input[type="tel"] ,
+select,
+textarea{
     padding: .5em 3em .5em .4em;
     font-size: 1.2em;
     font-family: sans-serif;
@@ -53,7 +57,11 @@ b{
 
 
 @media ( max-width: 600px ) {
-    input[type="text"], input[type="email"] , textarea{
+    input[type="text"], 
+    input[type="email"] , 
+    input[type="tel"] ,
+    select,
+    textarea{
         padding: .5em 4em .5em .4em;
     }
 }
