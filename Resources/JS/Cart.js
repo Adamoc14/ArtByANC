@@ -189,8 +189,9 @@ $.extend(Shop.prototype,{
            var form = $(this).find('input');
            var $select = document.getElementsByTagName('select')[0];
            var firstName, lastName, Email, Address1, Address2, TownOrCity, County, PostCode, Mobile;
-           County = $select.options.selectedIndex;
-           for(var i = 0; i < form.length - 1; i++){
+           $form.on('submit', function(e){
+            County = $select.options.selectedIndex;
+            for(var i = 0; i < form.length - 1; i++){
                console.log(form[i]);
                var $input = $(form[i]);
                console.log($input.val());
@@ -223,7 +224,7 @@ $.extend(Shop.prototype,{
                     default:
                         break;
                }
-           }
+            }
             console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
             var user = {
                 'Name': firstName + " " + lastName,
@@ -234,25 +235,20 @@ $.extend(Shop.prototype,{
                 'PostCode': PostCode,
                 'Mobile': Mobile,
             }
-            $form.on('submit', function(e){
-                // e.preventDefault();
-                self._validateForm($form);
-                self._addUser(user);
-                console.log(user);
-                // var formSubmitted = self._validateForm($form);
-                // var addUserConfirmed = self._addUser(user);
-                // if(formSubmitted && addUserConfirmed){
-                //     console.log("Form is submitted and user is Confirmed");
-                // } else {
-                //     e.preventDefault();
-                //     console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
-                // }
-                //self._addUser(user);
-                // console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
-            });
-            //console.log(user);
-            //console.log(self._toJSONObject(self.storage.getItem(self.Users)));
-       });
+            console.log(user);
+            self._validateForm($form);
+            self._addUser(user);
+            var formSubmitted = self._validateForm($form);
+            var addUserConfirmed = self._addUser(user);
+            if(formSubmitted && addUserConfirmed){
+                console.log("Form is submitted and user is Confirmed");
+            } else {
+                e.preventDefault();
+                console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+            }
+            console.log(self._toJSONObject(self.storage.getItem(self.Users)));
+        });
+    });
 
    },
    /*
