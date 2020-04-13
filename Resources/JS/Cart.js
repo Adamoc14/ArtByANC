@@ -235,8 +235,9 @@ $.extend(Shop.prototype,{
                 'Mobile': Mobile,
             }
             $form.on('submit', function(e){
-                e.preventDefault();
-                // self._validateForm($form);
+                // e.preventDefault();
+                self._validateForm($form);
+                self._addUser(user);
                 console.log(user);
                 // var formSubmitted = self._validateForm($form);
                 // var addUserConfirmed = self._addUser(user);
