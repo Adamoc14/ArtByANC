@@ -207,6 +207,7 @@ $.extend(Shop.prototype,{
             }
             $form.on('submit', function(e){
                 e.preventDefault();
+                console.log(user);
                 var formSubmitted = self._validateForm($form);
                 var addUserConfirmed = self._addUser(user);
                 // if(formSubmitted && addUserConfirmed){
