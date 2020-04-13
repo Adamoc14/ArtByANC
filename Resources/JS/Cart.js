@@ -190,6 +190,8 @@ $.extend(Shop.prototype,{
            var $select = document.getElementsByTagName('select')[0];
            var firstName, lastName, Email, Address1, Address2, TownOrCity, County, PostCode, Mobile;
            $form.on('submit', function(e){
+            //e.preventDefault();
+            var formSubmitted = self._validateForm($form);
             County = $select.options.selectedIndex;
             for(var i = 0; i < form.length - 1; i++){
                console.log(form[i]);
@@ -225,7 +227,7 @@ $.extend(Shop.prototype,{
                         break;
                }
             }
-            console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
+            // console.log(firstName , lastName  , Email , Address1 , Address2 , TownOrCity , County , PostCode , Mobile );
             var user = {
                 'Name': firstName + " " + lastName,
                 'Email': Email,
@@ -236,17 +238,14 @@ $.extend(Shop.prototype,{
                 'Mobile': Mobile,
             }
             console.log(user);
-            self._validateForm($form);
-            self._addUser(user);
-            var formSubmitted = self._validateForm($form);
-            var addUserConfirmed = self._addUser(user);
-            if(formSubmitted && addUserConfirmed){
+            if(formSubmitted){
                 console.log("Form is submitted and user is Confirmed");
+                self._addUser(user);
             } else {
                 e.preventDefault();
-                console.log("Form is submitted is " + formSubmitted + "and the user's confirmation of being added is "+ addUserConfirmed);
+                console.log("Form is submitted is " + formSubmitted);
             }
-            console.log(self._toJSONObject(self.storage.getItem(self.Users)));
+            // console.log(self._toJSONObject(self.storage.getItem(self.users)));
         });
     });
 
@@ -258,13 +257,14 @@ $.extend(Shop.prototype,{
     */ 
    _addUser(user){
         var self = this;
-        var users = self.storage.getItem(self.Users);
+        console.log(user);
+        var users = self.storage.getItem(self.users);
         var usersObject = self._toJSONObject(users);
         console.log(usersObject);
         var userCopy = usersObject;
         var items = userCopy.items;
         items.push(user);
-        self.storage.setItem(self.Users , self._toJSONString(userCopy));
+        self.storage.setItem(self.users , self._toJSONString(userCopy));
         return false;
    },
     /*
