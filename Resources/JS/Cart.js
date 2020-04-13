@@ -206,8 +206,12 @@ $.extend(Shop.prototype,{
                 'Mobile': Mobile.val(),
             }
             $form.on('submit', function(e){
-                e.preventDefault();
-                console.log("Form is submitted");
+                var formSubmitted = self._validateForm($form);
+                if(formSubmitted){
+                    console.log("Form is submitted");
+                } else {
+                    e.preventDefault();
+                }
                 console.log(self._validateForm($form));
                 //self._addUser(user);
             });
