@@ -189,7 +189,7 @@ $.extend(Shop.prototype,{
            var $select = document.getElementsByTagName('select')[0];
            var firstName, lastName, Email, Address1, Address2, TownOrCity, County, PostCode, Mobile;
            County = $select.options.selectedIndex;
-           for(var i = 0; i < form.length; i++){
+           for(var i = 0; i < form.length - 1; i++){
                console.log(form[i]);
                var $form = $(form[i]);
                console.log($form.val());
@@ -219,15 +219,7 @@ $.extend(Shop.prototype,{
                         Mobile = $form.val();
                         break;
                     default:
-                        firstName = $form.val(),
-                        lastName = $form.val(),
-                        Email = $form.val(), 
-                        Address1 = $form.val(), 
-                        Address2 = $form.val(), 
-                        TownOrCity = $form.val(), 
-                        County = $form.val(), 
-                        PostCode = $form.val(), 
-                        Mobile = $form.val()
+                        break;
                }
            }
             
