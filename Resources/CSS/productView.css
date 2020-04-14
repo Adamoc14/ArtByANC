@@ -98,11 +98,11 @@
         color: white;
     }
     .add-to-cart{
-        order:-1;
+        /* order:-1; */
     }
     .btn-product-view.cart{
         padding: 1.2em 1.6em;
-        color: white;
+        color: red;
     }
 
 }
