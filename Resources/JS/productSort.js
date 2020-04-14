@@ -37,7 +37,7 @@ details.insertAdjacentHTML('afterbegin', `
         <a href="../../Resources/HTML/Shop.html" class="btn-product-view">Back To Browse</a>
         <form action="../../Resources/HTML/Cart.html" method="post" class="add-to-cart">
             <input type="hidden" name="qty-1" id="qty-1" class="qty" value="1">
-            <input type="submit" class="btn-product-view cart" value="Add To Cart">
+            <input style="color:white;" type="submit" class="btn-product-view cart" value="Add To Cart" >
         </form>
     </span>
 `);
