@@ -564,7 +564,8 @@ $.extend(Shop.prototype,{
             var items = cart.items;
             console.log(items);
             var list_users = self._toJSONObject(self.storage.getItem(self.users));
-            var users = list_users.items;
+            var ord_users = list_users.items;
+            var users = $(ord_users);
             console.log(users);
             var user = {}
             users.each(function(){
