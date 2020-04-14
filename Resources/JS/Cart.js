@@ -22,6 +22,11 @@ $.extend(Shop.prototype,{
             this.usersTotal = this.cartPrefix + "usersTotal";
             this.$userForm = this.$element.find(".Checkout_Form");
 
+            //Paypal Stuff
+            this.paypalCurrency = "EUR"; // PayPal's currency code
+			this.paypalBusinessEmail = "yourbusiness@email.com"; // Your Business PayPal's account email address
+			this.paypalURL = "https://www.sandbox.paypal.com/cgi-bin/webscr"; // The URL of the PayPal's form
+
             // Object containing patterns for form validation
 			this.requiredFields = {
 				expression: {
@@ -46,6 +51,7 @@ $.extend(Shop.prototype,{
             this._deleteItem();
             this._updateItem();
             this._populateUserFormData();
+            this._populatePaypalFormData();
 
     },
 
@@ -265,7 +271,6 @@ $.extend(Shop.prototype,{
         var items = userCopy.items;
         items.push(user);
         self.storage.setItem(self.users , self._toJSONString(userCopy));
-        return false;
    },
     /*
         This method checks the inputted String and converts it to a number if it's able to be converted
@@ -504,27 +509,32 @@ $.extend(Shop.prototype,{
     */ 
    _populateUserFormData(){
         var self = this;
-        var $runningTotalContainer = document.getElementsByClassName('Running_Total_Container')[0];
-        if(self.storage.getItem(self.total) != null){
-            $runningTotalContainer.insertAdjacentHTML('afterbegin', `
-                <img src="../../Resources/Images/General_Images/ANCBlueLogo.jpg" alt="">
-                <h2>Total: ${this.currency + this.storage.getItem(self.total)} .00</h2>
-            `);
+        var $runningTotalContainer = "";
+        if (document.getElementsByClassName('Running_Total_Container')[0]){
+            $runningTotalContainer = document.getElementsByClassName('Running_Total_Container')[0];
+            if(self.storage.getItem(self.total) != null){
+                $runningTotalContainer.insertAdjacentHTML('afterbegin', `
+                    <img src="../../Resources/Images/General_Images/ANCBlueLogo.jpg" alt="">
+                    <h2>Total: ${this.currency + this.storage.getItem(self.total)} .00</h2>
+                `);
+            }
         }
-        var user = {
-            'Name': $('First_Name_Input').val() + " " + $('Last_Name_Input').val(),
-            'Email': $('Email_Input').val(),
-            'Address': $('Address_Line1_Input').val() + " " + $('Address_Line2_Input').val(),
-            'Town/City': $('TownOrCity_Input').val(),
-            'County': $('County_Selector').val(),
-            'PostCode': $('PostCode_Input').val(),
-            'Mobile': $('Telephone_Input').val(),
-        }
-        //console.log(user);
-        // if(Cookies.get('Users') != undefined){
-        //    var users = self._toJSONObject(Cookies.get('Users'));
-        //    console.log(users); 
+        
+        /* TO DO : Cookies - Discuss it with Aisling */
+        // var user = {
+        //     'Name': $('First_Name_Input').val() + " " + $('Last_Name_Input').val(),
+        //     'Email': $('Email_Input').val(),
+        //     'Address': $('Address_Line1_Input').val() + " " + $('Address_Line2_Input').val(),
+        //     'Town/City': $('TownOrCity_Input').val(),
+        //     'County': $('County_Selector').val(),
+        //     'PostCode': $('PostCode_Input').val(),
+        //     'Mobile': $('Telephone_Input').val(),
         // }
+        // //console.log(user);
+        // // if(Cookies.get('Users') != undefined){
+        // //    var users = self._toJSONObject(Cookies.get('Users'));
+        // //    console.log(users); 
+        // // }
 
    },
     /*
@@ -546,6 +556,48 @@ $.extend(Shop.prototype,{
         var str = JSON.stringify(obj);
         //console.log(str);
         return str;
+    },
+    _populatePaypalFormData(){
+        if (document.getElementById('paypal-button')){
+            paypal.Button.render({
+                // Configure environment
+                env: 'sandbox',
+                client: {
+                  sandbox: 'demo_sandbox_client_id',
+                  production: 'demo_production_client_id'
+                },
+                // Customize button (optional)
+                locale: 'en_US',
+                style: {
+                  size: 'small',
+                  color: 'gold',
+                  shape: 'pill',
+                },
+            
+                // Enable Pay Now checkout flow (optional)
+                commit: true,
+            
+                // Set up a payment
+                payment: function(data, actions) {
+                  return actions.payment.create({
+                    transactions: [{
+                      amount: {
+                        total: '0.01',
+                        currency: 'USD'
+                      }
+                    }]
+                  });
+                },
+                // Execute the payment
+                onAuthorize: function(data, actions) {
+                  return actions.payment.execute().then(function() {
+                    // Show a confirmation message to the buyer
+                    window.alert('Thank you for your purchase!');
+                  });
+                }
+              }, '#paypal-button');        
+        }
+        
     }
 
 });

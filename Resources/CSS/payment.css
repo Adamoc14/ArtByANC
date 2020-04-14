@@ -41,3 +41,7 @@ form.Paypal_Form{
     display: flex;
     flex-direction: column;
 }
+
+.zoid-outlet{
+    width: 300px !important;
+}

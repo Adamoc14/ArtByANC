@@ -1,5 +1,5 @@
 var art_items = getPictures();
-console.log(art_items[53]);
+// console.log(art_items[53]);
 displayPricePicker();
 if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
     displayFilterAndSort();
@@ -59,7 +59,7 @@ function getPictures(){
                             </div>
                         </div>
                     `);
-                    console.log(art_item.Image_Link);
+                    // console.log(art_item.Image_Link);
                 }
             });
         }

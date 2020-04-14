@@ -63,34 +63,16 @@
     </div>
     <script src="../../Resources/JS/productSort.js"></script>
     <script>
-        // $(window).on('load', function() { 
-        //     var a_tags = document.getElementsByTagName("a");
-        //     a_tags[11].style.display = "none";
-        //     console.log("Well Bitches");
-        // });
         function loadScript(url){
             document.body.appendChild(document.createElement("script")).src = url;
-            console.log("That's appended there nw x");
+            // console.log("That's appended there nw x");
             return true;
         }
         loadScript('https://apps.elfsight.com/p/platform.js')
         var script_tags = document.getElementsByTagName('script');
         var counter = 0;
         for (var i = 0 ; i < script_tags.length - 1; i++ ){
-            console.log(script_tags[i].src);
-            switch (script_tags[i].src){
-                case "https://apps.elfsight.com/p/platform.js":
-                    counter += 1;
-                case "https://static.elfsight.com/apps/instashow/release/27aff712-1ef7-4d37-adad-d06157590053/app/instagram-feed.js":
-                    counter += 1;
-                default:
-                    counter = 0;
-            }
-        }
-        console.log(counter);
-        console.log(script_tags[i].src);
-        for (var i = 0 ; i < script_tags.length - 1; i++ ){
-            console.log(script_tags[i].src);
+            // console.log(script_tags[i].src);
             switch (script_tags[i].src){
                 case "https://apps.elfsight.com/p/platform.js":
                     counter += 1;
@@ -101,13 +83,6 @@
             }
         }
         loadScript("../../Resources/JS/homepage.js");
-
-        // if (!loadScript('https://apps.elfsight.com/p/platform.js')){
-        //     console.log("it's not loaded yet champ");
-        // } else if(loadScript('https://apps.elfsight.com/p/platform.js'))  {
-        //     loadScript('../../Resources/JS/homepage.js');
-        // }
-        
     </script>
 </body>
 </html>
