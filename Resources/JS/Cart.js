@@ -614,7 +614,7 @@ $.extend(Shop.prototype,{
                     
             //     }
             //     console.log(user);
-            });
+            };
             var transaction = {
                 transactions: [{
                     amount: {
