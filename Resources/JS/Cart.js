@@ -558,24 +558,77 @@ $.extend(Shop.prototype,{
         return str;
     },
     _populatePaypalFormData(){
-        var self = this;
-        var cart = self._toJSONObject(self.storage.getItem(self.cartName));
-        var items = cart.items;
-        console.log(items);
         if (document.getElementById('paypal-button')){
-            paypal.Button.render({
+            var self = this;
+            var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+            var items = cart.items;
+            console.log(items);
+            var list_users = self._toJSONObject(self.storage.getItem(self.users));
+            var users = list_users.items;
+            console.log(users);
+            var user = {}
+            users.each(function(){
+                var temporary_user = $(this);
+                var name , Address, TownOrCity , County , PostCode , PhoneNo
+                name = temporary_user.Name;
+                Address = temporary_user.Address;
+                TownOrCity = temporary_user['Town/City'];
+                County = temporary_user.County;
+                PostCode = temporary_user.PostCode;
+                PhoneNo = temporary_user.Mobile;
+                user = {
+                    recipient_name: name,
+                    address_line_1: Address,
+                    city: TownOrCity,
+                    country_code: 'IE',
+                    postal_code: PostCode,
+                    phone: PhoneNo,
+                    
+                }
+                console.log(user);
+            });
+            var transaction = {
+                transactions: [{
+                    amount: {
+                        total: self.storage.getItem(self.total),
+                        currency: self.currency,
+                    },
+                    description: 'Transactions of products from ArtByANC Art Productions Website',
+                    // custom: '90048630024435',
+                    //invoice_number: '12345', Insert a unique invoice number
+                    // payment_options: {
+                    //     allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+                    // },
+                    // soft_descriptor: 'ECHI5786786',
+                    item_list: {
+                        items: items,
+                        shipping_address: {
+                            recipient_name: 'Brian Robinson',
+                            line1: '4th Floor',
+                            line2: 'Unit #34',
+                            city: 'San Jose',
+                            country_code: 'US',
+                            postal_code: '95131',
+                            phone: '011862212345678',
+                            state: 'CA'
+                        }
+                    }
+                }],
+                note_to_payer: 'Contact us for any questions on your order.'
+            };
+            var button = {
                 // Configure environment
                 env: 'sandbox',
                 client: {
-                  sandbox: 'AadXZV8RJxpS3opwyHBv6qajwV8Rp2njCUezSZ1YaE0ADfIGdrfhw6LKSSU5cb-YrzAmLlBwY55_7e9s',
-                  production: 'demo_production_client_id'
+                    sandbox: 'AadXZV8RJxpS3opwyHBv6qajwV8Rp2njCUezSZ1YaE0ADfIGdrfhw6LKSSU5cb-YrzAmLlBwY55_7e9s',
+                    production: 'demo_production_client_id'
                 },
                 // Customize button (optional)
                 locale: 'en_US',
                 style: {
-                  size: 'small',
-                  color: 'gold',
-                  shape: 'pill',
+                    size: 'small',
+                    color: 'gold',
+                    shape: 'pill',
                 },
             
                 // Enable Pay Now checkout flow (optional)
@@ -584,63 +637,20 @@ $.extend(Shop.prototype,{
                 // Set up a payment
                 // Set up a payment
                 payment: function(data, actions) {
-                    return actions.payment.create({
-                    transactions: [{
-                        amount: {
-                            total: self.storage.getItem(self.total),
-                            currency: self.currency,
-                        },
-                        description: 'Transactions of products from ArtByANC Art Productions Website',
-                        // custom: '90048630024435',
-                        //invoice_number: '12345', Insert a unique invoice number
-                        // payment_options: {
-                        //     allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
-                        // },
-                        // soft_descriptor: 'ECHI5786786',
-                        item_list: {
-                            items: [
-                                {
-                                    name: 'hat',
-                                    description: 'Brown hat.',
-                                    quantity: '5',
-                                    price: '3',
-                                    tax: '0.01',
-                                    sku: '1',
-                                    currency: 'USD'
-                                },
-                                {
-                                    name: 'handbag',
-                                    description: 'Black handbag.',
-                                    quantity: '1',
-                                    price: '15',
-                                    tax: '0.02',
-                                    sku: 'product34',
-                                    currency: 'USD'
-                                }
-                            ],
-                            shipping_address: {
-                                recipient_name: 'Brian Robinson',
-                                line1: '4th Floor',
-                                line2: 'Unit #34',
-                                city: 'San Jose',
-                                country_code: 'US',
-                                postal_code: '95131',
-                                phone: '011862212345678',
-                                state: 'CA'
-                            }
-                        }
-                    }],
-                    note_to_payer: 'Contact us for any questions on your order.'
-                    });
+                    return actions.payment.create(transaction);
                 },
                 // Execute the payment
                 onAuthorize: function(data, actions) {
-                  return actions.payment.execute().then(function() {
-                    // Show a confirmation message to the buyer
-                    window.alert('Thank you for your purchase!');
-                  });
+                    console.log(action.payment.create(transaction));
+                    return actions.payment.execute().then(function() {
+                        // Show a confirmation message to the buyer
+                        console.log(action.payment.execute());
+                        window.alert('Thank you for your purchase!');
+                    });
                 }
-            }, '#paypal-button');        
+            };
+                
+            paypal.Button.render(button, '#paypal-button');        
         }
         
     }
