@@ -568,7 +568,7 @@ $.extend(Shop.prototype,{
             console.log(users);
             var user = {};
             var transactionTotal = self.storage.getItem(self.total);
-            var paypalCurrency = self.paypalCurrency
+            var paypalCurrency = self.paypalCurrency;
             /*
                 This may become a problem , as the user could simultaneously be using 
                 the site at the same time which could lead to the last user being used 
@@ -593,7 +593,7 @@ $.extend(Shop.prototype,{
                 }   
             }
             console.log(user);
-            };
+            
             var transaction = {
                 transactions: [{
                     amount: {
@@ -657,9 +657,10 @@ $.extend(Shop.prototype,{
                 }
             };
                 
-            paypal.Button.render(button, '#paypal-button');        
-        }
+            paypal.Button.render(button,'#paypal-button');   
         
+            };
+        }
     });
 
 window.onload = function (){
