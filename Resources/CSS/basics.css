@@ -55,6 +55,7 @@ textarea{
 input[type="submit"] {
     all: unset;
     cursor: pointer;
+    font-size: 1em;
 }
 
 b{
