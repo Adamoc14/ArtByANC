@@ -581,6 +581,7 @@ $.extend(Shop.prototype,{
                     name : name,
                     description: description,
                     price: price,
+                    quantity: quantity,
                     currency: currency
                 };
                 temporary_items.push(item);
