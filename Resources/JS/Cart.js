@@ -643,7 +643,7 @@ $.extend(Shop.prototype,{
                 // Configure environment
                 env: 'sandbox',
                 client: {
-                    sandbox: 'AadXZV8RJxpS3opwyHBv6qajwV8Rp2njCUezSZ1YaE0ADfIGdrfhw6LKSSU5cb-YrzAmLlBwY55_7e9s',
+                    sandbox: 'Aa2bNfSzzsvCcL-8dWh5hbNMYjkpLxBonkoPQEmTaOifRMucFBeEZIw057fgdVwLDJwHPvkaGpM21JUt',
                     production: 'demo_production_client_id'
                 },
                 // Customize button (optional)
