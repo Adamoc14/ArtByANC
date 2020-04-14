@@ -560,15 +560,39 @@ $.extend(Shop.prototype,{
     _populatePaypalFormData(){
         if (document.getElementById('paypal-button')){
             var self = this;
+            var transactionTotal = self.storage.getItem(self.total);
+            var paypalCurrency = self.paypalCurrency;
+
             var cart = self._toJSONObject(self.storage.getItem(self.cartName));
             var items = cart.items;
             console.log(items);
+            var temporary_items = [];
+            var item = {};
+
+            for (var y = 0; y< items.length ; y++){
+                var temporary_item = items[y];
+                var name  , description , price , quantity , currency;
+                name = temporary_item.product;
+                description = temporary_item.product;
+                price = temporary_item.price;
+                quantity = temporary_item.quantity;
+                currency = paypalCurrency;
+                item = {
+                    name : name,
+                    description: description,
+                    price: price,
+                    currency: currency
+                };
+                temporary_items.push(item);
+            }
+            console.log(item);
+
             var list_users = self._toJSONObject(self.storage.getItem(self.users));
             var users = list_users.items;
             console.log(users);
             var user = {};
-            var transactionTotal = self.storage.getItem(self.total);
-            var paypalCurrency = self.paypalCurrency;
+
+            
             /*
                 This may become a problem , as the user could simultaneously be using 
                 the site at the same time which could lead to the last user being used 
@@ -608,17 +632,8 @@ $.extend(Shop.prototype,{
                     // },
                     // soft_descriptor: 'ECHI5786786',
                     item_list: {
-                        items: items,
-                        shipping_address: {
-                            recipient_name: 'Brian Robinson',
-                            line1: '4th Floor',
-                            line2: 'Unit #34',
-                            city: 'San Jose',
-                            country_code: 'US',
-                            postal_code: '95131',
-                            phone: '011862212345678',
-                            state: 'CA'
-                        }
+                        items: temporary_items,
+                        shipping_address: user
                     }
                 }],
                 note_to_payer: 'Contact us for any questions on your order.'
