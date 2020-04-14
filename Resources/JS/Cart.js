@@ -566,7 +566,7 @@ $.extend(Shop.prototype,{
             var list_users = self._toJSONObject(self.storage.getItem(self.users));
             var users = list_users.items;
             console.log(users);
-            var user = {}
+            var user = {};
             /*
                 This may become a problem , as the user could simultaneously be using 
                 the site at the same time which could lead to the last user being used 
@@ -681,9 +681,8 @@ $.extend(Shop.prototype,{
             paypal.Button.render(button, '#paypal-button');        
         }
         
-    }
+    });
 
-});
 window.onload = function (){
     new Shop("#Whole_Site");
 }
