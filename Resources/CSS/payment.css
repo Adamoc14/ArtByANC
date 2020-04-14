@@ -45,3 +45,13 @@ form.Paypal_Form{
 .zoid-outlet{
     width: 300px !important;
 }
+
+@media ( max-width: 600px ) {
+    .Payment_Page_Main_Container {
+        flex-direction: column;
+    }
+    .Payment_Page_Main_sm_Container:first-child img {
+        width: 85vw;
+        height: 40vh;
+    }
+}

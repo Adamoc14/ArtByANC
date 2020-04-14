@@ -115,7 +115,14 @@
     .overall_container.open ~ .Colour_Of_Month_Container , 
     .overall_container.open ~ .Shop_Main_Container , 
     .overall_container.open ~ .About_Container , 
-    .overall_container.open ~ .Contact_Details_Container{
+    .overall_container.open ~ .Contact_Details_Container,
+    .overall_container.open ~ .checkoutContainer,
+    .overall_container.open ~ .shopping_title,
+    .overall_container.open ~ .Shop_Main_Container,
+    .overall_container.open ~ .main_box,
+    .overall_container.open ~ .Running_Total_Container,
+    .overall_container.open ~ .Payment_Page_Main_Container
+    {
         display: none;
         position: absolute;
         left: 0;

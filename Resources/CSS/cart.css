@@ -92,3 +92,45 @@ input#quantity {
     color: white;
     text-transform: uppercase;
 }
+
+@media ( max-width: 600px ) {
+    .checkoutContainer {
+        padding-bottom: 1em;
+    }
+    .checkoutDisplayContainers{
+        padding: unset;
+    }
+    .checkoutDisplayContainer {
+        padding-bottom: 1em;
+        flex-direction: column;
+        justify-content: unset;
+    }
+    .checkoutDisplayContainer img {
+        width: 11em;
+        margin-top: 2em;
+        margin-bottom:2em;
+    }
+    input#quantity {
+        padding-right: unset;
+    }
+    .priceCartContainer {
+        padding:1em;
+    }
+    .XContainer {
+        order: -1;
+        margin-left: auto;
+        margin-right: 1em;
+        margin-top: 3em;
+    }
+    .proceed_to_checkout {
+        flex-direction: column;
+    }
+    .proceed_to_checkout a ,
+    .continueShopping a {
+        margin-bottom: 1em;
+        text-align: center;
+    }
+
+
+
+}

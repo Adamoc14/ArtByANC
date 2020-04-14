@@ -74,10 +74,6 @@
     color: red;
 }
 
-.red_dot.hidden{
-    display:none;
-}
-
 .dot{
     margin-left: .4em;
 }
@@ -89,8 +85,6 @@
 }
 
 
-
-
 .Payment_Form_Btn_Container input[type="submit"] {
     border: 2px solid black;
     padding: 1em 4em;
@@ -99,11 +93,44 @@
 
 @media ( max-width: 600px ) {
 
-    .Name_Inputs {
+    .Running_Total_Container img {
+        height: 30vh;
+    }
+    .Contact_Details_Container {
+        align-items: unset;
+    }
+    .Contact_Details_Container, 
+    .Colour_Of_Month_Container, 
+    .Running_Total_Container{
+        padding: 2em 2em;
+        padding-bottom: 4em;
+    }
+    .Name_InputFields {
         flex-direction: column;
+    }
+    .F_Name {
+        margin-bottom: 1em;
+    }
+    .Email_Inputs input , 
+    .Address_Inputs input , 
+    .TownOrCity_Inputs input , 
+    .County_Inputs select ,
+    .PostCode_Inputs input ,
+    .Telephone_Inputs input ,
+    .SameAsBilling_Inputs input{
+        padding: .5em 4em .5em .4em;
     }
     .Email_Inputs input   {
         padding-right: 4em;
     }
+    .County_Inputs select {
+        padding-right: 0em;
+    }
+    .Payment_Form_Btn_Container input[type="submit"] {
+        padding: 1em 1em;
+    }
+    
+
+
 
 }
