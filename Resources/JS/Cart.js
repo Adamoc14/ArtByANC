@@ -664,10 +664,8 @@ $.extend(Shop.prototype,{
                 },
                 // Execute the payment
                 onAuthorize: function(data, actions) {
-                    console.log(action.payment.create(transaction));
                     return actions.payment.execute().then(function() {
                         // Show a confirmation message to the buyer
-                        console.log(action.payment.execute());
                         window.alert('Thank you for your purchase!');
                     });
                 }
