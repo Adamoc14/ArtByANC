@@ -609,7 +609,7 @@ $.extend(Shop.prototype,{
                 PhoneNo = temporary_user.Mobile;
                 user = {
                     recipient_name: name,
-                    address_line_1: Address,
+                    line1: Address,
                     city: TownOrCity,
                     country_code: 'IE',
                     postal_code: PostCode,
