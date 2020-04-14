@@ -564,12 +564,16 @@ $.extend(Shop.prototype,{
             var items = cart.items;
             console.log(items);
             var list_users = self._toJSONObject(self.storage.getItem(self.users));
-            var ord_users = list_users.items;
-            var users = $(ord_users);
+            var users = list_users.items;
             console.log(users);
             var user = {}
-            users.each(function(){
-                var temporary_user = $(this);
+            /*
+                This may become a problem , as the user could simultaneously be using 
+                the site at the same time which could lead to the last user being used 
+                and that not being the person who ordered the products
+            */
+            for (var i = 0; i < users.length ; i++){
+                var temporary_user = users[i];
                 var name , Address, TownOrCity , County , PostCode , PhoneNo
                 name = temporary_user.Name;
                 Address = temporary_user.Address;
@@ -583,10 +587,33 @@ $.extend(Shop.prototype,{
                     city: TownOrCity,
                     country_code: 'IE',
                     postal_code: PostCode,
-                    phone: PhoneNo,
+                    phone: PhoneNo, 
+                }   
+            }
+            console.log(user);
+            // var ord_users = list_users.items;
+            // var users = $(ord_users);
+            // console.log(users);
+            // var user = {}
+            // users.each(function(){
+            //     var temporary_user = $(this);
+            //     var name , Address, TownOrCity , County , PostCode , PhoneNo
+            //     name = temporary_user.Name;
+            //     Address = temporary_user.Address;
+            //     TownOrCity = temporary_user['Town/City'];
+            //     County = temporary_user.County;
+            //     PostCode = temporary_user.PostCode;
+            //     PhoneNo = temporary_user.Mobile;
+            //     user = {
+            //         recipient_name: name,
+            //         address_line_1: Address,
+            //         city: TownOrCity,
+            //         country_code: 'IE',
+            //         postal_code: PostCode,
+            //         phone: PhoneNo,
                     
-                }
-                console.log(user);
+            //     }
+            //     console.log(user);
             });
             var transaction = {
                 transactions: [{
