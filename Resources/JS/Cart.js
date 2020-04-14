@@ -567,6 +567,8 @@ $.extend(Shop.prototype,{
             var users = list_users.items;
             console.log(users);
             var user = {};
+            var transactionTotal = self.storage.getItem(self.total);
+            var paypalCurrency = self.paypalCurrency
             /*
                 This may become a problem , as the user could simultaneously be using 
                 the site at the same time which could lead to the last user being used 
@@ -591,35 +593,12 @@ $.extend(Shop.prototype,{
                 }   
             }
             console.log(user);
-            // var ord_users = list_users.items;
-            // var users = $(ord_users);
-            // console.log(users);
-            // var user = {}
-            // users.each(function(){
-            //     var temporary_user = $(this);
-            //     var name , Address, TownOrCity , County , PostCode , PhoneNo
-            //     name = temporary_user.Name;
-            //     Address = temporary_user.Address;
-            //     TownOrCity = temporary_user['Town/City'];
-            //     County = temporary_user.County;
-            //     PostCode = temporary_user.PostCode;
-            //     PhoneNo = temporary_user.Mobile;
-            //     user = {
-            //         recipient_name: name,
-            //         address_line_1: Address,
-            //         city: TownOrCity,
-            //         country_code: 'IE',
-            //         postal_code: PostCode,
-            //         phone: PhoneNo,
-                    
-            //     }
-            //     console.log(user);
             };
             var transaction = {
                 transactions: [{
                     amount: {
-                        total: self.storage.getItem(self.total),
-                        currency: self.currency,
+                        total: transactionTotal,
+                        currency: paypalCurrency,
                     },
                     description: 'Transactions of products from ArtByANC Art Productions Website',
                     // custom: '90048630024435',
