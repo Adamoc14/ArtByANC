@@ -79,6 +79,10 @@
     padding-bottom: 2em;
 }
 
+.Product_Details.not_applicable{
+    display:none;
+}
+
 .Quick_View_Container {
     position: absolute;
     width: 42vw;

@@ -1,5 +1,4 @@
 var art_items = getPictures();
-// console.log(art_items[53]);
 displayPricePicker();
 if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
     displayFilterAndSort();
@@ -8,7 +7,6 @@ if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsBy
 function getPictures(){
     let art_items = []
     $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
-        // console.log(response.values);
         let data = response.values;
         for (let index = 0; index < data.length; index++) {
             const product = data[index];
@@ -30,16 +28,7 @@ function getPictures(){
                 delete art_items[i];
             }
         }
-        // if (document.getElementsByClassName("colour_of_month_collage")[0]){
-        //     var color_of_month_collage = document.getElementsByClassName("colour_of_month_collage")[0];
-        //     art_items.slice(0,5).forEach(function(art_item){
-        //         if (art_item.Image_Link){
-        //             color_of_month_collage.insertAdjacentHTML('afterbegin',`
-        //                 <img src="${art_item.Image_Link}">
-        //             `);
-        //         }
-        //     });
-        // }
+
         if (document.getElementsByClassName("Products_Container")[0]){
             var products_container = document.getElementsByClassName("Products_Container")[0];
             art_items.forEach(function(art_item){
@@ -74,7 +63,7 @@ function displayPricePicker(){
     var price_picker = "";
     if (document.getElementById('Price_Picker')){
         price_picker = document.getElementById('Price_Picker');
-        new JSR([price_picker],{
+        const price_range_filter = new JSR([price_picker],{
             sliders:1,
             values: [25],
             min: 20, 
@@ -91,6 +80,10 @@ function displayPricePicker(){
         });
         var canvas = document.getElementsByClassName('jsr_canvas')[0];
         canvas.style.width = "275px";
+        price_range_filter.addEventListener('update', (input, value) => {
+            //console.log(input, value);
+            filterProductsBy(value , "" , "");
+        });
     } 
 }
 
@@ -162,3 +155,51 @@ function dismissImage(){
     }
 }
 
+function _convertString(numStr){
+    var num;
+    switch(numStr){
+        case (/^[-+]?[0-9]+\.[0-9]+$/.test( numStr )): 
+            num = parseFloat(numStr);
+            //console.log("It should be a float");
+            break;
+        case (/^\d+$/.test( numStr )):
+            num = parseInt(numStr , 10);
+            //console.log("It should be an integer");
+            break;
+        default:
+            num = Number(numStr);
+            //console.log("It should be a normal number");
+            break;
+    }
+     // isNaN returns true if variable is not a number so if it returns false then it is a number
+     if (!isNaN(num)){
+        return num;
+    } else {
+        console.warn( numStr + " cannot be converted into a number" );
+        return false;
+    }
+}
+
+function filterProductsBy(price , colour , type){
+    // var colour_value = colour;
+    // var type_value = type;
+    // console.log(price_picker_value , colour_value ,type_value);
+
+    var price_picker_value = price;
+    // var price_picker_max_value = price_picker_value + 10;
+    var price_picker_min_value = price_picker_value - 10;
+
+    var elements_price_value = document.getElementsByTagName('h3');
+    $(elements_price_value).each(function(price){
+        var element = $(elements_price_value).get(price);
+        var element_price_value_str = $($(elements_price_value).get(price)).text();
+        element_price_value_str = element_price_value_str.replace("€" , "");
+        var productContainer = $($(element).parent().parent()).get(0);
+        var element_price_value_number = _convertString(element_price_value_str);
+        if (!(element_price_value_number >= price_picker_min_value)){
+            $(productContainer).addClass('not_applicable');           
+        } else {
+            $(productContainer).removeClass('not_applicable');  
+        }
+    });
+}

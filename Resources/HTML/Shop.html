@@ -71,7 +71,7 @@
                     </div>
                     <div class="Colour_sm_filter_container">
                         <h2>Colour</h2><br>
-                        <input type="color" name="Colour_Picker" id="Colour_Picker">
+                        <input type="color" name="Colour_Picker" id="Colour_Picker" value="" onchange="filterProductsBy(0.00,this,0.00)">
                     </div>
                     <div class="Type_sm_filter_container">
                         <h2>Type</h2><br>
@@ -101,11 +101,6 @@
     </div>
     <script src="../../Resources/JS/shop.js"></script>
     <script>
-        // $(window).on('load', function() { 
-        //     var a_tags = document.getElementsByTagName("a");
-        //     a_tags[11].style.display = "none";
-        //     console.log("Well Bitches");
-        // });
         function loadScript(url){
             document.body.appendChild(document.createElement("script")).src = url;
             // console.log("That's appended there nw x");
@@ -126,7 +121,6 @@
             }
         }
         loadScript("../../Resources/JS/homepage.js");
-        
     </script>
 </body>
 </html>
