@@ -3,31 +3,38 @@ displayPricePicker();
 if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
     displayFilterAndSort();
 }
+checkFilters();
 
 function getPictures(){
     let art_items = []
+    var isEmpty = false;
     $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
         let data = response.values;
+        let art_item = {};
         for (let index = 0; index < data.length; index++) {
             const product = data[index];
-            let art_item = {
-                Name: product[0],
-                Collection: product[1],
-                Price: product[2],
-                Stock: product[3],
-                Description: product[4],
-                Image_Link: product[5],
-                Url: encodeURIComponent(product[5])
+            console.log(product);
+            if (!(product[1] == "Price")){
+                art_item = {
+                    Name: product[0],
+                    Price: product[1],
+                    Description: product[2],
+                    Medium: product[3],
+                    Size : product[4],
+                    Image_Link: product[5],
+                    Url: encodeURIComponent(product[5]),
+                    Stock: product[6],
+                }
             }
-            art_items.push(art_item);   
-        }
-        for(let i = 0; i < art_items.length; i++){
-            if(i == 0){
-                delete art_items[i];
-            } else if(i % 11 == 0){
-                delete art_items[i];
+            if(Object.keys(art_item).length == 0){
+                isEmpty = true;
+            } else {
+                art_items.push(art_item);  
             }
+             
         }
+
+        console.log(art_items);
 
         if (document.getElementsByClassName("Products_Container")[0]){
             var products_container = document.getElementsByClassName("Products_Container")[0];
@@ -66,7 +73,7 @@ function displayPricePicker(){
         const price_range_filter = new JSR([price_picker],{
             sliders:1,
             values: [25],
-            min: 20, 
+            min: 30, 
             max: 150,
             labels: {
                 formatter: function (value){
@@ -112,6 +119,17 @@ function displayFilterAndSort(){
             sort_container.classList.toggle('close'); 
         }
     }
+}
+
+function checkFilters(){
+    var medium_containers = document.getElementsByClassName('Art_Medium');
+    console.log(medium_containers);
+    $(medium_containers).each(function(container){
+        var medium_filters = $(medium_containers).get(container);
+        $(medium_filters).on('click' , function(e){
+            filterProductsBy(0.00 , e.target , "");
+        })
+    });
 }
 
 
@@ -180,10 +198,24 @@ function _convertString(numStr){
     }
 }
 
-function filterProductsBy(price , colour , type){
-    // var colour_value = colour;
-    // var type_value = type;
-    // console.log(price_picker_value , colour_value ,type_value);
+function filterProductsBy(price , medium , size){
+    // var size_value = size;
+    // var Medium_value = medium;
+    // console.log(price_picker_value , size_value ,Medium_value);
+    var products = document.getElementsByClassName('Product_Details');
+    var classList = "";
+    $(products).each(function(product){
+        classList = product.classList;
+    });
+    if (medium != null){
+        switch($(medium).attr('id')){
+            case "Coffee_Prints":
+                classList.addClass('Coffee');
+                break;
+            default:
+                break;
+        }
+    }
 
     var price_picker_value = price;
     // var price_picker_max_value = price_picker_value + 10;

@@ -87,18 +87,18 @@
 /* .shop_sm_container:first-child == .Filter_Container */
 
 .Price_sm_filter_container,
-.Colour_sm_filter_container,
-.Type_sm_filter_container {
+.Medium_sm_filter_container, 
+.Size_sm_filter_container{
     margin-bottom: 2em;
 }
-
 .Price_sm_filter_container h2,
-.Colour_sm_filter_container h2,
-.Type_sm_filter_container h2{
-    font-weight: 200;
+.Medium_sm_filter_container h2, 
+.Size_sm_filter_container h2{
+    font-weight: 300;
 }
 
-.Type_sm_filter_container input {
+.Medium_sm_filter_container input ,
+.Size_sm_filter_container input{
     margin-right: .5em;
 }
 
@@ -171,6 +171,7 @@
 .Product_Actual_Details h2
  {
     font-weight: 200;
+    font-size: 1.2em;
 }
 
 

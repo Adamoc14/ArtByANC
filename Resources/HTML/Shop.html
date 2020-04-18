@@ -27,7 +27,7 @@
                         <li><a href="../../Resources/HTML/Shop.html">Shop</a></li>
                         <li><a href="../../Resources/HTML/About.html">About</a></li>
                         <li><a href="../../Resources/HTML/Contact.html">Contact</a></li>
-                        <li><a href="../../Resources/HTML/Gallery.html">Commissions</a></li>
+                        <li><a href="../../Resources/HTML/Commissions.html">Commissions</a></li>
                     </ul>
                 </div>
             </div>
@@ -69,16 +69,19 @@
                         <h2>Price</h2>
                         <input type="range" name="Price_Picker" id="Price_Picker">
                     </div>
-                    <div class="Colour_sm_filter_container">
-                        <h2>Colour</h2><br>
-                        <input type="color" name="Colour_Picker" id="Colour_Picker" value="" onchange="filterProductsBy(0.00,this,0.00)">
+                    <div class="Medium_sm_filter_container">
+                        <h2>Medium</h2><br>
+                        <input type="checkbox" class="Art_Medium" id="Coffee_Prints"><label for="Coffee_Prints">Coffee Prints</label><br>
+                        <input type="checkbox" class="Art_Medium" id="Acrylic_Prints"><label for="Acrylic_Prints">Acrylic Prints</label><br>
+                        <input type="checkbox" class="Art_Medium" id="Water_Colour_Prints"><label for="Water_Colour_Prints">Water Colour Prints</label><br>
+                        <input type="checkbox" class="Art_Medium" id="Oil_Prints"><label for="Oil_Prints">Oil Prints</label><br>
                     </div>
-                    <div class="Type_sm_filter_container">
-                        <h2>Type</h2><br>
-                        <input type="checkbox" name="Art_Type" id="Blue_Prints"><label for="Blue_Prints">Blue Prints</label><br>
-                        <input type="checkbox" name="Art_Type" id="Yellow_Prints"><label for="Yellow_Prints">Yellow Prints</label><br>
-                        <input type="checkbox" name="Art_Type" id="Coffee_Prints"><label for="Coffee_Prints">Coffee Prints</label><br>
-                        <input type="checkbox" name="Art_Type" id="Abstract_Prints"><label for="Abstract_Prints">Abstract Prints</label><br>
+                    <div class="Size_sm_filter_container">
+                        <h2>Size</h2><br>
+                        <input type="checkbox" class="Art_Size" id="A5_Prints"><label for="A5_Prints">A5 Prints</label><br>
+                        <input type="checkbox" class="Art_Size" id="A4_Prints"><label for="A4_Prints">A4 Prints</label><br>
+                        <input type="checkbox" class="Art_Size" id="A3_Prints"><label for="A3_Prints">A3 Prints</label><br>
+                        <input type="checkbox" class="Art_Size" id="Commission_Prints"><label for="Commission_Prints">Commission Prints</label><br>
                     </div>
                 </div>
                 <div class="shop_sm_container Products_Container">
