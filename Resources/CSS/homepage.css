@@ -48,7 +48,7 @@
 }
 
 .coffee_sm_pics_container h1 , .yellow_sm_pics_container h1 , .blue_sm_pics_container h1 , .abstract_sm_pics_container h1{
-    font-family: fantasy;
+    font-weight: 200;
     margin-bottom: 1em;
 }
 

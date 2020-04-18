@@ -20,23 +20,57 @@
 }
 
 .Shop_Main_sm_container h1{
-    font-family: fantasy;
     font-size: 2.2em;
+    font-weight: 200;
     text-align: center;
+    margin-bottom: 1em;
 }
 
 .Shop_Main_sm_container:first-child{
     display:flex;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     width: 100vw;
     flex-direction: column;
 }
+
+.filter_sort_mobile_btns{
+    display:flex;
+    flex-direction: column;
+}
+.filter_mobile{
+    margin-top: 2em;
+}
+
+.sort_mobile{
+    order: -1;
+}
+
+.sort_mobile h2 {
+    display: inline;
+    margin-right: 2em;
+}
+
 .sort_options_container{
    display: none;
+   padding: 2em 1em;
+   margin-top: .5em;
+   border: 1px solid #eee;
 }
-.filter_sort_mobile_btns{
-    display:none;
+
+.sort_options_container.open {
+    display: block;
 }
+
+.sort_options_container ul li {
+    margin: .8em;
+    letter-spacing: .1em;
+    padding: 1em;
+}
+.sort_options_container.open ul li:hover{
+    background: burlywood;
+    color: white;
+}
+
 
 .Shop_Main_sm_container:nth-child(2) {
     display: flex;
@@ -52,8 +86,16 @@
 }
 /* .shop_sm_container:first-child == .Filter_Container */
 
-.Price_sm_filter_container, .Colour_sm_filter_container, .Type_sm_filter_container {
+.Price_sm_filter_container,
+.Colour_sm_filter_container,
+.Type_sm_filter_container {
     margin-bottom: 2em;
+}
+
+.Price_sm_filter_container h2,
+.Colour_sm_filter_container h2,
+.Type_sm_filter_container h2{
+    font-weight: 200;
 }
 
 .Type_sm_filter_container input {
@@ -155,6 +197,7 @@
     .filter_sort_mobile_btns {
         display: flex;
         justify-content: space-around;
+        flex-direction: unset;
     }
 
     .filter_mobile, .sort_mobile {
@@ -163,7 +206,11 @@
     }
     .sort_mobile{
         display: flex;
-        
+        order:unset;  
+    }
+
+    .filter_mobile{
+        margin-top: unset;
     }
     .pointer{
         font-size: 1.4em;
@@ -175,8 +222,8 @@
     .sort_mobile h2{
         margin-right: 1em;
     }
-    .sort_options_container.open {
-        display: unset;
+
+    .sort_options_container.open{
         position: absolute;
         width: 42vw;
         top: 35.5vh;
@@ -185,14 +232,13 @@
         padding: 1em 0.7em;
         border: 1px solid #eee;
     }
+    
     .sort_options_container.open ul li {
         padding: 1em 0em;
         font-size: 0.8em;
+        letter-spacing: .06em;
     }
-    .sort_options_container.open ul li:hover{
-        background: burlywood;
-        color: white;
-    }
+    
     .Filter_Container.open{
         display:unset;
         height: unset;
