@@ -119,6 +119,9 @@
 
 .Product_Details {
     padding-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Product_Details.not_applicable{
