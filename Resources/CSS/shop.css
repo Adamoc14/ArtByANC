@@ -124,7 +124,9 @@
     align-items: center;
 }
 
-.Product_Details.not_applicable{
+.Product_Details.not_applicable,
+.Product_Details.does_not_apply
+{
     display:none;
 }
 
