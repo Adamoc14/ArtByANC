@@ -3,7 +3,7 @@ displayPricePicker();
 if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
     displayFilterAndSort();
 }
-checkFilters();
+
 
 function getPictures(){
     let art_items = []
@@ -89,7 +89,7 @@ function displayPricePicker(){
         canvas.style.width = "275px";
         price_range_filter.addEventListener('update', (input, value) => {
             //console.log(input, value);
-            filterProductsBy(value , "" , "");
+            filterProductsBy(value , "");
         });
     } 
 }
@@ -121,31 +121,7 @@ function displayFilterAndSort(){
     }
 }
 
-function checkFilters(){
-    var medium_containers = document.getElementsByClassName('Art_Medium');
-    var mediums_checked = [];
-    //console.log(medium_containers);
-    $(medium_containers).each(function(container){
-        var medium_filters = $(medium_containers).get(container);
-        //console.log(medium_filters);
-        $(medium_filters).on('click' , function(e){
-            if($(medium_filters).is(":checked")){
-                mediums_checked.push(e.target);
-                console.log("A checkbox has been checked" + " " + e.target.id);
-            } else {
-                console.log("A checkbox has been unchecked" + " " + $(this).attr('id'));
-                var id_unchecked = $(this).attr('id');
-                for(var i = 0; i < mediums_checked.length ; i++){
-                    if(mediums_checked[i].id == id_unchecked){
-                        mediums_checked.splice(i , 1);
-                    }
-                }
-            }
-            //console.log(mediums_checked);
-            filterProductsBy(0.00 , mediums_checked , "");
-        })
-    });
-}
+
 
 
 function viewImage(image, product){
@@ -213,56 +189,10 @@ function _convertString(numStr){
     }
 }
 
-function filterProductsBy(price , medium , size){
-    var products = document.getElementsByClassName('Product_Details');
-    var does_not_Apply = false;
-    var mediums_selected = medium;
-    //var application_statuses = [];
-    var product_element , medium_property , id = "";
+function filterProductsBy(price , otherFilters){
+    var products = Array.from(getProductContainers());
 
-    $(mediums_selected).each(function(medium_checkbox){
-        var medium_checkbox_selected = $(mediums_selected).get(medium_checkbox);
-        id += " " + $(medium_checkbox_selected).attr('id');
-        console.log(id);
-        //console.log(mediums_selected);
-        for (var i = 0; i< products.length; i++){
-            product_element = products[i];
-            medium_property = $(product_element).data('medium');
-            switch(true){
-                case (id.includes("Coffee_Prints") && medium_property == 'Coffee'):
-                    does_not_Apply = true;
-                    // application_statuses = [];
-                    console.log('You clicked the coffee element');
-                    break;
-                case (id.includes("Acrylic_Prints") && medium_property == 'Acrylic'):
-                    does_not_Apply = true;
-                    console.log('You clicked the acrylic element');
-                    break;
-                case (id.includes("Water_Colour_Prints") && medium_property == 'Water Colour'):
-                    does_not_Apply = true;
-                    console.log('You clicked the water colour element');
-                    break;
-                case (id.includes("Oil_Prints") && medium_property == 'Oil'):
-                    does_not_Apply = true;
-                    console.log('You clicked the oil element');
-                    break;
-                default:
-                    does_not_Apply = false; 
-                    // This refers to everyone else basically
-                    console.log(id , medium_property);
-                    console.log("This is default , fuccckkk");
-                    break;
-            }
-            console.log(does_not_Apply);
-            if(!does_not_Apply){
-                console.log("Well these elements aren't selected at the moment therefore these are hidden");
-                $(product_element).toggleClass('does_not_apply');
-            }
-            
-        }
-    })
-
-
+    //This is the filter working for the price
     var price_picker_value = price;
     // var price_picker_max_value = price_picker_value + 10;
     var price_picker_min_value = price_picker_value - 10;
@@ -280,4 +210,90 @@ function filterProductsBy(price , medium , size){
             $(productContainer).removeClass('not_applicable');  
         }
     });
+
+    //This is the filter working for the checkboxes 
+    products
+    .filter(function (product){
+        if(!(otherFilters.includes($(product).data('medium')) || otherFilters.includes($(product).data('size'))))
+        return otherFilters;
+        else 
+        $(product).removeClass('does_not_apply')
+    })
+    .map(product => $(product).addClass('does_not_apply'));
+    console.log(otherFilters);
+    // return otherFilters;
 }
+
+
+
+function getProductContainers(){
+    var product_containers = document.getElementsByClassName('Product_Details');
+    return product_containers
+}
+
+
+function checkFilters(){
+    var filtersChecked = [];
+    var checkboxes  = Array.from($('.filter'));
+    checkboxes = checkboxes
+    .filter(checkbox => checkbox.checked == true)
+    .map(function(checkbox){
+        if ($(checkbox).data('medium'))
+        filtersChecked.push($(checkbox).data('medium'));
+        else if ($(checkbox).data('size'))
+        filtersChecked.push($(checkbox).data('size'));
+    });
+    console.log(checkboxes , filtersChecked );
+    var allProduct_Containers = Array.from(getProductContainers());
+    console.log(allProduct_Containers);
+    console.log(filtersChecked);
+    if(filtersChecked.length == 0){
+        allProduct_Containers.map(product => $(product).removeClass('does_not_apply'));
+    } else {
+        filterProductsBy(0.00, filtersChecked);
+    }
+    return filtersChecked;
+    // var mediums_checked = [];
+    //console.log(medium_containers);
+    // $(medium_containers).each(function(container){
+    //     var medium_filters = $(medium_containers).get(container);
+    //     //console.log(medium_filters);
+    //     $(medium_filters).on('click' , function(e){
+    //         if($(medium_filters).is(":checked")){
+    //             mediums_checked.push(e.target);
+    //             console.log("A checkbox has been checked" + " " + e.target.id);
+    //         } else {
+    //             console.log("A checkbox has been unchecked" + " " + $(this).attr('id'));
+    //             var id_unchecked = $(this).attr('id');
+    //             for(var i = 0; i < mediums_checked.length ; i++){
+    //                 if(mediums_checked[i].id == id_unchecked){
+    //                     mediums_checked.splice(i , 1);
+    //                 }
+    //             }
+    //         }
+    //         //console.log(mediums_checked);
+    //         filterProductsBy(0.00 , mediums_checked , "");
+    //     })
+    // });
+    // console.log(medium_containers);
+}
+
+
+var clickListener = function(event){
+    console.log(event.target);
+    var filtersChecked = checkFilters();
+    if(event.target.checked){
+        filterProductsBy(0.00, filtersChecked);
+    } else {
+        checkFilters();
+    }
+};
+
+var fireFilterEventListeners = function(){
+    var filters = Array.from($('.filter'));
+    filters.map(filter =>  $(filter).on('click' , clickListener));
+}
+
+
+//Method Calls
+fireFilterEventListeners();
