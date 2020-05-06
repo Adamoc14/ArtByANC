@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../Resources/CSS/basics.css">
+    <link rel="stylesheet" href="../../Resources/CSS/header.css">
+    <link rel="stylesheet" href="../../Resources/CSS/admin_action.css">
+    <link rel="stylesheet" href="../../Resources/CSS/footer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Lato&display=swap" rel="stylesheet">
+    <script src="../../Resources/JS/navbar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>ArtByANC | Admin Dashboard</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="admin_nav">
+            <div class="logout_container">
+                <h3>Logout</h3>
+            </div>
+            <div class="profile_container">
+                <img src="../../Resources/Images/General_Images/ANCBlueLogo.jpg" alt="">
+                <h3>Aisling</h3>
+            </div>
+        </div>
+        <div class="display_container">
+
+        </div>
+        <h1 class="admin_title"></h1>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.logout_container h3').click(function(){
+                console.log(window.location.href);
+                window.location.href = "../../Resources/HTML/Admin.html";
+            })
+        })
+    </script>
+    <script src="../../Reosurces/JS/adminAction.js"></script>
+</body>
+</html>

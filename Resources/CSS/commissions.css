@@ -1,0 +1,56 @@
+.Commission_Container , .Colour_Of_Month_Container{
+    display: flex;
+    padding: 4em 2em;
+    z-index: 9999999999;
+    position: relative;
+    background: white;
+}
+
+.Commission_Container {
+    flex-direction: column;
+}
+
+.Commission_Container_sm , 
+.Commission_Image_Container{
+    display:flex;
+}
+
+.Commission_Container_sm:first-child {
+    padding-bottom: 2em;
+    align-items: center;
+}
+
+.Commission_Container_sm:first-child h1 {
+    text-align: center;
+}
+
+.Commission_Container_sm:nth-child(2) {
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    color: white;
+    padding: 2em;
+}
+
+.Commissioned_Work_Pieces {
+    padding: 2em 3em;
+}
+
+.Commission_Image_Container_sm {
+    display: flex;
+    flex-direction: column;
+    padding: 4em 2em;
+    width: 15vw;
+    align-items: center;
+}
+
+.Commission_Image_Container_sm img {
+    width: 15vw;
+    height: 30vh;
+    margin-bottom: 1em;
+}
+
+.Commission_Container_smaller a {
+    color:white;
+}
+

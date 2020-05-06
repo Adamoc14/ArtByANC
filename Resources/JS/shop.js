@@ -1,17 +1,26 @@
-var art_items = getPictures();
-displayPricePicker();
-if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
-    displayFilterAndSort();
-}
+//Variable Declarations
+var art = "Well";
+console.log(art);
+var art_items = [];
+var art_item = {};
 
 
+
+
+//Function Definitions
 function getPictures(){
-    let art_items = []
+    var data;
     var isEmpty = false;
     $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
-        let data = response.values;
-        let art_item = {};
-        for (let index = 0; index < data.length; index++) {
+        data = response.values;
+        makeProducts(data , isEmpty);
+        return data;
+    });
+    return data;
+}
+
+function makeProducts(data , isEmpty){
+    for (let index = 0; index < data.length; index++) {
             const product = data[index];
             // console.log(product);
             if (!(product[1] == "Price")){
@@ -30,38 +39,41 @@ function getPictures(){
                 isEmpty = true;
             } else {
                 art_items.push(art_item);  
-            }
-             
-        }
+            }      
+    }
+    displayProducts(art_items);
+    if(document.getElementsByClassName('Commission_Container')[0]){
+        fillCommissionSection(art_items);
+    } else if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
+        displayFilterAndSort();
+    }
+}
 
-        // console.log(art_items);
-
-        if (document.getElementsByClassName("Products_Container")[0]){
+function displayProducts(products){
+    // console.log(products);
+    if (document.getElementsByClassName("Products_Container")[0]){
             var products_container = document.getElementsByClassName("Products_Container")[0];
-            art_items.forEach(function(art_item){
+            products.forEach(function(art_item){
                 if (art_item.Image_Link){
-                    products_container.insertAdjacentHTML('afterbegin',`
-                        <div class="Product_Details" data-medium= "${art_item.Medium}" data-size ="${art_item.Size}">
-                            <img src="${art_item.Image_Link}">
-                            <div class="Product_sm_bar">
-                                <div onclick="viewImage(this, this.parentNode.parentNode)">
-                                    <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
-                                </div>
-                                <a href="../../Resources/HTML/ProductView.html?image=${art_item.Url}&name=${art_item.Name}&price=${art_item.Price}&description=${art_item.Description}">VIEW PRODUCT</a>
+                    var contents = `
+                    <div class="Product_Details" data-medium= "${art_item.Medium}" data-size ="${art_item.Size}">
+                        <img src="${art_item.Image_Link}">
+                        <div class="Product_sm_bar">
+                            <div onclick="viewImage(this, this.parentNode.parentNode)">
+                                <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
                             </div>
-                            <div class="Product_Actual_Details">
-                                <h2>${art_item.Description}</h2>
-                                <h3>€${art_item.Price}</h3>
-                            </div>
+                            <a href="../../Resources/HTML/ProductView.html?image=${art_item.Url}&name=${art_item.Name}&price=${art_item.Price}&description=${art_item.Description}">VIEW PRODUCT</a>
                         </div>
-                    `);
+                        <div class="Product_Actual_Details">
+                            <h2>${art_item.Description}</h2>
+                            <h3>€${art_item.Price}</h3>
+                        </div>
+                    </div>`;
+                    products_container.insertAdjacentHTML('afterbegin', contents);
                     // console.log(art_item.Image_Link);
                 }
             });
         }
-        // console.log(art_items);  
-    });
-    return art_items;
 }
 
 
@@ -243,39 +255,37 @@ function checkFilters(){
         else if ($(checkbox).data('size'))
         filtersChecked.push($(checkbox).data('size'));
     });
-    console.log(checkboxes , filtersChecked );
+    //console.log(checkboxes , filtersChecked );
     var allProduct_Containers = Array.from(getProductContainers());
-    console.log(allProduct_Containers);
-    console.log(filtersChecked);
+    //console.log(allProduct_Containers);
+    //console.log(filtersChecked);
     if(filtersChecked.length == 0){
         allProduct_Containers.map(product => $(product).removeClass('does_not_apply'));
     } else {
         filterProductsBy(0.00, filtersChecked);
     }
     return filtersChecked;
-    // var mediums_checked = [];
-    //console.log(medium_containers);
-    // $(medium_containers).each(function(container){
-    //     var medium_filters = $(medium_containers).get(container);
-    //     //console.log(medium_filters);
-    //     $(medium_filters).on('click' , function(e){
-    //         if($(medium_filters).is(":checked")){
-    //             mediums_checked.push(e.target);
-    //             console.log("A checkbox has been checked" + " " + e.target.id);
-    //         } else {
-    //             console.log("A checkbox has been unchecked" + " " + $(this).attr('id'));
-    //             var id_unchecked = $(this).attr('id');
-    //             for(var i = 0; i < mediums_checked.length ; i++){
-    //                 if(mediums_checked[i].id == id_unchecked){
-    //                     mediums_checked.splice(i , 1);
-    //                 }
-    //             }
-    //         }
-    //         //console.log(mediums_checked);
-    //         filterProductsBy(0.00 , mediums_checked , "");
-    //     })
-    // });
-    // console.log(medium_containers);
+}
+
+
+function fillCommissionSection(Commissioned_Products){
+    var Commission_Container = $('.Commissioned_Work_Pieces').get(0);
+    console.log(Commission_Container);
+    // console.log(art_items);
+    console.log(Commissioned_Products);
+    Commissioned_Products = Commissioned_Products.filter(product => product.Size  === "Commission");
+    console.log(Commissioned_Products);
+    var Commissioned_Products_Content = Commissioned_Products.map(function(product){
+        let comm_product = 
+        `<div class="Commission_Image_Container">
+            <div class = "Commission_Image_Container_sm">
+                <img src="${product.Image_Link}"
+            </div>
+            <h3>${product.Name}</h3>
+        </div>`;
+        return comm_product;
+    }).join("");
+    Commission_Container.insertAdjacentHTML('afterbegin' , Commissioned_Products_Content);
 }
 
 
@@ -296,4 +306,8 @@ var fireFilterEventListeners = function(){
 
 
 //Method Calls
+getPictures();
 fireFilterEventListeners();
+displayPricePicker();
+
+
