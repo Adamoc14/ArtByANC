@@ -1,0 +1,115 @@
+.admin_nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0em 2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Lato;
+}
+
+.wrapper {
+	min-height: 100vh;
+}
+
+.logout_container h3 {
+	color: #e74c3c;
+	cursor: pointer;
+}
+
+.profile_container {
+	display: flex;
+	align-items: center;
+}
+
+.admin_nav img {
+	width: 5vw;
+}
+
+.admin_title {
+	text-align: center;
+}
+
+/* Add Product Functionality Styling  */
+
+.main_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4em 2em;
+}
+
+.sm_container {
+	margin: 1em 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.image_upload_container {
+	flex-direction: unset;
+	margin: 2.5em 0em;
+}
+
+#upload_file {
+	display: none;
+}
+
+.image_upload_container a {
+	background: #fcb045;
+	padding: .5em 4em;
+	color: white;
+}
+
+.image_file_name_container {
+	width: 45vw;
+	height: 25vh;
+	margin-left: 2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button_submit_container {
+	margin: unset;
+}
+
+.button_submit_container a {
+	border: 2px solid black;
+	padding: 1em 2em;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+}
+
+/* View Products Functionality Styling */
+.products_container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.product_container {
+	width: 20vw;
+	height: 30vh;
+	background: white;
+	margin: 2em;
+	display: flex;
+	flex-direction: column;
+}
+
+.product_container_sm img {
+	width: 20vw;
+	height: 25vh;
+}
+
+.product_container h3 {
+	text-align: center;
+	color: black;
+	text-transform: uppercase;
+}

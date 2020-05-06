@@ -1,80 +1,60 @@
 //Variable Declarations
-var art = "Well";
-console.log(art);
 var art_items = [];
+var Commissioned_Products = [];
 var art_item = {};
+var products_container = "";
 
-
+ // Initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyBvlJUyDmBHNfEjwkZ_Auf8Jr1mbXDdP7k",
+    authDomain: "artbyanc-70f23.firebaseapp.com",
+    databaseURL: "https://artbyanc-70f23.firebaseio.com",
+    projectId: "artbyanc-70f23",
+    storageBucket: "artbyanc-70f23.appspot.com",
+    messagingSenderId: "687386013503",
+    appId: "1:687386013503:web:b7e75afa311b99fae06d8a",
+    measurementId: "G-PD1GXNZL2G"
+};
+firebase.initializeApp(firebaseConfig);
 
 
 //Function Definitions
-function getPictures(){
-    var data;
-    var isEmpty = false;
-    $.get("https://sheets.googleapis.com/v4/spreadsheets/1NzRo_PwoUBnDO-LM8mpoPP__YHOj7CtMhMYKH-JVAw8/values/Sheet1?key=AIzaSyBU-vvNHDfvd27NWOGjGEXBgg_wqO6Vu-s", function(response, status){
-        data = response.values;
-        makeProducts(data , isEmpty);
-        return data;
+function getProducts(){
+    var databaseStorage = firebase.database().ref().child('products');
+    databaseStorage.on('child_added', snap => {
+        displayProducts(snap.val());
+        // console.log(_.toArray(snap.val()));
+        Commissioned_Products.push(snap.val());
+        fillCommissionSection(Commissioned_Products);
     });
-    return data;
+    console.log(Commissioned_Products);
 }
 
-function makeProducts(data , isEmpty){
-    for (let index = 0; index < data.length; index++) {
-            const product = data[index];
-            // console.log(product);
-            if (!(product[1] == "Price")){
-                art_item = {
-                    Name: product[0],
-                    Price: product[1],
-                    Description: product[2],
-                    Medium: product[3],
-                    Size : product[4],
-                    Image_Link: product[5],
-                    Url: encodeURIComponent(product[5]),
-                    Stock: product[6],
-                }
-            }
-            if(Object.keys(art_item).length == 0){
-                isEmpty = true;
-            } else {
-                art_items.push(art_item);  
-            }      
-    }
-    displayProducts(art_items);
-    if(document.getElementsByClassName('Commission_Container')[0]){
-        fillCommissionSection(art_items);
-    } else if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
+function displayProducts(value){
+    var contents = `
+    <div class="Product_Details" data-medium= "${value.medium}" data-size ="${value.size}">
+        <img src="${value.image_url}">
+        <div class="Product_sm_bar">
+            <div onclick="viewImage(this, this.parentNode.parentNode)">
+                <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
+            </div>
+            <a href="../../Resources/HTML/ProductView.html?image=${value.image_url}&name=${value.name}&price=${value.price}&description=${value.description}">VIEW PRODUCT</a>
+        </div>
+        <div class="Product_Actual_Details">
+            <h2>${value.description}</h2>
+            <h3>€${value.price}</h3>
+        </div>
+    </div>`;
+    if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
         displayFilterAndSort();
     }
+    // if($(".Products_Container").get(0).length === 1)
+    //     products_container = $(".Products_Container").get(0);
+    //     console.log(products_container);
+    //     products_container.insertAdjacentHTML('afterbegin', contents);
 }
 
-function displayProducts(products){
-    // console.log(products);
-    if (document.getElementsByClassName("Products_Container")[0]){
-            var products_container = document.getElementsByClassName("Products_Container")[0];
-            products.forEach(function(art_item){
-                if (art_item.Image_Link){
-                    var contents = `
-                    <div class="Product_Details" data-medium= "${art_item.Medium}" data-size ="${art_item.Size}">
-                        <img src="${art_item.Image_Link}">
-                        <div class="Product_sm_bar">
-                            <div onclick="viewImage(this, this.parentNode.parentNode)">
-                                <i class="fa fa-2x fa-eye" aria-hidden="true"></i>
-                            </div>
-                            <a href="../../Resources/HTML/ProductView.html?image=${art_item.Url}&name=${art_item.Name}&price=${art_item.Price}&description=${art_item.Description}">VIEW PRODUCT</a>
-                        </div>
-                        <div class="Product_Actual_Details">
-                            <h2>${art_item.Description}</h2>
-                            <h3>€${art_item.Price}</h3>
-                        </div>
-                    </div>`;
-                    products_container.insertAdjacentHTML('afterbegin', contents);
-                    // console.log(art_item.Image_Link);
-                }
-            });
-        }
-}
+
 
 
 
@@ -193,7 +173,7 @@ function _convertString(numStr){
             break;
     }
      // isNaN returns true if variable is not a number so if it returns false then it is a number
-     if (!isNaN(num)){
+    if (!isNaN(num)){
         return num;
     } else {
         console.warn( numStr + " cannot be converted into a number" );
@@ -268,13 +248,12 @@ function checkFilters(){
 }
 
 
-function fillCommissionSection(Commissioned_Products){
+function fillCommissionSection(Commission_Products){
     var Commission_Container = $('.Commissioned_Work_Pieces').get(0);
-    console.log(Commission_Container);
-    // console.log(art_items);
+    console.log(Commission_Products);
     console.log(Commissioned_Products);
-    Commissioned_Products = Commissioned_Products.filter(product => product.Size  === "Commission");
-    console.log(Commissioned_Products);
+    Commissioned_Products = Commissioned_Products.filter(product => product.size  === "Commission");
+    
     var Commissioned_Products_Content = Commissioned_Products.map(function(product){
         let comm_product = 
         `<div class="Commission_Image_Container">
@@ -306,7 +285,8 @@ var fireFilterEventListeners = function(){
 
 
 //Method Calls
-getPictures();
+getProducts();
+// getPictures();
 fireFilterEventListeners();
 displayPricePicker();
 
