@@ -23,26 +23,14 @@ function getProducts(){
     var databaseStorage = firebase.database().ref().child('products');
     var Commissioned_Products = [];
     databaseStorage.on('child_added', snap => {
-        switch (page) {
-            case page.indexOf("Shop") !== -1:
-                displayProducts(snap.val());
-                break;
-            case /Commissions.html/.test(page):
-                console.log(page);
-                if(snap.val().size !== "Commission")
-                    return;
-                Commissioned_Products.push(snap.val());
-                fillCommissionSection(Commissioned_Products);
-                break;
-            default:
-                console.log(`Why the fuck aren't you working lol ${page}`);
-                break;
-        }
-        // displayProducts(snap.val());
-        // if(snap.val().size !== "Commission")
-        //     return;
-        // Commissioned_Products.push(snap.val());
-        // fillCommissionSection(Commissioned_Products);
+        if(page.includes("Shop"))
+            displayProducts(snap.val());
+        else if( page.includes("Commission"))
+            console.log(page);
+            if(snap.val().size !== "Commission")
+                return;
+            Commissioned_Products.push(snap.val());
+            fillCommissionSection(Commissioned_Products);
     });
 }
 
@@ -64,10 +52,9 @@ function displayProducts(value){
     if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
         displayFilterAndSort();
     }
-    if($(".Products_Container").get(0).length === 1)
-        products_container = $(".Products_Container").get(0);
-        console.log(products_container);
-        products_container.insertAdjacentHTML('afterbegin', contents);
+    products_container = $(".Products_Container").get(0);
+    console.log(products_container);
+    products_container.insertAdjacentHTML('afterbegin', contents);
 }
 
 
