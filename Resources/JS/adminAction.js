@@ -53,7 +53,7 @@ $(document).ready(function () {
                     <option value="A5">A5</option>
                     <option value="A4">A4</option>
                     <option value="A3">A3</option>
-                    <option value="Commision">Commission</option>
+                    <option value="Commission">Commission</option>
                 </select>
             </div>
             <div class="sm_container image_upload_container">

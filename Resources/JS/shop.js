@@ -1,8 +1,8 @@
 //Variable Declarations
 var art_items = [];
-var Commissioned_Products = [];
 var art_item = {};
 var products_container = "";
+var page = window.location.href;
 
  // Initialize Firebase
 var firebaseConfig = {
@@ -21,13 +21,29 @@ firebase.initializeApp(firebaseConfig);
 //Function Definitions
 function getProducts(){
     var databaseStorage = firebase.database().ref().child('products');
+    var Commissioned_Products = [];
     databaseStorage.on('child_added', snap => {
-        displayProducts(snap.val());
-        // console.log(_.toArray(snap.val()));
-        Commissioned_Products.push(snap.val());
-        fillCommissionSection(Commissioned_Products);
+        switch (page) {
+            case page.indexOf("Shop") !== -1:
+                displayProducts(snap.val());
+                break;
+            case /Commissions.html/.test(page):
+                console.log(page);
+                if(snap.val().size !== "Commission")
+                    return;
+                Commissioned_Products.push(snap.val());
+                fillCommissionSection(Commissioned_Products);
+                break;
+            default:
+                console.log(`Why the fuck aren't you working lol ${page}`);
+                break;
+        }
+        // displayProducts(snap.val());
+        // if(snap.val().size !== "Commission")
+        //     return;
+        // Commissioned_Products.push(snap.val());
+        // fillCommissionSection(Commissioned_Products);
     });
-    console.log(Commissioned_Products);
 }
 
 function displayProducts(value){
@@ -48,10 +64,10 @@ function displayProducts(value){
     if(document.getElementsByClassName('filter_mobile')[0] && document.getElementsByClassName('pointer')[0]){
         displayFilterAndSort();
     }
-    // if($(".Products_Container").get(0).length === 1)
-    //     products_container = $(".Products_Container").get(0);
-    //     console.log(products_container);
-    //     products_container.insertAdjacentHTML('afterbegin', contents);
+    if($(".Products_Container").get(0).length === 1)
+        products_container = $(".Products_Container").get(0);
+        console.log(products_container);
+        products_container.insertAdjacentHTML('afterbegin', contents);
 }
 
 
@@ -249,22 +265,19 @@ function checkFilters(){
 
 
 function fillCommissionSection(Commission_Products){
-    var Commission_Container = $('.Commissioned_Work_Pieces').get(0);
-    console.log(Commission_Products);
-    console.log(Commissioned_Products);
-    Commissioned_Products = Commissioned_Products.filter(product => product.size  === "Commission");
-    
-    var Commissioned_Products_Content = Commissioned_Products.map(function(product){
-        let comm_product = 
-        `<div class="Commission_Image_Container">
-            <div class = "Commission_Image_Container_sm">
-                <img src="${product.Image_Link}"
-            </div>
-            <h3>${product.Name}</h3>
-        </div>`;
-        return comm_product;
-    }).join("");
-    Commission_Container.insertAdjacentHTML('afterbegin' , Commissioned_Products_Content);
+    var container = $('.Commissioned_Work_Pieces').get(0);
+    Commission_Products = Commission_Products.map(product => `
+    <div class="Commission_Image_Container">
+        <div class = "Commission_Image_Container_sm">
+            <img src="${product.image_url}"
+        </div>
+        <h3>${product.name}</h3>
+    </div>`);
+    // console.log(Commission_Products , Commission_Products.length);
+    if (Commission_Products.length < 5)
+        return;
+    container.insertAdjacentHTML('afterbegin' , Commission_Products);
+
 }
 
 
@@ -286,7 +299,6 @@ var fireFilterEventListeners = function(){
 
 //Method Calls
 getProducts();
-// getPictures();
 fireFilterEventListeners();
 displayPricePicker();
 
